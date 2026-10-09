@@ -20,23 +20,23 @@ NONON is a Windows and Mac desktop app that finishes everyday file work, like co
 Website: https://trynonon.xyz/
 
 ## Public GitHub Repository
-https://github.com/systoai-design/Nonon
+https://github.com/systoai-design/appbuildersph-nonon
 
 ## Demo Video
-[KYLE: upload submission/demo-1min.mp4 to YouTube and paste the link.]
+https://youtu.be/zwAGvHim_kw
 
 ## X / LinkedIn Video URL
-[KYLE: the post link, once you publish it.]
+https://www.linkedin.com/feed/update/urn:li:share:7514393502617698304/
 
 ## Technical Disclosures
 AI models: Qwen3.5 4B and 9B (Q4_K_M GGUF, Alibaba Cloud Qwen team, Apache-2.0; GGUF files by Unsloth) run locally through llama.cpp b10909 (MIT). Both are downloaded on first use and not modified. Optional online connections the user can turn on: Claude, Codex, Antigravity (the user's own installed, signed-in tools; not bundled) and a read-only Gmail connection.
 
-Frameworks and libraries: Electron, React, TypeScript, Vite, Tailwind CSS, ExcelJS, Papa Parse, docx, mammoth, unpdf (PDF.js), Croner, JSZip, fflate, zod, lucide-react, selfsigned. Nunito typeface (SIL OFL 1.1). Tested with Vitest (684 passed, 33 skipped because they need a model, a CLI or an account). Hosting: Cloudflare Workers and R2 at trynonon.xyz.
+Frameworks and libraries: Electron, React, TypeScript, Vite, Tailwind CSS, ExcelJS, Papa Parse, docx, mammoth, unpdf (PDF.js), Croner, JSZip, fflate, zod, lucide-react, selfsigned. Nunito typeface (SIL OFL 1.1). Tested with Vitest (716 passed, 33 skipped because they need a model, a CLI or an account). Hosting: Cloudflare Workers and R2 at trynonon.xyz.
 
 AI development tools: Claude (Anthropic) wrote most of the code and tests under my direction. Codex (OpenAI) and Manus were used for administrative work and planning.
 
-Video and audio tools: the demo video was recorded from the real app with Playwright and edited with ffmpeg. The one-minute explainer's SaaS-style motion graphics are built and animated in Blender 5.2 from the brand's own logo, icons and Nunito font. Its narration, sound effects and instrumental music bed are generated with ElevenLabs: the eleven_v4 speech model (a premade account voice), the eleven_text_to_sound_v2 effects model and the ElevenLabs Music API, mixed and encoded with ffmpeg. The explainer is a product preview made from sample data, not footage of the app.
+Video and audio tools: the film linked as the demo video is a one-minute product preview made from sample data, not footage of the app. Its motion graphics are built and animated in Blender 5.2 from the brand's own logo, icons and Nunito font. Its narration, sound effects and instrumental music bed are generated with ElevenLabs (eleven_v4 speech with a premade account voice, eleven_text_to_sound_v2 for effects, and the ElevenLabs Music API), then mixed and encoded with ffmpeg. A separate recording of the real app, made with Playwright and edited with ffmpeg, is in the repository at submission/demo-1min.mp4.
 
 Existing code and assets: reused from Pragma by Systo AI (Apache-2.0, itself derived from OpenMausBot, Apache-2.0): the pinned llama.cpp and Qwen3.5 download links and checksums, the download/unpack and llama-server launch approach (adapted), the observed event format for driving Antigravity, and the mascot artwork Pip, shown as Non. Every reused file is listed in docs/project/reuse-inventory.md and NOTICE. Everything else (app shell, spreadsheet comparison, change staging and undo, document procedures, scheduler, Gmail reader, roles, LAN sharing, site and download pipeline, branding) was built during the hackathon.
 
-Known limits: Gmail was not tried with a real Google account; Claude's turn is mocked; sharing the AI between two computers was tested on one machine only; 8 GB computers were not tested.
+Known limits: Gmail was not tried with a real Google account (needs an OAuth client file). The Claude connection is installed but was not signed in, so its turn was tested with a mock; the Codex and Antigravity sign-in buttons were not run. 8 GB computers were not tested. The Windows installer is not code-signed, so Windows SmartScreen shows an unknown-publisher warning. Sharing one computer's AI with another was tested between a Windows PC and a MacBook on one home network.

@@ -1,7 +1,7 @@
 # NONON submission checklist
 
 **UPDATE 2026-10-10, early morning (supersedes the statuses below where they differ):**
-- Public repository: DONE. https://github.com/systoai-design/Nonon is public (Apache-2.0), one clean commit history, no installers or private paths.
+- Public repository: DONE. https://github.com/systoai-design/appbuildersph-nonon is public (Apache-2.0), one clean commit history, no installers or private paths.
 - Final builds: DONE. Windows installer and signed, notarized Mac disk image are live at https://trynonon.xyz/download; their SHA-256 values match the published manifest.
 - Brand pack: DONE. The official logos, icons, Nunito and Non art are in the app and the website; the demo video was re-recorded on the final build.
 - Website: DONE. Redesigned in the Pragma style with GSAP motion; three download choices (Windows, Mac, GitHub).
@@ -16,7 +16,7 @@ Status words: DONE (exists and checked), DRAFT (written, needs Kyle), KYLE (only
 
 | Item | Status | Notes |
 |---|---|---|
-| Public repository | DONE | https://github.com/systoai-design/Nonon is public (Apache-2.0), one clean history, scanned for secrets and personal data. |
+| Public repository | DONE | https://github.com/systoai-design/appbuildersph-nonon is public (Apache-2.0), one clean history, scanned for secrets and personal data. |
 | One-minute video | DONE as a file, KYLE to upload | `submission/demo-1min.mp4` (58.2 s, 1920x1080, H.264, silent AAC track, captions burned in). Teaser `demo-teaser.mp4` (15 s) and `demo-1min-poster.png`. Upload and link are Kyle's. Watch it once before posting. |
 | Sponsor-tagged post | DRAFT, KYLE | Draft in `SUBMISSION-DRAFT.md`. Tags are `[SPONSOR TAGS: from the organizer briefing]`. Needs Kyle's go to post. |
 | Eligibility and forms | OPEN, KYLE | These come from a briefing Kyle has not shared with the build team. Not invented. Needs Kyle: eligibility rules, team or solo entry, any entry form fields, required category, required tools or sponsor products, rules about reused code. |
