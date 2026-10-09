@@ -92,7 +92,7 @@ This is the path the demo video follows, using the sample files that ship with t
 
 ### 1. Meet Non and set up
 
-On first run, Non (your helper) welcomes you, asks what kind of work you want help with, and checks that the built-in AI is ready. If it is not installed yet, this step offers to download it.
+On first run, Non (your helper) welcomes you, asks what kind of work you want help with, and checks that the built-in AI is ready. If it is not installed yet, this step offers to download it. Before offering a download, NONON looks (read-only) for AI files you already have, in LM Studio, Ollama, the Hugging Face cache, your Downloads folder or NONON's own folder. If it finds one that works, you can use it where it is, with no copy and no second download. Only the small AI engine may still need downloading. A model NONON has not tested is labelled as such, and answers that fail NONON's number checks fall back to a plain labelled summary.
 
 <p align="center">
   <img src="docs/readme/01-meet-non.png" width="800" alt="Onboarding step 1 of 4, Meet Non, with a name field and a Continue button">
@@ -418,6 +418,7 @@ Download from **https://trynonon.xyz/download**. The page shows the file name, s
 
 ### First run: what is downloaded, and where things are stored
 
+- **Skipped if you already have an AI:** a model found in LM Studio, Ollama, the Hugging Face cache or your Downloads folder is used in place (never copied, moved or changed). Details and measurements: [`docs/project/04-build-log/model-discovery-evidence.md`](docs/project/04-build-log/model-discovery-evidence.md).
 - **One-time download:** the AI engine (llama.cpp, from GitHub) and a Qwen3.5 model (from Hugging Face), about **3 to 6 GB** in all. On the development PC the Qwen3.5 4B model with its engine took about a minute; the 9B model is 5.68 GB. Your time depends on your connection. Files are checked against a pinned size and SHA-256 before they are used. A cancelled download can be resumed.
 - **After that**, the core jobs work offline. There is no offline installer: the first install needs the internet.
 - **Where things are stored** (Electron's standard user folder; the Windows path is the one used on the test PC, the Mac path follows the same rule and was not looked at separately):
