@@ -73,6 +73,7 @@
   --maxw: 1240px;
   --gut: clamp(20px, 4.4vw, 56px);            /* the same left and right gutter on every page */
   --nav-h: 64px;
+  --sheet-r: clamp(28px, 4.2vw, 64px);
 
   --sans: "Nunito", "Nunito Fallback", "Segoe UI", system-ui, sans-serif;
   --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
@@ -115,27 +116,49 @@ code { font-family: var(--mono); font-size: .88em; }
 .vh:focus-visible + * { outline: none; }
 
 .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gut); }
+
+/* Film grain over everything: it never moves, and it is what keeps the big flat grounds from
+   looking like a template. A data: SVG, so the CSP's img-src covers it. */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .05;
+}
+html.is-grabbing, html.is-grabbing * { cursor: grabbing !important; }
+
+/* Sheets: each section slides over the one above it with a rounded top edge. */
+.sheet {
+  position: relative; z-index: 1;
+  border-radius: var(--sheet-r) var(--sheet-r) 0 0;
+  margin-top: calc(var(--sheet-r) * -1);
+  box-shadow: 0 -1px 0 rgb(17 17 17 / .04), 0 -30px 60px -40px rgb(17 17 17 / .18);
+}
+.sheet--ink { background: var(--ink); color: #F4F4F4; }
 .ico { width: 1.25em; height: 1.25em; flex: none; color: var(--orange-ink); }
+/* the Non poses carry width/height attributes for layout; their containers set the width, so the
+   height must follow it or the character stretches */
+.non-img { width: 100%; height: auto; }
 
 /* ── type ──────────────────────────────────────────────────────────────── */
-/* Tracking is size-specific: zero at display size reads as gaps between the letters. */
+/* Big and heavy, like the wordmark: Nunito at its blackest, set tight. Tracking is size-specific:
+   zero at display size reads as gaps between the letters. */
 .display {
-  font-weight: 900;
-  font-size: clamp(3.1rem, 7.2vw, 7rem);
-  line-height: .96;
-  letter-spacing: -.045em;
-  margin: .28em 0 .3em;
+  font-weight: 1000;
+  font-size: clamp(3.3rem, 1.1rem + 7.6vw, 9.4rem);
+  line-height: .88;
+  letter-spacing: -.055em;
+  margin: .3em 0 .32em;
   text-wrap: balance;
 }
 .h2 {
-  font-weight: 900;
-  font-size: clamp(2.3rem, 4.9vw, 4.6rem);
-  line-height: 1;
-  letter-spacing: -.04em;
+  font-weight: 1000;
+  font-size: clamp(2.6rem, 1.2rem + 5vw, 6.4rem);
+  line-height: .92;
+  letter-spacing: -.05em;
   text-wrap: balance;
 }
-.h2--md { font-size: clamp(2.1rem, 4.1vw, 3.9rem); }
-.h2--xl { font-size: clamp(2.8rem, 7vw, 6.6rem); letter-spacing: -.045em; line-height: .96; }
+.h2--md { font-size: clamp(2.3rem, 1.1rem + 4vw, 5rem); }
+.h2--xl { font-size: clamp(3rem, .8rem + 8vw, 10rem); letter-spacing: -.055em; line-height: .88; }
 .soft { color: var(--soft); }
 
 .kicker {
@@ -198,6 +221,15 @@ code { font-family: var(--mono); font-size: .88em; }
 .btn--ghost { background: var(--paper); color: var(--ink); border-color: var(--line); box-shadow: var(--shadow-1); }
 .btn--ghost:hover { border-color: var(--line-2); }
 .btn--ghost .ico { color: var(--orange-ink); }
+.btn--xl { font-weight: 900; letter-spacing: -.015em; }
+
+/* The label rolls up to an identical copy on hover (the second copy is aria-hidden). */
+.roll { display: inline-grid; height: 1.25em; line-height: 1.25em; overflow: hidden; }
+.roll > span { grid-area: 1 / 1; transition: translate .55s var(--expo); }
+.roll > span + span { translate: 0 105%; }
+.btn:hover .roll > span:first-child { translate: 0 -105%; }
+.btn:hover .roll > span + span { translate: 0 0; }
+.btn__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px color-mix(in oklab, var(--orange) 22%, transparent); }
 
 /* The ways to get NONON: Windows, Mac and the source code on GitHub, always all three, always equal in
    size. The one that matches this computer is the filled one; a Mac visitor moves the fill to Mac.
@@ -311,11 +343,13 @@ code { font-family: var(--mono); font-size: .88em; }
 .foot__legal--credit { margin-top: 2.5rem; color: var(--text-2); font-weight: 700; }
 .foot__legal + .foot__legal { margin-top: .8rem; }
 .foot__word {
-  font-weight: 900;
-  font-size: clamp(5rem, 25vw, 23rem); line-height: .78; letter-spacing: -.06em;
-  text-align: center; color: color-mix(in oklab, var(--ink) 6%, var(--ground));
-  margin: 3rem 0 -.08em; user-select: none;
+  display: flex; justify-content: center;
+  font-weight: 1000;
+  font-size: clamp(4.5rem, 22vw, 24rem); line-height: .78; letter-spacing: -.06em;
+  color: var(--ink);
+  margin: 3.5rem 0 -.1em; user-select: none;
 }
+.foot__word span { display: inline-block; }
 
 /* ── Non: the brand's own motion (pack: motion/non-motion.css), scoped here because the CSP blocks the
       <style> that ships inside the SVG. The state lives on data-state; home.js and site.js set it. ── */

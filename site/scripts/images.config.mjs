@@ -34,6 +34,16 @@ export const NON = [
     sizes: "200px",
     loading: "lazy",
   },
+  {
+    name: "non-success",
+    src: "brand-src/mascots/non-success-fit.png",
+    box: { left: 0, top: 0, width: 325, height: 461 },
+    widths: [325],
+    alt: "Non, jumping with both arms up and its eyes closed in a smile.",
+    class: "non-img",
+    sizes: "200px",
+    loading: "lazy",
+  },
 ];
 
 // Real screenshots of the app only. Never a mockup or a concept image.

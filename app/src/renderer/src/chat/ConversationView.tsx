@@ -127,7 +127,7 @@ export function ConversationView({ workspace, starter, onStarterDone, onReview, 
         <div className="timeline-inner">
           {empty && (
             <div className="convo-empty">
-              <Non state={mood.state} replayKey={mood.epoch} size={104} />
+              <Non state={mood.state} replayKey={mood.epoch} size={190} />
               <h2>Hi, I&apos;m {companionName}.</h2>
               <p className="muted small">{mood.status}</p>
               <p className="muted">Tell me what you would like to do, or add some files. I will show you any change before it happens.</p>

@@ -9,12 +9,13 @@
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/nunito-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/base.css">
-<script src="/assets/boot.js"></script>
+<link rel="stylesheet" href="/assets/base.css?v=cf2fc935b3">
+<script src="/assets/boot.js?v=a9b4f5c3d7"></script>
 <title>NONON: finish everyday work with your own files</title>
 <meta name="description" content="NONON is a free helper for Windows and Mac. The AI works on your computer, so it keeps working when the internet doesn't. You check every change first.">
 <link rel="canonical" href="https://trynonon.xyz/">
-<link rel="stylesheet" href="/assets/home.css">
+<link rel="stylesheet" href="/assets/home.css?v=b86457eb45">
+<link rel="modulepreload" href="/vendor/three.min.js">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NONON">
 <meta property="og:title" content="NONON: finish everyday work with your own files">
@@ -28,8 +29,9 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":["SoftwareApplication","SoftwareSourceCode"],"name":"NONON","description":"A desktop helper that finishes everyday work with your own files. The AI runs on your computer, so core jobs keep working without the internet after a one-time setup download.","applicationCategory":"BusinessApplication","operatingSystem":"Windows 10, Windows 11, macOS on Apple silicon","url":"https://trynonon.xyz/","downloadUrl":"https://trynonon.xyz/download","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://www.apache.org/licenses/LICENSE-2.0","codeRepository":"https://github.com/systoai-design/Nonon"}</script>
 <script src="/vendor/gsap.min.js" defer></script>
 <script src="/vendor/ScrollTrigger.min.js" defer></script>
-<script src="/assets/site.js" defer></script>
-<script src="/assets/home.js" defer></script>
+<script src="/vendor/lenis.min.js" defer></script>
+<script src="/assets/site.js?v=5803c48996" defer></script>
+<script src="/assets/home.js?v=bcabaaf3e9" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -64,21 +66,20 @@
 </header>
 <main id="main">
 
-  <!-- hero: the words and Non first; on a wide screen the app window then rises while the page holds still -->
+  <!-- hero: the words, Non and your files in 3D; on a wide screen the files then fly into the app window while the page holds still -->
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="hero__pin" id="heroPin">
       <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__glow" aria-hidden="true"></div>
 
       <div class="hero__stage" id="heroStage">
-        <div class="stage" id="stage">
-          <span class="stage__disc" aria-hidden="true"></span>
-          <span class="stage__ring" aria-hidden="true"></span>
-          <button class="stage__non" id="nonBtn" type="button" aria-label="Say hi to Non"><svg class="non non--hero" viewBox="0 -8 256 272" data-state="idle" aria-hidden="true" focusable="false"><g class="non-body-group"><ellipse cx="128" cy="210" rx="119" ry="38" fill="#F47B32"/><path d="M26 201C34 148 48 98 76 68C89 52 108 43 128 43C150 43 169 52 183 69C209 101 222 153 230 201Q128 235 26 201Z" fill="#111111"/><ellipse cx="156" cy="27" rx="16" ry="33" transform="rotate(40 156 27)" fill="#F47B32"/><ellipse class="non-eye" cx="93" cy="139" rx="11" ry="22" fill="#FFFFFF"/><ellipse class="non-eye" cx="165" cy="139" rx="11" ry="22" fill="#FFFFFF"/><path class="non-smile" d="M118 175Q128 187 139 175" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><ellipse class="non-talk-mouth" cx="128" cy="178" rx="10" ry="12" fill="#FFFFFF"/></g><g class="non-thought-dots" fill="#A84208"><circle cx="104" cy="245" r="4"/><circle cx="128" cy="245" r="4"/><circle cx="152" cy="245" r="4"/></g></svg></button>
-          <p class="hello" id="hello">Hi, I'm Non.</p>
-          <span class="chip chip--1" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></g></svg>bank-list.csv</span>
-          <span class="chip chip--2" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M7 2v5M17 2v5"/></g></svg>meeting-notes.docx</span>
-          <span class="chip chip--3" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m1 8 11-6 11 6-11 6ZM5 10v7q7 5 14 0v-7M23 8v10"/></g></svg>reading.pdf</span>
+        <div class="stage3d" id="stage3d">
+          <div class="stage3d__flat" aria-hidden="true"><picture><source type="image/avif" srcset="/img/non/non-wave-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-wave-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-wave-325.webp" width="325" height="461" alt="Non, a small round black character with an orange ring around its middle, waving hello." loading="lazy" decoding="async"></picture></div>
         </div>
+        <p class="hero__hint" id="stageHint" aria-hidden="true">
+          <svg viewBox="0 0 120 60" width="64" height="32"><path d="M4 48 C 30 52, 70 44, 104 12" pathLength="1"/><path d="M90 10 L105 11 L103 26" pathLength="1"/></svg>
+          <span data-fine>Grab one. Throw it.</span><span data-touch>Tap one.</span>
+        </p>
       </div>
 
       <div class="hero__copy wrap" id="heroCopy">
@@ -92,24 +93,10 @@
         <h1 class="display" id="hero-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Finish</span></span> <span class="w" data-i="1"><span class="wi">everyday</span></span> <span class="w" data-i="2"><span class="wi">work</span></span> <span class="w" data-i="3"><span class="wi">with</span></span> <span class="hl"><span class="w" data-i="4"><span class="wi">your</span></span> <span class="w" data-i="5"><span class="wi">own</span></span> <span class="w" data-i="6"><span class="wi">files.</span></span></span></h1>
         <p class="hero__lede">The AI works on your computer, so it keeps working when the internet doesn't.</p>
         <div class="hero__cta">
-          <div class="dl-group" data-dl-group role="group" aria-label="Ways to get NONON">
-  <a class="dl-opt" data-dl="windows" href="/download#windows" data-press>
-    <span class="dl-opt__top"><span class="dl-opt__name">Windows</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/></g></svg></span>
-    <span class="dl-opt__sub" data-dl-sub="windows">Download for Windows 10 or 11 (64-bit).</span>
-  </a>
-  <a class="dl-opt" data-dl="macos" href="/download#mac" data-press>
-    <span class="dl-opt__top"><span class="dl-opt__name">Mac</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/></g></svg></span>
-    <span class="dl-opt__sub" data-dl-sub="macos">Download for Macs with Apple silicon.</span>
-  </a>
-  <a class="dl-opt" data-dl="github" href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener" data-press>
-    <span class="dl-opt__top"><span class="dl-opt__name">GitHub (public repository)</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0M16 8l2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0" transform="translate(1 -1) scale(.92)"/></g></svg></span>
-    <span class="dl-opt__sub"><b>Source code on GitHub.</b> Read, build or fork NONON. Free and open source, Apache 2.0.<span class="sr-only"> Opens in a new tab.</span></span>
-  </a>
-</div>
-<p class="dl-note" data-dl-note>Free. Windows 10 or 11, or a Mac with Apple silicon.</p>
-<p class="dl-note dl-note--version" data-dl-version></p>
-          <p class="dl-note dl-note--setup">Needs the internet once to download the AI (3 to 6 GB). <a href="/download">Install notes</a></p>
+          <a class="btn btn--primary btn--xl" href="/download" data-magnet data-press><span class="roll"><span>Download free</span><span aria-hidden="true">Download free</span></span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/></g></svg></a>
+          <a class="btn btn--ghost btn--xl" href="#app" id="seeIt" data-press><span class="roll"><span>See it work</span><span aria-hidden="true">See it work</span></span><span class="btn__dot" aria-hidden="true"></span></a>
         </div>
+        <p class="dl-note dl-note--setup">Needs the internet once to download the AI (3 to 6 GB). <a href="/download">Install notes</a></p>
         <ul class="hero__facts">
           <li><b>Windows and Mac</b><span>Apple silicon Macs, not Intel</span></li>
           <li><b>Your computer</b><span>The AI runs here</span></li>
@@ -120,30 +107,49 @@
       <div class="hero__app" id="app">
         <figure class="win" id="win">
           <div class="win__bar">
-            <span class="win__title"><img src="/brand/nonon-mark-color.svg" width="14" height="14" alt="">NONON</span>
+            <span class="win__title"><img src="/brand/nonon-mark-color.svg" width="14" height="14" alt="" id="winMark">NONON</span>
             <span class="win__spacer" aria-hidden="true"></span>
             <span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span>
           </div>
-          <div class="win__body"><picture><source type="image/webp" srcset="/img/app/shot-hero-680.webp 680w, /img/app/shot-hero-1020.webp 1020w, /img/app/shot-hero-1360.webp 1360w" sizes="(min-width: 1200px) 1118px, 92vw"><img class="shot-img" src="/img/app/shot-hero-1020.webp" width="1020" height="645" alt="The NONON window after comparing two spreadsheets. The results panel says the two files differ by PHP 2,565.60, with 19 matched pairs, 4 rows only in the first file, 5 only in the second, 1 listed twice and 3 not sure." loading="eager" decoding="async"></picture></div>
+          <div class="win__body" id="winBody"><picture><source type="image/webp" srcset="/img/app/shot-hero-680.webp 680w, /img/app/shot-hero-1020.webp 1020w, /img/app/shot-hero-1360.webp 1360w" sizes="(min-width: 1200px) 1118px, 92vw"><img class="shot-img" src="/img/app/shot-hero-1020.webp" width="1020" height="645" alt="The NONON window after comparing two spreadsheets. The results panel says the two files differ by PHP 2,565.60, with 19 matched pairs, 4 rows only in the first file, 5 only in the second, 1 listed twice and 3 not sure." loading="eager" decoding="async"></picture></div>
         </figure>
         <p class="win__hint">A real screenshot. NONON has just compared two spreadsheets and lists every row that does not match.</p>
       </div>
     </div>
   </section>
 
-  <!-- one sentence that inks in as you read it -->
-  <section class="why" id="why">
+  <!-- one sentence that inks in as you read it, then Non three ways -->
+  <section class="why sheet" id="why">
     <div class="wrap">
       <p class="kicker" data-reveal>Meet NONON</p>
       <p class="why__text" data-split="ink"><span class="w">NONON</span> <span class="w">is</span> <span class="w">a</span> <span class="w">helper</span> <img class="why__face" src="/brand/nonon-mark-color.svg" width="40" height="40" alt="" loading="lazy"> <span class="w">for</span> <span class="w">the</span> <span class="w">files</span> <span class="w">you</span> <span class="w">already</span> <span class="w">have.</span> <span class="w">Say</span> <span class="w">what</span> <span class="w">you</span> <span class="w">need</span> <span class="w">in</span> <span class="w">your</span> <span class="w">own</span> <span class="w">words.</span> <span class="w">It</span> <span class="w">does</span> <span class="w">the</span> <span class="w">work</span> <span class="w">on</span> <span class="w">your</span> <span class="w">computer,</span> <span class="w">shows</span> <span class="w">you</span> <span class="w">the</span> <span class="w">result,</span> <span class="w">and</span> <span class="w">asks</span> <span class="w">before</span> <span class="w">it</span> <span class="w">changes</span> <span class="w">anything.</span></p>
+      <ul class="pillars" data-stagger>
+        <li class="pillar" data-spot>
+          <div class="pillar__art"><picture><source type="image/avif" srcset="/img/non/non-rest-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-rest-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-rest-325.webp" width="325" height="461" alt="Non, standing quietly." loading="lazy" decoding="async"></picture></div>
+          <h3>It works where your files are.</h3>
+          <p>The AI runs on your computer. Your files stay in your folders.</p>
+        </li>
+        <li class="pillar pillar--orange" data-spot>
+          <div class="pillar__art"><picture><source type="image/avif" srcset="/img/non/non-wave-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-wave-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-wave-325.webp" width="325" height="461" alt="Non, a small round black character with an orange ring around its middle, waving hello." loading="lazy" decoding="async"></picture></div>
+          <h3>Say it in your own words.</h3>
+          <p>Like you would to a coworker. You do not need to learn how to write prompts.</p>
+        </li>
+        <li class="pillar pillar--ink" data-spot>
+          <div class="pillar__art"><picture><source type="image/avif" srcset="/img/non/non-success-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-success-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-success-325.webp" width="325" height="461" alt="Non, jumping with both arms up and its eyes closed in a smile." loading="lazy" decoding="async"></picture></div>
+          <h3>Nothing changes until you say OK.</h3>
+          <p>Before it changes a file, it saves a copy of the original.</p>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <section class="jobs" id="does" aria-labelledby="does-title">
+  <section class="jobs sheet" id="does" aria-labelledby="does-title">
     <div class="wrap">
-      <header class="head">
-        <p class="kicker" data-reveal>What it does</p>
-        <h2 class="h2" id="does-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Three</span></span> <span class="w" data-i="1"><span class="wi">things</span></span> <span class="w" data-i="2"><span class="wi">NONON</span></span> <span class="w" data-i="3"><span class="wi">does.</span></span></h2>
+      <header class="head head--split">
+        <div>
+          <p class="kicker" data-reveal>What it does</p>
+          <h2 class="h2" id="does-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Three</span></span> <span class="w" data-i="1"><span class="wi">things</span></span> <span class="w" data-i="2"><span class="wi">NONON</span></span> <span class="w" data-i="3"><span class="wi">does.</span></span></h2>
+        </div>
         <p class="head__lede" data-reveal>Give it your files and say what you need. Here is what it can do today.</p>
       </header>
 
@@ -157,19 +163,27 @@
 
         <div class="contacts" id="contacts" role="group" aria-label="Choose a job">
           <span class="contacts__thumb" id="contactsThumb" aria-hidden="true"></span>
-          <label class="contact" for="job-compare" data-job="compare"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></g></svg></span><span class="contact__meta"><span class="contact__name">Compare two spreadsheets</span><span class="contact__role">Find what does not match</span></span></label>
-          <label class="contact" for="job-meeting" data-job="meeting"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M7 2v5M17 2v5"/></g></svg></span><span class="contact__meta"><span class="contact__name">Turn meeting notes into a follow-up</span><span class="contact__role">Who does what</span></span></label>
-          <label class="contact" for="job-study" data-job="study"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m1 8 11-6 11 6-11 6ZM5 10v7q7 5 14 0v-7M23 8v10"/></g></svg></span><span class="contact__meta"><span class="contact__name">Turn a reading into a study sheet</span><span class="contact__role">With an answer key</span></span></label>
+          <label class="contact" for="job-compare" data-job="compare" data-pose="wave" data-say="Two spreadsheets? I'll find every row that doesn't match."><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></g></svg></span><span class="contact__meta"><span class="contact__name">Compare two spreadsheets</span><span class="contact__role">Find what does not match</span></span></label>
+          <label class="contact" for="job-meeting" data-job="meeting" data-pose="rest" data-say="Send me your notes. I'll list who does what."><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M7 2v5M17 2v5"/></g></svg></span><span class="contact__meta"><span class="contact__name">Turn meeting notes into a follow-up</span><span class="contact__role">Who does what</span></span></label>
+          <label class="contact" for="job-study" data-job="study" data-pose="success" data-say="Give me the reading. I'll make the study sheet."><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m1 8 11-6 11 6-11 6ZM5 10v7q7 5 14 0v-7M23 8v10"/></g></svg></span><span class="contact__meta"><span class="contact__name">Turn a reading into a study sheet</span><span class="contact__role">With an answer key</span></span></label>
           <p class="contacts__label">And also</p>
-          <label class="contact" for="job-tidy" data-job="tidy"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M2 7a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"/></g></svg></span><span class="contact__meta"><span class="contact__name">Tidy a folder</span><span class="contact__role">Every move listed first</span></span></label>
-          <label class="contact" for="job-draft" data-job="draft"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 5 5-13 13-6 1 1-6ZM14 5l5 5"/></g></svg></span><span class="contact__meta"><span class="contact__name">Draft a document</span><span class="contact__role">A first draft to edit</span></span></label>
-          <label class="contact" for="job-routine" data-job="routine"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8a8 8 0 1 0 1 9M20 3v5h-5"/><path d="M12 7v5l3 2"/></g></svg></span><span class="contact__meta"><span class="contact__name">Run it on a schedule</span><span class="contact__role">Repeat a job every week</span></span></label>
+          <label class="contact" for="job-tidy" data-job="tidy" data-pose="rest" data-say="I list every move first. You say OK."><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M2 7a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"/></g></svg></span><span class="contact__meta"><span class="contact__name">Tidy a folder</span><span class="contact__role">Every move listed first</span></span></label>
+          <label class="contact" for="job-draft" data-job="draft" data-pose="wave" data-say="Your notes in. A first draft out."><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 5 5-13 13-6 1 1-6ZM14 5l5 5"/></g></svg></span><span class="contact__meta"><span class="contact__name">Draft a document</span><span class="contact__role">A first draft to edit</span></span></label>
+          <label class="contact" for="job-routine" data-job="routine" data-pose="success" data-say="Same job, every week, while your computer is on."><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8a8 8 0 1 0 1 9M20 3v5h-5"/><path d="M12 7v5l3 2"/></g></svg></span><span class="contact__meta"><span class="contact__name">Run it on a schedule</span><span class="contact__role">Repeat a job every week</span></span></label>
         </div>
 
-        <div class="profiles">
-          <article class="profile" data-for="compare">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></g></svg></span></div>
-            <div class="profile__info">
+        <div class="jobs__panel">
+          <div class="jobs__art" id="jobsArt" data-pose="wave" aria-hidden="true">
+            <span class="jobs__disc"></span>
+            <span class="jobs__ring"></span>
+            <div class="jobs__pose" data-p="rest"><picture><source type="image/avif" srcset="/img/non/non-rest-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-rest-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-rest-325.webp" width="325" height="461" alt="Non, standing quietly." loading="lazy" decoding="async"></picture></div>
+            <div class="jobs__pose" data-p="wave"><picture><source type="image/avif" srcset="/img/non/non-wave-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-wave-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-wave-325.webp" width="325" height="461" alt="Non, a small round black character with an orange ring around its middle, waving hello." loading="lazy" decoding="async"></picture></div>
+            <div class="jobs__pose" data-p="success"><picture><source type="image/avif" srcset="/img/non/non-success-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-success-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-success-325.webp" width="325" height="461" alt="Non, jumping with both arms up and its eyes closed in a smile." loading="lazy" decoding="async"></picture></div>
+            <p class="say" id="say">Two spreadsheets? I'll find every row that doesn't match.</p>
+          </div>
+
+          <div class="profiles">
+            <article class="profile" data-for="compare">
               <p class="profile__role">Job 1 of 3</p>
               <h3 class="profile__name">Compare two spreadsheets</h3>
               <p class="profile__job">Give it two Excel or .csv spreadsheets, like your bank list and your own records. It shows every row that does not match. It adds up the money itself, so the totals are exact.</p>
@@ -185,64 +199,66 @@
                 </ul>
                 <p class="tally__gap">The two totals differ by <b data-count="2565.6" data-decimals="2">2,565.60</b> PHP. Code added it up, so it is exact.</p>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="meeting">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M7 2v5M17 2v5"/></g></svg></span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="meeting">
               <p class="profile__role">Job 2 of 3</p>
               <h3 class="profile__name">Turn meeting notes into a follow-up</h3>
               <p class="profile__job">Give it your notes. You get a short summary and a list of who does what. Anything missing, like a name or a date, is marked for you.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>Your meeting notes</dd></div><div><dt>You get</dt><dd>A summary and a list of who does what</dd></div></dl>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="study">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m1 8 11-6 11 6-11 6ZM5 10v7q7 5 14 0v-7M23 8v10"/></g></svg></span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="study">
               <p class="profile__role">Job 3 of 3</p>
               <h3 class="profile__name">Turn a reading into a study sheet</h3>
               <p class="profile__job">Give it a reading. You get a study sheet with practice questions and an answer key. It is built only from your reading.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>A reading</dd></div><div><dt>You get</dt><dd>A study sheet with an answer key</dd></div></dl>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="tidy">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M2 7a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"/></g></svg></span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="tidy">
               <p class="profile__role">And also</p>
               <h3 class="profile__name">Tidy a folder</h3>
               <p class="profile__job">NONON lists every move first. Nothing moves until you say OK.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>A messy folder</dd></div><div><dt>You get</dt><dd>A list of every move, waiting for your OK</dd></div></dl>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="draft">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 5 5-13 13-6 1 1-6ZM14 5l5 5"/></g></svg></span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="draft">
               <p class="profile__role">And also</p>
               <h3 class="profile__name">Draft a document</h3>
               <p class="profile__job">Get a first draft from your notes or a file. Then edit it your way.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>Your notes or a file</dd></div><div><dt>You get</dt><dd>A first draft you can edit</dd></div></dl>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="routine">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8a8 8 0 1 0 1 9M20 3v5h-5"/><path d="M12 7v5l3 2"/></g></svg></span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="routine">
               <p class="profile__role">And also</p>
               <h3 class="profile__name">Run it on a schedule</h3>
               <p class="profile__job">Repeat a job every week. It runs while your computer is on and awake.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>A job and a time</dd></div><div><dt>You get</dt><dd>The job done again, every week</dd></div></dl>
-            </div>
-          </article>
+            </article>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="control" id="control" aria-labelledby="control-title">
+  <!-- the film: a real recording, scaling into its frame as you scroll -->
+  <section class="film sheet sheet--ink" id="film" aria-labelledby="film-title">
+    <div class="wrap">
+      <header class="head head--center">
+        <p class="kicker kicker--center kicker--dark" data-reveal>See it work</p>
+        <h2 class="h2" id="film-title" data-split="mask"><span class="w" data-i="0"><span class="wi">One</span></span> <span class="w" data-i="1"><span class="wi">minute.</span></span> <span class="soft"><span class="w" data-i="2"><span class="wi">One</span></span> <span class="w" data-i="3"><span class="wi">real</span></span> <span class="w" data-i="4"><span class="wi">job.</span></span></span></h2>
+        <p class="head__lede" data-reveal>A real recording of the app and the AI on the computer: asking, checking, approving and undoing. The captions were added afterwards, and the orange dot shows the mouse.</p>
+      </header>
+      <div class="film__frame" id="filmFrame">
+        <video id="filmVideo" preload="none" playsinline controls poster="/media/nonon-demo-poster.webp" width="1280" height="720">
+          <source src="/media/nonon-demo-720.mp4" type="video/mp4">
+        </video>
+        <button class="film__play" id="filmPlay" type="button" data-press><span class="film__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span><span>Play the one-minute demo</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="control sheet" id="control" aria-labelledby="control-title">
     <div class="wrap">
       <header class="head head--split">
         <div>
@@ -276,16 +292,19 @@
               </div>
             </div>
             <div class="ask__pane" data-pane="left">
+              <span class="stamp stamp--ink" aria-hidden="true">Kept</span>
               <p class="ask__result"><b>Nothing changed.</b> The 3 files stay exactly where they were.</p>
               <div class="ask__actions"><button class="btn btn--ghost btn--sm" type="button" data-answer="again" data-press>Ask again</button></div>
             </div>
             <div class="ask__pane" data-pane="done">
+              <span class="stamp" aria-hidden="true">OK'd</span>
               <div class="ask__head"><svg class="non non--mini" viewBox="0 -8 256 272" data-state="idle" aria-hidden="true" focusable="false"><g class="non-body-group"><ellipse cx="128" cy="210" rx="119" ry="38" fill="#F47B32"/><path d="M26 201C34 148 48 98 76 68C89 52 108 43 128 43C150 43 169 52 183 69C209 101 222 153 230 201Q128 235 26 201Z" fill="#111111"/><ellipse cx="156" cy="27" rx="16" ry="33" transform="rotate(40 156 27)" fill="#F47B32"/><ellipse class="non-eye" cx="93" cy="139" rx="11" ry="22" fill="#FFFFFF"/><ellipse class="non-eye" cx="165" cy="139" rx="11" ry="22" fill="#FFFFFF"/><path class="non-smile" d="M118 175Q128 187 139 175" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><ellipse class="non-talk-mouth" cx="128" cy="178" rx="10" ry="12" fill="#FFFFFF"/></g><g class="non-thought-dots" fill="#A84208"><circle cx="104" cy="245" r="4"/><circle cx="128" cy="245" r="4"/><circle cx="152" cy="245" r="4"/></g></svg><p class="ask__result"><b>Done.</b> A copy of each original was saved first, so you can go back.</p></div>
               <div class="ask__actions">
                 <button class="btn btn--ghost btn--sm" type="button" data-answer="undo" data-press><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7"/></g></svg> Undo</button>
               </div>
             </div>
             <div class="ask__pane" data-pane="undone">
+              <span class="stamp stamp--ink" aria-hidden="true">Undone</span>
               <p class="ask__result"><b>Undone.</b> The files are back where they were.</p>
               <div class="ask__actions"><button class="btn btn--ghost btn--sm" type="button" data-answer="again" data-press>Try it again</button></div>
             </div>
@@ -295,12 +314,26 @@
     </div>
   </section>
 
+  <!-- the band: big words in two crossing rows, pushed by the scroll -->
+  <div class="band" aria-hidden="true">
+    <div class="band__strip band__strip--orange">
+      <div class="band__row" data-marquee="1">
+        <div class="band__set"><span>Your files</span><i></i><span>Your computer</span><i></i><span>Your OK</span><i></i><span>Your undo</span><i></i></div>
+      </div>
+    </div>
+    <div class="band__strip band__strip--ink">
+      <div class="band__row" data-marquee="-1">
+        <div class="band__set"><span>Small-business owners</span><b></b><span>Freelancers</span><b></b><span>Bookkeepers</span><b></b><span>Teachers</span><b></b><span>Students</span><b></b></div>
+      </div>
+    </div>
+  </div>
+
   <section class="local" id="local" data-online="true" aria-labelledby="local-title">
     <span class="local__dark" id="localDark" aria-hidden="true"></span>
     <div class="wrap local__grid">
       <div class="local__copy">
         <p class="kicker" data-reveal>Where it runs</p>
-        <h2 class="h2 h2--md" id="local-title" data-split="mask"><span class="w" data-i="0"><span class="wi">The</span></span> <span class="w" data-i="1"><span class="wi">AI</span></span> <span class="w" data-i="2"><span class="wi">stays</span></span> <span class="w" data-i="3"><span class="wi">on</span></span> <span class="w" data-i="4"><span class="wi">your</span></span> <span class="w" data-i="5"><span class="wi">computer.</span></span> <span class="soft"><span class="w" data-i="6"><span class="wi">So</span></span> <span class="w" data-i="7"><span class="wi">it</span></span> <span class="w" data-i="8"><span class="wi">keeps</span></span> <span class="w" data-i="9"><span class="wi">working</span></span> <span class="w" data-i="10"><span class="wi">when</span></span> <span class="w" data-i="11"><span class="wi">the</span></span> <span class="w" data-i="12"><span class="wi">internet</span></span> <span class="w" data-i="13"><span class="wi">doesn't.</span></span></span></h2>
+        <h2 class="h2" id="local-title" data-split="mask"><span class="w" data-i="0"><span class="wi">The</span></span> <span class="w" data-i="1"><span class="wi">AI</span></span> <span class="w" data-i="2"><span class="wi">stays</span></span> <span class="w" data-i="3"><span class="wi">on</span></span> <span class="w" data-i="4"><span class="wi">your</span></span> <span class="w" data-i="5"><span class="wi">computer.</span></span> <span class="soft"><span class="w" data-i="6"><span class="wi">So</span></span> <span class="w" data-i="7"><span class="wi">it</span></span> <span class="w" data-i="8"><span class="wi">keeps</span></span> <span class="w" data-i="9"><span class="wi">working</span></span> <span class="w" data-i="10"><span class="wi">when</span></span> <span class="w" data-i="11"><span class="wi">the</span></span> <span class="w" data-i="12"><span class="wi">internet</span></span> <span class="w" data-i="13"><span class="wi">doesn't.</span></span></span></h2>
         <p class="head__lede" data-reveal>Your files, backups and routines stay in your folders. Try the switch to see what keeps working with no internet.</p>
         <p class="honest" data-reveal><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0M16 8l2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0" transform="translate(1 -1) scale(.92)"/></g></svg><span><strong>Needs the internet once to download the AI (3 to 6 GB).</strong> After that, its core jobs work offline. Gmail and online AI always need the internet. Some parts are still being tested, so please read <a href="/status">what works today</a>.</span></p>
       </div>
@@ -334,7 +367,7 @@
     </div>
   </section>
 
-  <section class="how" id="how" aria-labelledby="how-title">
+  <section class="how sheet" id="how" aria-labelledby="how-title">
     <div class="how__pin" id="howPin">
       <div class="wrap how__grid">
         <header class="how__head">
@@ -360,32 +393,22 @@
     </div>
   </section>
 
-  <section class="who" id="who" aria-labelledby="who-title">
+  <section class="who sheet" id="who" aria-labelledby="who-title">
     <div class="wrap">
-      <header class="head">
-        <p class="kicker" data-reveal>Who it is for</p>
-        <h2 class="h2" id="who-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Who</span></span> <span class="w" data-i="1"><span class="wi">it</span></span> <span class="w" data-i="2"><span class="wi">is</span></span> <span class="w" data-i="3"><span class="wi">for.</span></span></h2>
+      <header class="head head--split">
+        <div>
+          <p class="kicker" data-reveal>Who it is for</p>
+          <h2 class="h2" id="who-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Who</span></span> <span class="w" data-i="1"><span class="wi">it</span></span> <span class="w" data-i="2"><span class="wi">is</span></span> <span class="w" data-i="3"><span class="wi">for.</span></span></h2>
+        </div>
         <p class="head__lede" data-reveal>People who work with files all day and do not want to become AI experts.</p>
       </header>
       <ol class="audience" data-stagger>
-        <li><span class="audience__n">01</span><h3>Small-business owners</h3><p>Match your bank list to your own records. Tidy a messy folder.</p></li>
-        <li><span class="audience__n">02</span><h3>Freelancers</h3><p>Turn client call notes into a follow-up with who does what.</p></li>
-        <li><span class="audience__n">03</span><h3>Bookkeepers</h3><p>Compare two statements and see every row that does not match.</p></li>
-        <li><span class="audience__n">04</span><h3>Teachers and students</h3><p>Turn a reading into a study sheet, or plan a lesson.</p></li>
+        <li data-spot><span class="audience__n">01</span><h3>Small-business owners</h3><p>Match your bank list to your own records. Tidy a messy folder.</p></li>
+        <li data-spot><span class="audience__n">02</span><h3>Freelancers</h3><p>Turn client call notes into a follow-up with who does what.</p></li>
+        <li data-spot><span class="audience__n">03</span><h3>Bookkeepers</h3><p>Compare two statements and see every row that does not match.</p></li>
+        <li data-spot><span class="audience__n">04</span><h3>Teachers and students</h3><p>Turn a reading into a study sheet, or plan a lesson.</p></li>
       </ol>
-    </div>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__row" data-marquee="1">
-        <div class="marquee__set"><span>Small-business owners</span><i></i><span>Freelancers</span><i></i><span>Bookkeepers</span><i></i><span>Teachers</span><i></i><span>Students</span><i></i></div>
-      </div>
-      <div class="marquee__row marquee__row--soft" data-marquee="-1">
-        <div class="marquee__set"><span>Your files</span><b></b><span>Your computer</span><b></b><span>Your OK</span><b></b><span>Your undo</span><b></b></div>
-      </div>
-    </div>
-    <p class="sr-only">NONON is for small-business owners, freelancers, bookkeepers, teachers and students.</p>
-
-    <div class="wrap">
       <aside class="notyet" id="notyet" aria-labelledby="notyet-title" data-reveal>
         <div class="notyet__copy">
           <p class="kicker kicker--dark">Not yet</p>
@@ -399,13 +422,14 @@
           <li>Scanned PDFs</li>
           <li>Other characters, later</li>
         </ul>
+        <div class="notyet__non" aria-hidden="true"><picture><source type="image/avif" srcset="/img/non/non-rest-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-rest-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-rest-325.webp" width="325" height="461" alt="Non, standing quietly." loading="lazy" decoding="async"></picture></div>
       </aside>
     </div>
   </section>
 
-  <section class="faq" id="faq" aria-labelledby="faq-title">
+  <section class="faq sheet" id="faq" aria-labelledby="faq-title">
     <div class="wrap faq__grid">
-      <div>
+      <div class="faq__head">
         <p class="kicker" data-reveal>Questions</p>
         <h2 class="h2" id="faq-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Questions</span></span> <span class="w" data-i="1"><span class="wi">people</span></span> <span class="w" data-i="2"><span class="wi">ask.</span></span></h2>
       </div>
@@ -475,7 +499,11 @@
 <p class="dl-note dl-note--version" data-dl-version></p>
         </div>
         <p class="cta__fine" data-reveal><a href="/download">Install notes and checksums</a></p>
-        <div class="peek" id="peek" aria-hidden="true"><svg class="non non--peek" viewBox="0 -8 256 272" data-state="idle" aria-hidden="true" focusable="false"><g class="non-body-group"><ellipse cx="128" cy="210" rx="119" ry="38" fill="#F47B32"/><path d="M26 201C34 148 48 98 76 68C89 52 108 43 128 43C150 43 169 52 183 69C209 101 222 153 230 201Q128 235 26 201Z" fill="#111111"/><ellipse cx="156" cy="27" rx="16" ry="33" transform="rotate(40 156 27)" fill="#F47B32"/><ellipse class="non-eye" cx="93" cy="139" rx="11" ry="22" fill="#FFFFFF"/><ellipse class="non-eye" cx="165" cy="139" rx="11" ry="22" fill="#FFFFFF"/><path class="non-smile" d="M118 175Q128 187 139 175" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><ellipse class="non-talk-mouth" cx="128" cy="178" rx="10" ry="12" fill="#FFFFFF"/></g><g class="non-thought-dots" fill="#A84208"><circle cx="104" cy="245" r="4"/><circle cx="128" cy="245" r="4"/><circle cx="152" cy="245" r="4"/></g></svg></div>
+        <div class="peek" id="peek" aria-hidden="true">
+          <div class="peek__non"><picture><source type="image/avif" srcset="/img/non/non-rest-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-rest-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-rest-325.webp" width="325" height="461" alt="Non, standing quietly." loading="lazy" decoding="async"></picture></div>
+          <div class="peek__non"><picture><source type="image/avif" srcset="/img/non/non-success-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-success-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-success-325.webp" width="325" height="461" alt="Non, jumping with both arms up and its eyes closed in a smile." loading="lazy" decoding="async"></picture></div>
+          <div class="peek__non"><picture><source type="image/avif" srcset="/img/non/non-wave-325.avif 325w" sizes="200px"><source type="image/webp" srcset="/img/non/non-wave-325.webp 325w" sizes="200px"><img class="non-img" src="/img/non/non-wave-325.webp" width="325" height="461" alt="Non, a small round black character with an orange ring around its middle, waving hello." loading="lazy" decoding="async"></picture></div>
+        </div>
       </div>
     </div>
   </section>
@@ -506,13 +534,14 @@
       <a href="https://huggingface.co/Qwen" rel="noopener">Qwen3.5 (Apache-2.0)</a>
       <a href="/licenses#fonts">Nunito (Open Font License)</a>
       <a href="/licenses#gsap">GSAP (for this site's motion)</a>
+      <a href="/licenses#gsap">three.js and Lenis (MIT license)</a>
     </div>
   </div>
   <div class="wrap">
     <p class="foot__legal foot__legal--credit">Non is the Pragma mascot Pip, used with permission of its owner. App derived from components of Pragma (Apache-2.0).</p>
     <p class="foot__legal">NONON is released under the Apache License 2.0. Copyright 2026 Kyle Cabahug. Claude is a product of Anthropic, Codex of OpenAI, and Antigravity and Gmail of Google. NONON is not affiliated with or endorsed by them. This site uses no cookies and no analytics.</p>
   </div>
-  <p class="foot__word" aria-hidden="true">NONON</p>
+  <p class="foot__word" id="footWord" aria-hidden="true"><span>N</span><span>O</span><span>N</span><span>O</span><span>N</span></p>
 </footer>
 </body>
 </html>

@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { NON_ART, type NonPose } from "../assets/non";
+import { CLIP_ASPECT, CLIP_VIEW, NON_CLIP_POSTER, NON_CLIPS } from "../assets/non/clips";
 import { useAppState } from "../lib/bridge";
 import type { NonState } from "../lib/companion";
 import { motionOff, useLayers } from "../lib/motion";
 import { createNonController, type NonController } from "../lib/non-controller";
+import { CLIP_FOR_STATE, CLIP_MIN_SIZE } from "../lib/non-clips";
 
 // Warm the image cache so the onboarding pose swap (wave, rest, success) never flashes an empty frame.
 if (typeof Image !== "undefined") {
@@ -63,6 +65,59 @@ function NonFace({ state, size, still, replayKey, className }: { state: NonState
   );
 }
 
+
+/** One playing clip. Reduced motion shows the still first frame and never starts the video; a hidden window pauses it. */
+function ClipVideo({ clip, loop, className, still }: { clip: keyof typeof NON_CLIPS; loop: boolean; className: string; still: boolean }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || still) return;
+    const sync = (): void => {
+      if (document.hidden) v.pause();
+      else void v.play().catch(() => undefined);
+    };
+    sync();
+    document.addEventListener("visibilitychange", sync);
+    return () => document.removeEventListener("visibilitychange", sync);
+  }, [still, clip]);
+  return (
+    <video
+      ref={ref}
+      className={`non-clip-video ${className}`}
+      src={still ? undefined : NON_CLIPS[clip]}
+      poster={NON_CLIP_POSTER}
+      muted
+      playsInline
+      loop={loop}
+      autoPlay={!still}
+      preload="auto"
+      disablePictureInPicture
+      aria-hidden="true"
+      tabIndex={-1}
+    />
+  );
+}
+
+/**
+ * Non as a short Blender-rendered animation (idle breathing, wave, tilt, think, talk, celebrate), cropped to the character
+ * and feathered at the edges so the soft ground shadow never ends in a visible rectangle. `height` is the box height; the
+ * width follows the crop. States cross-fade; with reduced motion only the still frame is shown.
+ */
+export function NonClip({ state, height, replayKey = 0, label }: { state: NonState; height: number; replayKey?: number; label?: string }) {
+  const layers = useLayers(state, 260, `${state}:${replayKey}`);
+  const off = motionOff();
+  const width = Math.round(height * CLIP_ASPECT);
+  return (
+    <span className="non-clip" data-still={off ? "true" : undefined} style={{ width, height }} role={label ? "img" : undefined} aria-label={label || undefined} aria-hidden={label ? undefined : true}>
+      {layers.map((l) => (
+        <span key={`${l.id}:${replayKey}`} className={`non-clip-layer ${l.leaving ? "is-leaving" : l.id > 0 ? "is-entering" : ""}`}>
+          <ClipVideo clip={CLIP_FOR_STATE[l.value].clip} loop={CLIP_FOR_STATE[l.value].loop} className="" still={off} />
+        </span>
+      ))}
+    </span>
+  );
+}
+
 /**
  * Non, the companion: the brand pack's native 2D vector face (motion/non-idle.svg), animated by the rules in styles.css
  * and driven through the controller port in lib/non-controller.ts. The face is inline markup written here, never loaded
@@ -85,6 +140,7 @@ export function Non({
   replayKey?: number;
 }) {
   const layers = useLayers(state, 220, `${state}:${replayKey}`);
+  if (!still && size >= CLIP_MIN_SIZE) return <NonClip state={state} height={size} replayKey={replayKey} label={label} />;
   return (
     <span className="non" data-still={still ? "true" : undefined} style={{ width: size, height: size }} role={label ? "img" : undefined} aria-label={label || undefined} aria-hidden={label ? undefined : true}>
       {layers.map((l) => (

@@ -6,6 +6,7 @@
 <meta name="description" content="NONON is a free helper for Windows and Mac. The AI works on your computer, so it keeps working when the internet doesn't. You check every change first.">
 <link rel="canonical" href="https://trynonon.xyz/">
 <link rel="stylesheet" href="/assets/home.css">
+<link rel="modulepreload" href="/vendor/three.min.js">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NONON">
 <meta property="og:title" content="NONON: finish everyday work with your own files">
@@ -19,6 +20,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":["SoftwareApplication","SoftwareSourceCode"],"name":"NONON","description":"A desktop helper that finishes everyday work with your own files. The AI runs on your computer, so core jobs keep working without the internet after a one-time setup download.","applicationCategory":"BusinessApplication","operatingSystem":"Windows 10, Windows 11, macOS on Apple silicon","url":"https://trynonon.xyz/","downloadUrl":"https://trynonon.xyz/download","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://www.apache.org/licenses/LICENSE-2.0","codeRepository":"https://github.com/systoai-design/Nonon"}</script>
 <script src="/vendor/gsap.min.js" defer></script>
 <script src="/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/vendor/lenis.min.js" defer></script>
 <script src="/assets/site.js" defer></script>
 <script src="/assets/home.js" defer></script>
 </head>
@@ -26,21 +28,20 @@
 {{header}}
 <main id="main">
 
-  <!-- hero: the words and Non first; on a wide screen the app window then rises while the page holds still -->
+  <!-- hero: the words, Non and your files in 3D; on a wide screen the files then fly into the app window while the page holds still -->
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="hero__pin" id="heroPin">
       <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__glow" aria-hidden="true"></div>
 
       <div class="hero__stage" id="heroStage">
-        <div class="stage" id="stage">
-          <span class="stage__disc" aria-hidden="true"></span>
-          <span class="stage__ring" aria-hidden="true"></span>
-          <button class="stage__non" id="nonBtn" type="button" aria-label="Say hi to Non">{{non:non--hero}}</button>
-          <p class="hello" id="hello">Hi, I'm Non.</p>
-          <span class="chip chip--1" aria-hidden="true">{{icon:compare}}bank-list.csv</span>
-          <span class="chip chip--2" aria-hidden="true">{{icon:meeting}}meeting-notes.docx</span>
-          <span class="chip chip--3" aria-hidden="true">{{icon:study}}reading.pdf</span>
+        <div class="stage3d" id="stage3d">
+          <div class="stage3d__flat" aria-hidden="true">{{img:non-wave}}</div>
         </div>
+        <p class="hero__hint" id="stageHint" aria-hidden="true">
+          <svg viewBox="0 0 120 60" width="64" height="32"><path d="M4 48 C 30 52, 70 44, 104 12" pathLength="1"/><path d="M90 10 L105 11 L103 26" pathLength="1"/></svg>
+          <span data-fine>Grab one. Throw it.</span><span data-touch>Tap one.</span>
+        </p>
       </div>
 
       <div class="hero__copy wrap" id="heroCopy">
@@ -54,9 +55,10 @@
         <h1 class="display" id="hero-title" data-split="mask">Finish everyday work with <span class="hl">your own files.</span></h1>
         <p class="hero__lede">The AI works on your computer, so it keeps working when the internet doesn't.</p>
         <div class="hero__cta">
-          {{dlgroup}}
-          <p class="dl-note dl-note--setup">Needs the internet once to download the AI (3 to 6 GB). <a href="/download">Install notes</a></p>
+          <a class="btn btn--primary btn--xl" href="/download" data-magnet data-press><span class="roll"><span>Download free</span><span aria-hidden="true">Download free</span></span>{{icon:down}}</a>
+          <a class="btn btn--ghost btn--xl" href="#app" id="seeIt" data-press><span class="roll"><span>See it work</span><span aria-hidden="true">See it work</span></span><span class="btn__dot" aria-hidden="true"></span></a>
         </div>
+        <p class="dl-note dl-note--setup">Needs the internet once to download the AI (3 to 6 GB). <a href="/download">Install notes</a></p>
         <ul class="hero__facts">
           <li><b>Windows and Mac</b><span>Apple silicon Macs, not Intel</span></li>
           <li><b>Your computer</b><span>The AI runs here</span></li>
@@ -67,30 +69,49 @@
       <div class="hero__app" id="app">
         <figure class="win" id="win">
           <div class="win__bar">
-            <span class="win__title"><img src="/brand/nonon-mark-color.svg" width="14" height="14" alt="">NONON</span>
+            <span class="win__title"><img src="/brand/nonon-mark-color.svg" width="14" height="14" alt="" id="winMark">NONON</span>
             <span class="win__spacer" aria-hidden="true"></span>
             <span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span>
           </div>
-          <div class="win__body">{{img:shot-hero}}</div>
+          <div class="win__body" id="winBody">{{img:shot-hero}}</div>
         </figure>
         <p class="win__hint">A real screenshot. NONON has just compared two spreadsheets and lists every row that does not match.</p>
       </div>
     </div>
   </section>
 
-  <!-- one sentence that inks in as you read it -->
-  <section class="why" id="why">
+  <!-- one sentence that inks in as you read it, then Non three ways -->
+  <section class="why sheet" id="why">
     <div class="wrap">
       <p class="kicker" data-reveal>Meet NONON</p>
       <p class="why__text" data-split="ink">NONON is a helper <img class="why__face" src="/brand/nonon-mark-color.svg" width="40" height="40" alt="" loading="lazy"> for the files you already have. Say what you need in your own words. It does the work on your computer, shows you the result, and asks before it changes anything.</p>
+      <ul class="pillars" data-stagger>
+        <li class="pillar" data-spot>
+          <div class="pillar__art">{{img:non-rest}}</div>
+          <h3>It works where your files are.</h3>
+          <p>The AI runs on your computer. Your files stay in your folders.</p>
+        </li>
+        <li class="pillar pillar--orange" data-spot>
+          <div class="pillar__art">{{img:non-wave}}</div>
+          <h3>Say it in your own words.</h3>
+          <p>Like you would to a coworker. You do not need to learn how to write prompts.</p>
+        </li>
+        <li class="pillar pillar--ink" data-spot>
+          <div class="pillar__art">{{img:non-success}}</div>
+          <h3>Nothing changes until you say OK.</h3>
+          <p>Before it changes a file, it saves a copy of the original.</p>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <section class="jobs" id="does" aria-labelledby="does-title">
+  <section class="jobs sheet" id="does" aria-labelledby="does-title">
     <div class="wrap">
-      <header class="head">
-        <p class="kicker" data-reveal>What it does</p>
-        <h2 class="h2" id="does-title" data-split="mask">Three things NONON does.</h2>
+      <header class="head head--split">
+        <div>
+          <p class="kicker" data-reveal>What it does</p>
+          <h2 class="h2" id="does-title" data-split="mask">Three things NONON does.</h2>
+        </div>
         <p class="head__lede" data-reveal>Give it your files and say what you need. Here is what it can do today.</p>
       </header>
 
@@ -104,19 +125,27 @@
 
         <div class="contacts" id="contacts" role="group" aria-label="Choose a job">
           <span class="contacts__thumb" id="contactsThumb" aria-hidden="true"></span>
-          <label class="contact" for="job-compare" data-job="compare"><span class="contact__ico">{{icon:compare}}</span><span class="contact__meta"><span class="contact__name">Compare two spreadsheets</span><span class="contact__role">Find what does not match</span></span></label>
-          <label class="contact" for="job-meeting" data-job="meeting"><span class="contact__ico">{{icon:meeting}}</span><span class="contact__meta"><span class="contact__name">Turn meeting notes into a follow-up</span><span class="contact__role">Who does what</span></span></label>
-          <label class="contact" for="job-study" data-job="study"><span class="contact__ico">{{icon:study}}</span><span class="contact__meta"><span class="contact__name">Turn a reading into a study sheet</span><span class="contact__role">With an answer key</span></span></label>
+          <label class="contact" for="job-compare" data-job="compare" data-pose="wave" data-say="Two spreadsheets? I'll find every row that doesn't match."><span class="contact__ico">{{icon:compare}}</span><span class="contact__meta"><span class="contact__name">Compare two spreadsheets</span><span class="contact__role">Find what does not match</span></span></label>
+          <label class="contact" for="job-meeting" data-job="meeting" data-pose="rest" data-say="Send me your notes. I'll list who does what."><span class="contact__ico">{{icon:meeting}}</span><span class="contact__meta"><span class="contact__name">Turn meeting notes into a follow-up</span><span class="contact__role">Who does what</span></span></label>
+          <label class="contact" for="job-study" data-job="study" data-pose="success" data-say="Give me the reading. I'll make the study sheet."><span class="contact__ico">{{icon:study}}</span><span class="contact__meta"><span class="contact__name">Turn a reading into a study sheet</span><span class="contact__role">With an answer key</span></span></label>
           <p class="contacts__label">And also</p>
-          <label class="contact" for="job-tidy" data-job="tidy"><span class="contact__ico">{{icon:folder}}</span><span class="contact__meta"><span class="contact__name">Tidy a folder</span><span class="contact__role">Every move listed first</span></span></label>
-          <label class="contact" for="job-draft" data-job="draft"><span class="contact__ico">{{icon:draft}}</span><span class="contact__meta"><span class="contact__name">Draft a document</span><span class="contact__role">A first draft to edit</span></span></label>
-          <label class="contact" for="job-routine" data-job="routine"><span class="contact__ico">{{icon:clock}}</span><span class="contact__meta"><span class="contact__name">Run it on a schedule</span><span class="contact__role">Repeat a job every week</span></span></label>
+          <label class="contact" for="job-tidy" data-job="tidy" data-pose="rest" data-say="I list every move first. You say OK."><span class="contact__ico">{{icon:folder}}</span><span class="contact__meta"><span class="contact__name">Tidy a folder</span><span class="contact__role">Every move listed first</span></span></label>
+          <label class="contact" for="job-draft" data-job="draft" data-pose="wave" data-say="Your notes in. A first draft out."><span class="contact__ico">{{icon:draft}}</span><span class="contact__meta"><span class="contact__name">Draft a document</span><span class="contact__role">A first draft to edit</span></span></label>
+          <label class="contact" for="job-routine" data-job="routine" data-pose="success" data-say="Same job, every week, while your computer is on."><span class="contact__ico">{{icon:clock}}</span><span class="contact__meta"><span class="contact__name">Run it on a schedule</span><span class="contact__role">Repeat a job every week</span></span></label>
         </div>
 
-        <div class="profiles">
-          <article class="profile" data-for="compare">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon">{{icon:compare}}</span></div>
-            <div class="profile__info">
+        <div class="jobs__panel">
+          <div class="jobs__art" id="jobsArt" data-pose="wave" aria-hidden="true">
+            <span class="jobs__disc"></span>
+            <span class="jobs__ring"></span>
+            <div class="jobs__pose" data-p="rest">{{img:non-rest}}</div>
+            <div class="jobs__pose" data-p="wave">{{img:non-wave}}</div>
+            <div class="jobs__pose" data-p="success">{{img:non-success}}</div>
+            <p class="say" id="say">Two spreadsheets? I'll find every row that doesn't match.</p>
+          </div>
+
+          <div class="profiles">
+            <article class="profile" data-for="compare">
               <p class="profile__role">Job 1 of 3</p>
               <h3 class="profile__name">Compare two spreadsheets</h3>
               <p class="profile__job">Give it two Excel or .csv spreadsheets, like your bank list and your own records. It shows every row that does not match. It adds up the money itself, so the totals are exact.</p>
@@ -132,64 +161,66 @@
                 </ul>
                 <p class="tally__gap">The two totals differ by <b data-count="2565.6" data-decimals="2">2,565.60</b> PHP. Code added it up, so it is exact.</p>
               </div>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="meeting">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon">{{icon:meeting}}</span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="meeting">
               <p class="profile__role">Job 2 of 3</p>
               <h3 class="profile__name">Turn meeting notes into a follow-up</h3>
               <p class="profile__job">Give it your notes. You get a short summary and a list of who does what. Anything missing, like a name or a date, is marked for you.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>Your meeting notes</dd></div><div><dt>You get</dt><dd>A summary and a list of who does what</dd></div></dl>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="study">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon">{{icon:study}}</span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="study">
               <p class="profile__role">Job 3 of 3</p>
               <h3 class="profile__name">Turn a reading into a study sheet</h3>
               <p class="profile__job">Give it a reading. You get a study sheet with practice questions and an answer key. It is built only from your reading.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>A reading</dd></div><div><dt>You get</dt><dd>A study sheet with an answer key</dd></div></dl>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="tidy">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon">{{icon:folder}}</span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="tidy">
               <p class="profile__role">And also</p>
               <h3 class="profile__name">Tidy a folder</h3>
               <p class="profile__job">NONON lists every move first. Nothing moves until you say OK.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>A messy folder</dd></div><div><dt>You get</dt><dd>A list of every move, waiting for your OK</dd></div></dl>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="draft">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon">{{icon:draft}}</span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="draft">
               <p class="profile__role">And also</p>
               <h3 class="profile__name">Draft a document</h3>
               <p class="profile__job">Get a first draft from your notes or a file. Then edit it your way.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>Your notes or a file</dd></div><div><dt>You get</dt><dd>A first draft you can edit</dd></div></dl>
-            </div>
-          </article>
+            </article>
 
-          <article class="profile" data-for="routine">
-            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon">{{icon:clock}}</span></div>
-            <div class="profile__info">
+            <article class="profile" data-for="routine">
               <p class="profile__role">And also</p>
               <h3 class="profile__name">Run it on a schedule</h3>
               <p class="profile__job">Repeat a job every week. It runs while your computer is on and awake.</p>
               <dl class="pair"><div><dt>You give it</dt><dd>A job and a time</dd></div><div><dt>You get</dt><dd>The job done again, every week</dd></div></dl>
-            </div>
-          </article>
+            </article>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="control" id="control" aria-labelledby="control-title">
+  <!-- the film: a real recording, scaling into its frame as you scroll -->
+  <section class="film sheet sheet--ink" id="film" aria-labelledby="film-title">
+    <div class="wrap">
+      <header class="head head--center">
+        <p class="kicker kicker--center kicker--dark" data-reveal>See it work</p>
+        <h2 class="h2" id="film-title" data-split="mask">One minute. <span class="soft">One real job.</span></h2>
+        <p class="head__lede" data-reveal>A real recording of the app and the AI on the computer: asking, checking, approving and undoing. The captions were added afterwards, and the orange dot shows the mouse.</p>
+      </header>
+      <div class="film__frame" id="filmFrame">
+        <video id="filmVideo" preload="none" playsinline controls poster="/media/nonon-demo-poster.webp" width="1280" height="720">
+          <source src="/media/nonon-demo-720.mp4" type="video/mp4">
+        </video>
+        <button class="film__play" id="filmPlay" type="button" data-press><span class="film__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span><span>Play the one-minute demo</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="control sheet" id="control" aria-labelledby="control-title">
     <div class="wrap">
       <header class="head head--split">
         <div>
@@ -223,16 +254,19 @@
               </div>
             </div>
             <div class="ask__pane" data-pane="left">
+              <span class="stamp stamp--ink" aria-hidden="true">Kept</span>
               <p class="ask__result"><b>Nothing changed.</b> The 3 files stay exactly where they were.</p>
               <div class="ask__actions"><button class="btn btn--ghost btn--sm" type="button" data-answer="again" data-press>Ask again</button></div>
             </div>
             <div class="ask__pane" data-pane="done">
+              <span class="stamp" aria-hidden="true">OK'd</span>
               <div class="ask__head">{{non:non--mini}}<p class="ask__result"><b>Done.</b> A copy of each original was saved first, so you can go back.</p></div>
               <div class="ask__actions">
                 <button class="btn btn--ghost btn--sm" type="button" data-answer="undo" data-press>{{icon:undo}} Undo</button>
               </div>
             </div>
             <div class="ask__pane" data-pane="undone">
+              <span class="stamp stamp--ink" aria-hidden="true">Undone</span>
               <p class="ask__result"><b>Undone.</b> The files are back where they were.</p>
               <div class="ask__actions"><button class="btn btn--ghost btn--sm" type="button" data-answer="again" data-press>Try it again</button></div>
             </div>
@@ -242,12 +276,26 @@
     </div>
   </section>
 
+  <!-- the band: big words in two crossing rows, pushed by the scroll -->
+  <div class="band" aria-hidden="true">
+    <div class="band__strip band__strip--orange">
+      <div class="band__row" data-marquee="1">
+        <div class="band__set"><span>Your files</span><i></i><span>Your computer</span><i></i><span>Your OK</span><i></i><span>Your undo</span><i></i></div>
+      </div>
+    </div>
+    <div class="band__strip band__strip--ink">
+      <div class="band__row" data-marquee="-1">
+        <div class="band__set"><span>Small-business owners</span><b></b><span>Freelancers</span><b></b><span>Bookkeepers</span><b></b><span>Teachers</span><b></b><span>Students</span><b></b></div>
+      </div>
+    </div>
+  </div>
+
   <section class="local" id="local" data-online="true" aria-labelledby="local-title">
     <span class="local__dark" id="localDark" aria-hidden="true"></span>
     <div class="wrap local__grid">
       <div class="local__copy">
         <p class="kicker" data-reveal>Where it runs</p>
-        <h2 class="h2 h2--md" id="local-title" data-split="mask">The AI stays on your computer. <span class="soft">So it keeps working when the internet doesn't.</span></h2>
+        <h2 class="h2" id="local-title" data-split="mask">The AI stays on your computer. <span class="soft">So it keeps working when the internet doesn't.</span></h2>
         <p class="head__lede" data-reveal>Your files, backups and routines stay in your folders. Try the switch to see what keeps working with no internet.</p>
         <p class="honest" data-reveal>{{icon:wifi}}<span><strong>Needs the internet once to download the AI (3 to 6 GB).</strong> After that, its core jobs work offline. Gmail and online AI always need the internet. Some parts are still being tested, so please read <a href="/status">what works today</a>.</span></p>
       </div>
@@ -281,7 +329,7 @@
     </div>
   </section>
 
-  <section class="how" id="how" aria-labelledby="how-title">
+  <section class="how sheet" id="how" aria-labelledby="how-title">
     <div class="how__pin" id="howPin">
       <div class="wrap how__grid">
         <header class="how__head">
@@ -307,32 +355,22 @@
     </div>
   </section>
 
-  <section class="who" id="who" aria-labelledby="who-title">
+  <section class="who sheet" id="who" aria-labelledby="who-title">
     <div class="wrap">
-      <header class="head">
-        <p class="kicker" data-reveal>Who it is for</p>
-        <h2 class="h2" id="who-title" data-split="mask">Who it is for.</h2>
+      <header class="head head--split">
+        <div>
+          <p class="kicker" data-reveal>Who it is for</p>
+          <h2 class="h2" id="who-title" data-split="mask">Who it is for.</h2>
+        </div>
         <p class="head__lede" data-reveal>People who work with files all day and do not want to become AI experts.</p>
       </header>
       <ol class="audience" data-stagger>
-        <li><span class="audience__n">01</span><h3>Small-business owners</h3><p>Match your bank list to your own records. Tidy a messy folder.</p></li>
-        <li><span class="audience__n">02</span><h3>Freelancers</h3><p>Turn client call notes into a follow-up with who does what.</p></li>
-        <li><span class="audience__n">03</span><h3>Bookkeepers</h3><p>Compare two statements and see every row that does not match.</p></li>
-        <li><span class="audience__n">04</span><h3>Teachers and students</h3><p>Turn a reading into a study sheet, or plan a lesson.</p></li>
+        <li data-spot><span class="audience__n">01</span><h3>Small-business owners</h3><p>Match your bank list to your own records. Tidy a messy folder.</p></li>
+        <li data-spot><span class="audience__n">02</span><h3>Freelancers</h3><p>Turn client call notes into a follow-up with who does what.</p></li>
+        <li data-spot><span class="audience__n">03</span><h3>Bookkeepers</h3><p>Compare two statements and see every row that does not match.</p></li>
+        <li data-spot><span class="audience__n">04</span><h3>Teachers and students</h3><p>Turn a reading into a study sheet, or plan a lesson.</p></li>
       </ol>
-    </div>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__row" data-marquee="1">
-        <div class="marquee__set"><span>Small-business owners</span><i></i><span>Freelancers</span><i></i><span>Bookkeepers</span><i></i><span>Teachers</span><i></i><span>Students</span><i></i></div>
-      </div>
-      <div class="marquee__row marquee__row--soft" data-marquee="-1">
-        <div class="marquee__set"><span>Your files</span><b></b><span>Your computer</span><b></b><span>Your OK</span><b></b><span>Your undo</span><b></b></div>
-      </div>
-    </div>
-    <p class="sr-only">NONON is for small-business owners, freelancers, bookkeepers, teachers and students.</p>
-
-    <div class="wrap">
       <aside class="notyet" id="notyet" aria-labelledby="notyet-title" data-reveal>
         <div class="notyet__copy">
           <p class="kicker kicker--dark">Not yet</p>
@@ -346,13 +384,14 @@
           <li>Scanned PDFs</li>
           <li>Other characters, later</li>
         </ul>
+        <div class="notyet__non" aria-hidden="true">{{img:non-rest}}</div>
       </aside>
     </div>
   </section>
 
-  <section class="faq" id="faq" aria-labelledby="faq-title">
+  <section class="faq sheet" id="faq" aria-labelledby="faq-title">
     <div class="wrap faq__grid">
-      <div>
+      <div class="faq__head">
         <p class="kicker" data-reveal>Questions</p>
         <h2 class="h2" id="faq-title" data-split="mask">Questions people ask.</h2>
       </div>
@@ -407,7 +446,11 @@
           {{dlgroup}}
         </div>
         <p class="cta__fine" data-reveal><a href="/download">Install notes and checksums</a></p>
-        <div class="peek" id="peek" aria-hidden="true">{{non:non--peek}}</div>
+        <div class="peek" id="peek" aria-hidden="true">
+          <div class="peek__non">{{img:non-rest}}</div>
+          <div class="peek__non">{{img:non-success}}</div>
+          <div class="peek__non">{{img:non-wave}}</div>
+        </div>
       </div>
     </div>
   </section>

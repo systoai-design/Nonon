@@ -70,7 +70,7 @@ export function HomeView({
       <div className="page">
 <div className="home">
         <div className="home-hero">
-          <Non state={mood.state} replayKey={mood.epoch} size={96} />
+          <Non state={mood.state} replayKey={mood.epoch} size={150} />
           <div>
             <h2 className="hero-title">{greeting()}.</h2>
             <p className="muted small">{mood.status}</p>
@@ -111,7 +111,7 @@ export function HomeView({
     <div className="page">
 <div className="home">
       <div className="home-hero">
-        <Non state={mood.state} replayKey={mood.epoch} size={96} />
+        <Non state={mood.state} replayKey={mood.epoch} size={150} />
         <div>
           <h2 className="hero-title">{greeting()}.</h2>
           <p className="muted small">{mood.status}</p>

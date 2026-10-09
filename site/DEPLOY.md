@@ -7,7 +7,7 @@ Layout: `pages/` + `partials/` are the sources, `scripts/build-pages.mjs` writes
 headline words into spans at build time, inlines the animated Non face and the official icons).
 Scripts: `web/*.js` are the sources, `scripts/build-js.mjs` minifies them into `public/assets/`.
 Styles: `public/assets/base.css` (all pages), `home.css` (home), `inner.css` (everything else). `boot.js` is hand-written.
-Motion: GSAP 3.15.0 and ScrollTrigger, self-hosted in `public/vendor/` (unmodified, credited on /licenses).
+Motion: GSAP 3.15.0 and ScrollTrigger, Lenis 1.3.26 and a tree-shaken three.js r186 (the home page's 3D stage, lazily imported), all self-hosted in `public/vendor/` (unmodified, credited on /licenses). `web/home.js` imports `web/lib/` and is bundled by build-js; build-pages stamps `?v=<hash>` on every /assets/ URL, so run build-js before build-pages. The film is `public/media/nonon-demo-720.mp4` (from `submission/demo-1min.mp4`); the CSP allows `media-src 'self'` for it.
 Brand: black and white with orange (`#F47B32` for marks and icons next to words, `#A84208` for anything read or
 pressed), Nunito (variable, Latin subset, `public/fonts/nunito-var-latin.woff2`). Official sources are copied from the
 brand pack into `brand-src/` so the site builds without the pack. `node scripts/contrast.mjs` prints the contrast table.
@@ -122,6 +122,11 @@ Also open `/download` in a browser and click each button once.
 - Compression (gzip/brotli) is applied by Cloudflare's edge on custom domains and workers.dev;
   `wrangler dev` does not compress.
 - Optional manifest fields: per-file `signed` (Windows) and `notarized` (macOS) booleans.
+- HTML responses carry `Cache-Control: ..., no-transform` so Cloudflare's Web Analytics automatic setup cannot inject its
+  beacon (the CSP would block it and log an error on every page; the site promises no analytics). `no-transform` also turns
+  off Cloudflare's compression, so the Worker gzips HTML itself, based on `request.cf.clientAcceptEncoding` (the visitor's
+  real header; Cloudflare rewrites `Accept-Encoding` before the Worker sees it). Turning off Web Analytics for the zone in the
+  dashboard would make this belt-and-braces; the wrangler token cannot change that setting.
 - CSP is `default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; ...`, so
   no inline script or style may be added to any page; put them in `public/assets/`.
 - To regenerate raster assets: `node scripts/build-assets.mjs` copies the favicons and logos from `brand-src/`, makes the

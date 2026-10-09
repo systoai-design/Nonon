@@ -9,8 +9,8 @@
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/nunito-var-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/base.css">
-<script src="/assets/boot.js"></script>
+<link rel="stylesheet" href="/assets/base.css?v=cf2fc935b3">
+<script src="/assets/boot.js?v=a9b4f5c3d7"></script>
 <title>NONON licenses and credits</title>
 <meta name="description" content="NONON is Apache-2.0 and open source on GitHub. Credits and licenses for Non, Nunito, GSAP, llama.cpp, Qwen3.5, Pragma and the other software it is built with.">
 <link rel="canonical" href="https://trynonon.xyz/licenses">
@@ -21,9 +21,9 @@
 <meta property="og:url" content="https://trynonon.xyz/licenses">
 <meta property="og:image" content="https://trynonon.xyz/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="/assets/inner.css">
-<script src="/assets/site.js" defer></script>
-<script src="/assets/inner.js" defer></script>
+<link rel="stylesheet" href="/assets/inner.css?v=b6a605b05e">
+<script src="/assets/site.js?v=5803c48996" defer></script>
+<script src="/assets/inner.js?v=30f5a78125" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -87,6 +87,7 @@
 
       <h2 id="gsap">Motion on this website</h2>
       <p><strong>GSAP</strong> and its <strong>ScrollTrigger</strong> plugin, version 3.15.0, Copyright 2026 GreenSock, used under the GSAP Standard License (<a href="https://gsap.com/standard-license" rel="noopener">gsap.com/standard-license</a>). They animate this website only. They are not part of the NONON app. This site serves its own copy, so your browser does not contact anyone else to load them. The page-building code that uses them is adapted from the Pragma website (Apache License 2.0).</p>
+      <p><strong>three.js</strong> r186, Copyright 2010-2026 three.js authors, under the MIT License, draws the 3D Non and files on the home page. <strong>Lenis</strong> 1.3.26, Copyright darkroom.engineering, under the MIT License, smooths the scrolling. Both are served from this site, unmodified apart from leaving out the parts of three.js the page never uses, and neither is part of the NONON app. The 3D Non is built in code from the official NONON mark; the physics and spring code are adapted from the Pragma website (Apache License 2.0).</p>
 
       <h2>The AI that runs on your computer</h2>
       <ul>
@@ -128,13 +129,14 @@
       <a href="https://huggingface.co/Qwen" rel="noopener">Qwen3.5 (Apache-2.0)</a>
       <a href="/licenses#fonts">Nunito (Open Font License)</a>
       <a href="/licenses#gsap">GSAP (for this site's motion)</a>
+      <a href="/licenses#gsap">three.js and Lenis (MIT license)</a>
     </div>
   </div>
   <div class="wrap">
     <p class="foot__legal foot__legal--credit">Non is the Pragma mascot Pip, used with permission of its owner. App derived from components of Pragma (Apache-2.0).</p>
     <p class="foot__legal">NONON is released under the Apache License 2.0. Copyright 2026 Kyle Cabahug. Claude is a product of Anthropic, Codex of OpenAI, and Antigravity and Gmail of Google. NONON is not affiliated with or endorsed by them. This site uses no cookies and no analytics.</p>
   </div>
-  <p class="foot__word" aria-hidden="true">NONON</p>
+  <p class="foot__word" id="footWord" aria-hidden="true"><span>N</span><span>O</span><span>N</span><span>O</span><span>N</span></p>
 </footer>
 </body>
 </html>

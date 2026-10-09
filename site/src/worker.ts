@@ -9,6 +9,7 @@ const CSP = [
   "style-src 'self'",
   "img-src 'self' data:",
   "font-src 'self'",
+  "media-src 'self'",
   "connect-src 'self'",
   "manifest-src 'self'",
   "base-uri 'none'",
@@ -239,8 +240,33 @@ function assetCacheControl(pathname: string): string | null {
   return null;
 }
 
+// Cloudflare's Web Analytics automatic setup injects its beacon <script> into proxied HTML. The CSP
+// blocks it (this site promises no analytics), which leaves a console error on every page. `no-transform`
+// stops the injection, but it also stops Cloudflare's own compression, so the HTML is gzipped here.
+function untouchedHtml(request: Request, response: Response, status: number, cacheControl?: string): Response {
+  const headers = new Headers(response.headers);
+  headers.set("Cache-Control", `${cacheControl ?? headers.get("Cache-Control") ?? "public, max-age=0, must-revalidate"}, no-transform`);
+  headers.set("Content-Type", "text/html; charset=utf-8");
+  // Cloudflare rewrites Accept-Encoding before the Worker runs; the visitor's own value is kept in cf.
+  const cf = request.cf as IncomingRequestCfProperties | undefined;
+  const accepts = cf?.clientAcceptEncoding ?? request.headers.get("Accept-Encoding") ?? "";
+  const gzip = /\bgzip\b/i.test(accepts);
+  if (request.method === "HEAD" || !response.body || !gzip) {
+    return new Response(request.method === "HEAD" ? null : response.body, { status, headers });
+  }
+  const etag = headers.get("ETag");
+  if (etag && !etag.startsWith("W/")) headers.set("ETag", `W/${etag}`);
+  headers.delete("Content-Length");
+  headers.set("Content-Encoding", "gzip");
+  headers.append("Vary", "Accept-Encoding");
+  return new Response(response.body.pipeThrough(new CompressionStream("gzip")), { status, headers, encodeBody: "manual" });
+}
+
 async function serveAsset(request: Request, env: Env): Promise<Response> {
   const response = await env.ASSETS.fetch(request);
+  if (response.status === 200 && (response.headers.get("Content-Type") ?? "").startsWith("text/html")) {
+    return untouchedHtml(request, response, 200);
+  }
   if (response.status === 200) {
     const cacheControl = assetCacheControl(new URL(request.url).pathname);
     if (!cacheControl) return response;
@@ -250,10 +276,7 @@ async function serveAsset(request: Request, env: Env): Promise<Response> {
   }
   if (response.status !== 404) return response;
   const page = await env.ASSETS.fetch(new Request(new URL("/404", request.url), { headers: request.headers }));
-  return new Response(request.method === "HEAD" ? null : page.body, {
-    status: 404,
-    headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" },
-  });
+  return untouchedHtml(request, new Response(page.body), 404, "no-store");
 }
 
 async function route(request: Request, env: Env): Promise<Response> {

@@ -57,6 +57,35 @@
       }
     ]
   },
+  "non-success": {
+    "name": "non-success",
+    "src": "/img/non/non-success-325.webp",
+    "box": {
+      "left": 0,
+      "top": 0,
+      "width": 325,
+      "height": 461
+    },
+    "widths": [
+      325
+    ],
+    "alt": "Non, jumping with both arms up and its eyes closed in a smile.",
+    "class": "non-img",
+    "sizes": "200px",
+    "loading": "lazy",
+    "width": 325,
+    "height": 461,
+    "sources": [
+      {
+        "type": "image/avif",
+        "srcset": "/img/non/non-success-325.avif 325w"
+      },
+      {
+        "type": "image/webp",
+        "srcset": "/img/non/non-success-325.webp 325w"
+      }
+    ]
+  },
   "shot-hero": {
     "name": "shot-hero",
     "src": "/img/app/shot-hero-1020.webp",

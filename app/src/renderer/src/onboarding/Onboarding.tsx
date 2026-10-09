@@ -6,7 +6,7 @@ import { baseName, isRuntimeBusy, isRuntimeReady } from "../lib/format";
 import logo from "../assets/brand/nonon-logo-horizontal-color.svg";
 import { COMPANIONS, DEFAULT_COMPANION } from "../components/companions";
 import { Icon } from "../components/Icon";
-import { Non, NonArt } from "../components/Non";
+import { Non, NonArt, NonClip } from "../components/Non";
 import { statusFor, useOneShot, type NonState } from "../lib/companion";
 import { PACK_ICONS, Spinner } from "../components/ui";
 import { SetupPanel } from "./SetupPanel";
@@ -77,9 +77,6 @@ export function Onboarding() {
     }
   }
 
-  // The still pose beside the form follows the same state as the animated face.
-  const pose = nonState === "success" ? "success" : nonState === "greeting" ? "wave" : "rest";
-
   return (
     <div className="onboard">
       {isMock() && <span className="chip chip-attn onboard-demo">Demo data</span>}
@@ -87,12 +84,12 @@ export function Onboarding() {
         <img className="onboard-logo" src={logo} alt="NONON" />
         <p className="onboard-tag">A little help for your everyday work.</p>
         <div className="onboard-hero">
-          <NonArt pose={pose} size={250} lively />
+          <NonClip state={nonState} height={470} replayKey={shot?.epoch ?? 0} />
         </div>
       </aside>
       <div className="onboard-card">
         <div className="onboard-top">
-          <Non state={nonState} replayKey={shot?.epoch ?? 0} size={step === 0 ? 88 : 64} />
+          <Non state={nonState} replayKey={shot?.epoch ?? 0} size={step === 0 ? 72 : 64} />
           <div>
             <p className="eyebrow">
               Step {step + 1} of {STEP_TITLES.length}. {statusFor(nonState, nonName)}

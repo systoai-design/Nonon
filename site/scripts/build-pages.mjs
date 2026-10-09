@@ -6,6 +6,7 @@
 // browser never has to re-wrap text when the animation script starts (no layout shift).
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { ICONS } from "./icons.mjs";
 
@@ -17,6 +18,7 @@ const imagesFile = join(root, "scripts", "images.generated.json");
 if (!existsSync(imagesFile)) throw new Error("Run `node scripts/build-assets.mjs` first (images.generated.json is missing).");
 const images = JSON.parse(readFileSync(imagesFile, "utf8"));
 const esc = (s) => String(s).replaceAll("&", "&amp;").replaceAll('"', "&quot;");
+const hashOf = (url) => createHash("sha256").update(readFileSync(join(root, "public", url))).digest("hex").slice(0, 10);
 
 function picture(name) {
   const img = images[name];
@@ -78,6 +80,8 @@ for (const file of readdirSync(join(root, "pages")).filter((f) => f.endsWith(".h
   html = html.replace(/\{\{img:([\w-]+)\}\}/g, (_, name) => picture(name));
   html = html.replace(/\{\{non(?::([\w -]+))?\}\}/g, (_, extra) => non(extra ?? ""));
   html = applySplit(html);
+  // /assets/ is cached for an hour; a content hash in the URL means new HTML never meets old CSS or JS.
+  html = html.replace(/(href|src)="(\/assets\/[\w.-]+\.(?:css|js))"/g, (_, attr, url) => `${attr}="${url}?v=${hashOf(url)}"`);
   const left = html.match(/\{\{[^}]+\}\}/);
   if (left) throw new Error(`Unreplaced token ${left[0]} in ${file}`);
   writeFileSync(join(root, "public", file), html);

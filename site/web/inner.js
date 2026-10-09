@@ -9,14 +9,20 @@
     setTimeout(function () { non.dataset.state = "greeting"; }, 500);
     setTimeout(function () { non.dataset.state = "idle"; }, 2700);
   }
-  if (!root.classList.contains("motion") || !("IntersectionObserver" in window)) return;
-  root.classList.add("motion-ready");
-  var io = new IntersectionObserver(function (es) {
-    es.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      e.target.classList.add("in");
-      io.unobserve(e.target);
-    });
-  }, { rootMargin: "0px 0px -8% 0px" });
-  Array.prototype.forEach.call(document.querySelectorAll("[data-reveal], .platform, .prose, .status-group"), function (el) { io.observe(el); });
+  if (!("IntersectionObserver" in window)) return;
+  var start = function () {
+    if (!root.classList.contains("motion")) return;
+    root.classList.add("motion-ready");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-reveal], .platform, .prose, .status-group"), function (el) { io.observe(el); });
+  };
+  // boot.js arms motion now, or later if the page loaded hidden
+  if (root.classList.contains("motion")) start();
+  else document.addEventListener("nonon:arm", start, { once: true });
 })();

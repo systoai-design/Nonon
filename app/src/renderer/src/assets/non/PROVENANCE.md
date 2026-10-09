@@ -33,3 +33,14 @@ These are 2D vector motions, not a 3D rig and not lip-sync.
 copied unchanged from the brand pack `logos/` folder (wordmark outlined from Nunito 1000, no font needed).
 
 Redistribution terms of the Pragma artwork still need to be confirmed before public release.
+
+## Animated clips (Blender renders of the Pip model)
+
+`clips/*.webm` are Pip animations rendered in Blender from the Pip model in Pragma (`Videos/pip/out/pip.blend`, clips built
+by `Videos/cast/pip_timeline.py` and encoded by `Videos/cast/encode_pip.sh`), copied unchanged from Pragma's onboarding assets
+(`public/onboarding/pip/`): VP9 with alpha, 560 x 560, 60 fps. NONON uses ten of them: `idle`, `wave`, `hop`, `excited`,
+`celebrate`, `talk`, `think`, `tilt`, `nod`, `oops`, plus the still `rest.webp` (the first frame of `idle`) for reduced motion.
+The state map is in `lib/non-clips.ts` (idle to idle, greeting to wave, listening to tilt, thinking to think, talking to talk,
+success to celebrate). The renders carry a faint baked ground shadow that touches the frame edge (alpha up to 19), so the
+component crops to the character (`CLIP_VIEW` in `clips.ts`) and fades the picture out with an elliptical mask: the measured
+difference from the panel background at the clip's outer edge is 0 levels.
