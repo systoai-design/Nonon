@@ -22,6 +22,10 @@ const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
 const fine = window.matchMedia("(pointer: fine)");
 const haptic = (p) => { try { if (navigator.vibrate) navigator.vibrate(p); } catch { /* unsupported */ } };
 const MOTION = Boolean(g && ST && !reduced.matches);
+/* A phone or tablet held in the hand: native touch scrolling, no WebGL stage, no scroll-scrubbed motion.
+   Those are what made the page stutter on real phones; the entrances and reveals stay. */
+const LITE = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+if (LITE) document.documentElement.classList.add("lite");
 
 /* ── press feedback on pointer-down, never on release ───────────────────── */
 $$("[data-press]").forEach((el) => {
@@ -345,7 +349,12 @@ const PIN_MQ = window.matchMedia("(min-width: 1024px) and (min-height: 600px)");
 const WIDE = window.matchMedia("(min-width: 1024px)").matches;
 const PINNED = MOTION && PIN_MQ.matches;
 const winMark = $("#winMark");
-const stageReady = stageEl ? startStage({
+if (stageEl && !LITE) {
+  const pre = document.createElement("link");
+  pre.rel = "modulepreload"; pre.href = "/vendor/three.min.js";
+  document.head.appendChild(pre);
+}
+const stageReady = stageEl && !LITE ? startStage({
   stage: stageEl,
   surface: WIDE ? $("#heroPin") : stageEl,
   layout: WIDE ? "wide" : "compact",
@@ -378,7 +387,7 @@ if (g && ST) whenArmed(() => {
 
   /* ── Lenis: the scroll itself, on GSAP's ticker so everything reads the same frame ── */
   let lenis = null;
-  if (MOTION && window.Lenis) {
+  if (MOTION && window.Lenis && !LITE) {
     lenis = new window.Lenis({ duration: 1.1, smoothWheel: true });
     lenis.on("scroll", ST.update);
     g.ticker.add((time) => lenis.raf(time * 1000), false, true);
@@ -483,7 +492,7 @@ if (g && ST) whenArmed(() => {
     }
 
     /* ── scrubbed: the manifesto inks in as you read it ───────────────── */
-    $$('[data-split="ink"]').forEach((el) => {
+    if (!LITE) $$('[data-split="ink"]').forEach((el) => {
       g.fromTo($$(".w", el), { opacity: 0.16 }, {
         opacity: 1, ease: "none", stagger: 0.1,
         scrollTrigger: { trigger: el, start: "top 78%", end: "bottom 52%", scrub: 0.6 },
@@ -492,7 +501,7 @@ if (g && ST) whenArmed(() => {
 
     /* ── the film scales into its frame ───────────────────────────────── */
     const filmFrame = $("#filmFrame");
-    if (filmFrame) {
+    if (filmFrame && !LITE) {
       g.fromTo(filmFrame, { scale: 0.84, borderRadius: 72 }, {
         scale: 1, borderRadius: 36, ease: "none",
         scrollTrigger: { trigger: filmFrame, start: "top bottom", end: "top 22%", scrub: 0.6 },
@@ -501,7 +510,7 @@ if (g && ST) whenArmed(() => {
 
     /* ── the jobs card and Non's poses lift in with a little depth ─────── */
     const panel = $(".jobs__panel");
-    if (panel && !alreadyPast(panel, 0.9)) {
+    if (panel && !LITE && !alreadyPast(panel, 0.9)) {
       g.fromTo(panel, { y: 80, rotationX: 10, transformPerspective: 1600, transformOrigin: "50% 100%" }, {
         y: 0, rotationX: 0, ease: "none",
         scrollTrigger: { trigger: panel, start: "top bottom", end: "top 55%", scrub: 0.6 },
@@ -566,13 +575,13 @@ if (g && ST) whenArmed(() => {
           t.row.style.transform = `translate3d(${t.off.toFixed(1)}px,0,0)`;
         }
       });
-      g.fromTo(".band__strip--orange", { rotate: -5 }, { rotate: -2.4, ease: "none", scrollTrigger: { trigger: band, start: "top bottom", end: "bottom top", scrub: 0.6 } });
-      g.fromTo(".band__strip--ink", { rotate: 4 }, { rotate: 1.6, ease: "none", scrollTrigger: { trigger: band, start: "top bottom", end: "bottom top", scrub: 0.6 } });
+      if (!LITE) g.fromTo(".band__strip--orange", { rotate: -5 }, { rotate: -2.4, ease: "none", scrollTrigger: { trigger: band, start: "top bottom", end: "bottom top", scrub: 0.6 } });
+      if (!LITE) g.fromTo(".band__strip--ink", { rotate: 4 }, { rotate: 1.6, ease: "none", scrollTrigger: { trigger: band, start: "top bottom", end: "bottom top", scrub: 0.6 } });
     }
 
     /* ── the footer word: each letter rises into place as the page ends ── */
     const letters = $$("#footWord span");
-    if (letters.length) {
+    if (letters.length && !LITE) {
       g.fromTo(letters, { yPercent: 70, rotate: (i) => (i % 2 ? 8 : -8) }, {
         yPercent: 0, rotate: 0, ease: "none", stagger: 0.06,
         scrollTrigger: { trigger: "#footWord", start: "top bottom", end: "bottom bottom", scrub: 0.6 },

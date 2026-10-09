@@ -397,3 +397,10 @@ html.is-grabbing, html.is-grabbing * { cursor: grabbing !important; }
 @media (prefers-reduced-transparency: reduce) {
   .nav.is-stuck .nav__bar, .nav--solid .nav__bar { background: var(--paper); backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
+
+/* A live blur behind a fixed bar is re-rendered every scroll frame; on a phone that is the stutter. A solid bar instead. */
+@media (hover: none) and (pointer: coarse) {
+  .nav.is-stuck .nav__bar, .nav--solid .nav__bar { background: rgb(255 255 255 / .96); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  html { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
