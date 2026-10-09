@@ -36,7 +36,7 @@
 
   // Point the buttons at the real files and show version and size, from the same API as /download.
   function formatSize(bytes) {
-    var mb = bytes / (1024 * 1024);
+    var mb = bytes / 1000000; // Decimal MB, the same unit macOS Finder and GitHub show.
     return mb >= 1024 ? (mb / 1024).toFixed(1) + " GB" : Math.round(mb) + " MB";
   }
   fetch("/api/latest", { headers: { Accept: "application/json" } })

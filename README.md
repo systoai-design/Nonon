@@ -394,14 +394,14 @@ Download from **https://trynonon.xyz/download**. The page shows the file name, s
 
 ### Windows (10 or 11, 64-bit)
 
-1. Download `NONON-0.1.0-win-x64.exe` (about 101 MB).
+1. Download `NONON-0.1.0-win-x64.exe` (about 106 MB).
 2. **Windows SmartScreen note.** This installer is **not code-signed**, so Windows may show a blue "Windows protected your PC" screen with "unknown publisher". If the SHA-256 on the download page matches your file, choose **More info**, then **Run anyway**. A code-signing certificate (or the Microsoft Store) would remove this warning; NONON does not have one yet.
 3. Follow the installer. You can choose where NONON is installed.
 4. Open NONON. The first run checks your computer and offers to download the AI.
 
 ### Mac (Apple silicon)
 
-1. Download `NONON-0.1.0-mac-arm64.dmg` (about 114 MB), open it and drag NONON into Applications.
+1. Download `NONON-0.1.0-mac-arm64.dmg` (about 123 MB), open it and drag NONON into Applications.
 2. **Gatekeeper note.** The Mac app is signed with the developer's own Developer ID and **notarized by Apple** (and stapled), so it opens like any other app. This was checked with Gatekeeper on the disk image downloaded from the live site with the browser quarantine flag set: "Notarized Developer ID" for the app and the disk image.
 3. Open NONON from Applications.
 

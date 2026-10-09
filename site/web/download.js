@@ -36,8 +36,8 @@
   }
 
   function formatSize(bytes) {
-    var mb = bytes / (1024 * 1024);
-    if (mb >= 1024) return (mb / 1024).toFixed(2) + " GB";
+    var mb = bytes / 1000000; // Decimal MB, the same unit macOS Finder and GitHub show.
+    if (mb >= 1000) return (mb / 1000).toFixed(2) + " GB";
     return mb.toFixed(mb >= 100 ? 0 : 1) + " MB";
   }
 
