@@ -76,7 +76,7 @@ export function createApp(emit: Emit): AppCtx {
 
   // Dependency order: leaf services first.
   ctx.svc.hardware = createHardwareService(ctx);
-  ctx.svc.runtime = createRuntimeService(ctx);
+  ctx.svc.runtime = createRuntimeService(ctx, { machine: () => ctx.svc.hardware.last() });
   ctx.svc.workspaces = createWorkspaceService(ctx);
   ctx.svc.procedures = createProcedureRegistry(ctx);
   ctx.svc.changes = createChangeService(ctx);

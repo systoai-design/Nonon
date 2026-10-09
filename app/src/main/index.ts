@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Notification, session, shell } from "electron";
+import { app, BrowserWindow, Notification, screen, session, shell } from "electron";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import type { Events } from "../shared/ipc";
@@ -6,7 +6,7 @@ import { createApp } from "./app";
 import { enableBackground, type BackgroundHandle } from "./background";
 import { ALLOWED_PERMISSIONS, PRIVACY_SWITCHES, devOrigin, isAllowedWindowRequest, isAppPage, isSafeExternalUrl } from "./hardening";
 import { registerIpc } from "./ipc";
-import { installAppMenu, windowFrameOptions } from "./window-chrome";
+import { fitToWorkArea, installAppMenu, windowFrameOptions } from "./window-chrome";
 import { attachViewScale } from "./view-scale";
 import type { SchedulerHandle } from "./services/scheduler";
 import type { AppCtx } from "./services/types";
@@ -29,11 +29,9 @@ function emit<K extends keyof Events>(event: K, payload: Events[K]): void {
 }
 
 function createWindow(startHidden = false): BrowserWindow {
+  const size = fitToWorkArea(screen.getPrimaryDisplay().workAreaSize);
   const w = new BrowserWindow({
-    width: 1280,
-    height: 820,
-    minWidth: 960,
-    minHeight: 640,
+    ...size,
     show: !startHidden,
     backgroundColor: "#fafafa",
     autoHideMenuBar: true,

@@ -2,8 +2,9 @@ import { spawn, type ChildProcess } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { once } from "node:events";
 import { copyFileSync, createWriteStream, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import type { InferenceClient, RuntimeStatus } from "../../../shared/contracts";
+import { totalmem } from "node:os";
+import { dirname, join, resolve } from "node:path";
+import type { CustomModel, DiscoveredModel, InferenceClient, RuntimeStatus } from "../../../shared/contracts";
 import type { AppCtx, RuntimeService } from "../types";
 import {
   CONTEXT_TOKENS,
@@ -16,6 +17,7 @@ import {
   type RuntimeId,
   type RuntimePin,
 } from "./catalog";
+import { discoverReport, inspectModelFile, type DiscoverOptions, type DiscoveredFile } from "./discover";
 import { DownloadCancelled, extractArchive, fetchPinned } from "./download";
 import { createOpenAiCompatClient } from "./llama-client";
 import { cudaDriverRuns, freeDiskBytes, freePort, isLlamaServer, readWindowsGpu, sampleRssBytes } from "./sys";
@@ -29,6 +31,19 @@ export interface RuntimeOptions {
   /** Force one engine build (evidence runs). Also read from NONON_RUNTIME. */
   forceRuntime?: RuntimeId;
   startTimeoutMs?: number;
+  /** Memory figures for the fit check; defaults to what the operating system reports. */
+  machine?: () => { ramBytes: number } | null;
+  /** Overrides for the search for AI files already on the computer (tests point it at temporary folders). */
+  discover?: Partial<DiscoverOptions>;
+}
+
+/** The AI file the server is started with: NONON's own download, or one the person already had. */
+interface ActiveModel {
+  id: string;
+  label: string;
+  path: string;
+  bytes: number;
+  custom: boolean;
 }
 
 export interface RuntimeDebug {
@@ -75,12 +90,29 @@ export function createRuntimeService(ctx: RuntimeDeps, opts: RuntimeOptions = {}
   const modelPath = (m: LocalModel) => join(root, m.file);
   const anyRuntimeInstalled = (list: RuntimePin[]) => list.find((p) => existsSync(exeOf(p))) ?? null;
 
-  function installedModelId(): string | null {
+  const isFile = (p: string) => {
+    try {
+      return statSync(p).isFile();
+    } catch {
+      return false;
+    }
+  };
+
+  function customActive(): ActiveModel | null {
+    const c = ctx.getSettings().customModel;
+    if (!c || !isFile(c.path)) return null;
+    return { id: c.kind === "exact" && c.modelId ? c.modelId : "custom", label: c.label, path: c.path, bytes: c.bytes, custom: true };
+  }
+
+  function pinnedActive(): ActiveModel | null {
     const wanted = ctx.getSettings().modelId;
     const wantedModel = wanted ? findModel(wanted) : undefined;
-    if (wantedModel && existsSync(modelPath(wantedModel))) return wantedModel.id;
-    return [...MODELS].reverse().find((m) => existsSync(modelPath(m)))?.id ?? null;
+    const m = wantedModel && existsSync(modelPath(wantedModel)) ? wantedModel : [...MODELS].reverse().find((x) => existsSync(modelPath(x)));
+    return m ? { id: m.id, label: m.label, path: modelPath(m), bytes: m.bytes, custom: false } : null;
   }
+
+  /** A file the person chose wins over NONON's own download. If it has gone missing, the own download (if any) is used instead. */
+  const activeModel = (): ActiveModel | null => customActive() ?? pinnedActive();
 
   // ---- status -----------------------------------------------------------------------------
   let status: RuntimeStatus = { phase: "not-installed", modelId: null, progress: null, bytesDone: null, bytesTotal: null, detail: "" };
@@ -94,15 +126,26 @@ export function createRuntimeService(ctx: RuntimeDeps, opts: RuntimeOptions = {}
     }
     ctx.emit("runtime:status", status);
   }
+  const ENGINE_NOTE = "The AI engine (about 30 to 150 MB) still needs a one-time download.";
   const idleStatus = (detail?: string): Partial<RuntimeStatus> => {
-    const modelId = installedModelId();
+    const active = activeModel();
+    const engine = anyRuntimeInstalledSync();
+    const chosen = ctx.getSettings().customModel;
+    let text = detail;
+    if (!text) {
+      if (active && !engine) text = ENGINE_NOTE;
+      else if (active) text = "Installed and ready.";
+      else if (chosen) text = `The AI file you chose (${chosen.label}) is no longer where it was. Choose it again, pick another one, or download the AI we recommend.`;
+      else text = "The AI on this computer is not installed yet.";
+    }
     return {
-      phase: modelId && anyRuntimeInstalledSync() ? "ready" : "not-installed",
-      modelId: modelId ?? status.modelId,
+      phase: active && engine ? "ready" : "not-installed",
+      modelId: active?.id ?? (chosen ? null : status.modelId),
+      modelLabel: active?.custom ? active.label : undefined,
       progress: null,
       bytesDone: null,
       bytesTotal: null,
-      detail: detail ?? (modelId ? "Installed and ready." : "The AI on this computer is not installed yet."),
+      detail: text,
     };
   };
   function anyRuntimeInstalledSync(): boolean {
@@ -113,49 +156,84 @@ export function createRuntimeService(ctx: RuntimeDeps, opts: RuntimeOptions = {}
   else status = { ...status, ...idleStatus() };
 
   // ---- install ----------------------------------------------------------------------------
-  let installing: { modelId: string; promise: Promise<void>; abort: AbortController } | null = null;
+  let installing: { modelId: string; kind: "pinned" | "engine"; promise: Promise<void>; abort: AbortController } | null = null;
 
-  async function doInstall(model: LocalModel, abort: AbortController): Promise<void> {
+  /** Downloads the llama.cpp engine unless one is already unpacked. `extraBytes` is what the caller still has to fetch, for the disk check. */
+  async function ensureEngine(modelId: string, abort: AbortController, extraBytes: number, spare: number): Promise<void> {
     const list = await candidates();
     const have = anyRuntimeInstalled(list);
     const runtime = have ?? list[0];
     if (!runtime) throw new Error(reason ?? "The AI on this computer cannot run on this machine.");
 
-    const part = (file: string) => (existsSync(`${file}.part`) ? statSync(`${file}.part`).size : 0);
-    const modelFile = modelPath(model);
     const needRuntime = have === null;
     const runtimeBytes = needRuntime ? runtime.bytes + (runtime.extra?.bytes ?? 0) : 0;
-    const modelBytes = existsSync(modelFile) ? 0 : model.bytes - part(modelFile);
-    const needs = runtimeBytes + modelBytes + SPARE_DISK_BYTES;
+    const needs = runtimeBytes + extraBytes + spare;
     const free = freeDiskBytes(root);
     if (free !== null && needs > 0 && free < needs) {
       throw new Error(`There is not enough room on this drive. The AI on this computer needs about ${gb(needs)}, and only ${gb(free)} is free. Free up some space, then press install again. Nothing was installed.`);
     }
     mkdirSync(join(root, "runtime", runtime.folder), { recursive: true });
 
-    const track = (phase: "downloading-runtime" | "downloading-model", detail: string) => (done: number, total: number) =>
-      set({ phase, modelId: model.id, progress: total ? done / total : null, bytesDone: done, bytesTotal: total, detail }, true);
-    const verifying = () => set({ phase: "verifying", detail: "Checking that the file downloaded correctly." });
-
     if (needRuntime) {
       const archives = [runtime, ...(runtime.extra ? [runtime.extra] : [])];
       for (const [i, pin] of archives.entries()) {
         const archive = join(root, `engine-${runtime.folder}-${i}${pin.url.endsWith(".tar.gz") ? ".tar.gz" : ".zip"}`);
-        set({ phase: "downloading-runtime", modelId: model.id, progress: 0, bytesDone: 0, bytesTotal: pin.bytes, detail: "Downloading the helper files the AI needs." });
-        await fetchPinned(pin, archive, { signal: abort.signal, onProgress: track("downloading-runtime", "Downloading the helper files the AI needs."), onVerifying: verifying });
+        const detail = "Downloading the helper files the AI needs.";
+        set({ phase: "downloading-runtime", modelId, progress: 0, bytesDone: 0, bytesTotal: pin.bytes, detail });
+        await fetchPinned(pin, archive, {
+          signal: abort.signal,
+          onProgress: (done, total) => set({ phase: "downloading-runtime", modelId, progress: total ? done / total : null, bytesDone: done, bytesTotal: total, detail }, true),
+          onVerifying: () => set({ phase: "verifying", detail: "Checking that the file downloaded correctly." }),
+        });
         set({ phase: "installing", detail: "Setting up the helper files.", progress: null });
         await extractArchive(archive, join(root, "runtime", runtime.folder));
         rmSync(archive, { force: true });
       }
       if (!existsSync(exeOf(runtime))) throw new Error("The AI helper files are incomplete. Press install to try again.");
     }
+  }
+
+  async function doInstall(model: LocalModel, abort: AbortController): Promise<void> {
+    const part = (file: string) => (existsSync(`${file}.part`) ? statSync(`${file}.part`).size : 0);
+    const modelFile = modelPath(model);
+    const modelBytes = existsSync(modelFile) ? 0 : model.bytes - part(modelFile);
+    await ensureEngine(model.id, abort, modelBytes, SPARE_DISK_BYTES);
 
     if (!existsSync(modelFile)) {
-      set({ phase: "downloading-model", modelId: model.id, progress: 0, bytesDone: 0, bytesTotal: model.bytes, detail: "Downloading the AI. This is a big file, so it may take a while." });
-      await fetchPinned(model, modelFile, { signal: abort.signal, onProgress: track("downloading-model", "Downloading the AI. This is a big file, so it may take a while."), onVerifying: verifying });
+      const detail = "Downloading the AI. This is a big file, so it may take a while.";
+      set({ phase: "downloading-model", modelId: model.id, progress: 0, bytesDone: 0, bytesTotal: model.bytes, detail });
+      await fetchPinned(model, modelFile, {
+        signal: abort.signal,
+        onProgress: (done, total) => set({ phase: "downloading-model", modelId: model.id, progress: total ? done / total : null, bytesDone: done, bytesTotal: total, detail }, true),
+        onVerifying: () => set({ phase: "verifying", detail: "Checking that the file downloaded correctly." }),
+      });
     }
-    ctx.updateSettings({ modelId: model.id });
+    // Downloading NONON's own AI is an explicit choice, so it replaces a file the person had pointed NONON at.
+    ctx.updateSettings({ modelId: model.id, customModel: undefined });
     set({ ...idleStatus("The AI is installed and ready."), modelId: model.id, error: undefined });
+  }
+
+  /** One install job at a time: the pinned download, or just the engine for an AI file the person already had. */
+  function runJob(modelId: string, kind: "pinned" | "engine", job: (abort: AbortController) => Promise<void>, paused: string): Promise<void> {
+    const abort = new AbortController();
+    const promise = (async () => {
+      if (child && status.modelId !== modelId) await stop();
+      try {
+        await job(abort);
+      } catch (e) {
+        if (e instanceof DownloadCancelled || abort.signal.aborted) {
+          set({ ...idleStatus(paused) });
+          return;
+        }
+        const message = e instanceof Error ? e.message : String(e);
+        set({ phase: "failed", modelId, progress: null, bytesDone: null, bytesTotal: null, detail: message, error: message });
+        throw e;
+      } finally {
+        installing = null;
+      }
+    })();
+    installing = { modelId, kind, promise, abort };
+    return promise;
   }
 
   function install(modelId: string): Promise<void> {
@@ -166,29 +244,86 @@ export function createRuntimeService(ctx: RuntimeDeps, opts: RuntimeOptions = {}
       if (installing.modelId === modelId) return installing.promise;
       return Promise.reject(new Error("Another install is already running. Wait for it to finish, or stop it first."));
     }
-    const abort = new AbortController();
-    const promise = (async () => {
-      if (child && status.modelId !== modelId) await stop();
-      try {
-        await doInstall(model, abort);
-      } catch (e) {
-        if (e instanceof DownloadCancelled || abort.signal.aborted) {
-          set({ ...idleStatus("Download paused. Press install to carry on from where it stopped.") });
-          return;
-        }
-        const message = e instanceof Error ? e.message : String(e);
-        set({ phase: "failed", modelId, progress: null, bytesDone: null, bytesTotal: null, detail: message, error: message });
-        throw e;
-      } finally {
-        installing = null;
-      }
-    })();
-    installing = { modelId, promise, abort };
-    return promise;
+    return runJob(modelId, "pinned", (abort) => doInstall(model, abort), "Download paused. Press install to carry on from where it stopped.");
   }
 
   function cancel(): void {
     installing?.abort.abort();
+  }
+
+  // ---- AI files the person already has ------------------------------------------------------
+  // The window only ever sends back an id from this map, never a path, so it cannot point NONON at an arbitrary file.
+  const found = new Map<string, DiscoveredFile>();
+  const hashCache = new Map<string, string>();
+  let discovering: AbortController | null = null;
+
+  const discoverOptions = (): DiscoverOptions => ({ modelDir: root, ramBytes: opts.machine?.()?.ramBytes ?? totalmem(), platform, hashCache, ...opts.discover });
+
+  async function discover(): Promise<DiscoveredModel[]> {
+    discovering?.abort();
+    const mine = new AbortController();
+    discovering = mine;
+    const report = await discoverReport({ ...discoverOptions(), signal: mine.signal });
+    if (mine.signal.aborted) return [];
+    found.clear();
+    for (const f of report.models) found.set(f.id, f);
+    ctx.log(`looked for AI files already on this computer: ${report.models.length} usable, ${report.scanMs} ms looking, ${report.hashMs} ms checking${report.timedOut ? " (stopped at the time limit)" : ""}`);
+    return report.models.map(({ path: _path, ...shown }) => shown);
+  }
+
+  async function adopt(file: DiscoveredFile): Promise<RuntimeStatus> {
+    if (reason) throw new Error(reason);
+    if (installing) throw new Error("Another install is already running. Wait for it to finish, or stop it first.");
+    if (!isFile(file.path)) throw new Error("NONON could not find that file any more. It may have been moved or deleted.");
+    await stop();
+    const pin = file.modelId ? findModel(file.modelId) : undefined;
+    if (pin && resolve(modelPath(pin)) === resolve(file.path)) {
+      ctx.updateSettings({ modelId: pin.id, customModel: undefined });
+    } else {
+      const custom: CustomModel = {
+        path: file.path,
+        label: file.label,
+        kind: file.kind === "exact" ? "exact" : "compatible",
+        ...(file.kind === "exact" && file.modelId ? { modelId: file.modelId } : {}),
+        bytes: file.bytes,
+      };
+      ctx.updateSettings({ customModel: custom, modelId: custom.modelId ?? "custom" });
+      ctx.log(`using an AI file that was already on this computer (${custom.kind}): ${file.path}`);
+    }
+    set({ ...idleStatus(), error: undefined });
+    const active = activeModel();
+    if (active && status.phase === "not-installed") {
+      // Only the small engine is missing. The AI file itself is used where it is.
+      void runJob(active.id, "engine", async (abort) => {
+        await ensureEngine(active.id, abort, 0, 300_000_000);
+        set({ ...idleStatus(), error: undefined });
+      }, "Download paused. Choose the AI again to carry on.").catch((e) => ctx.log(`engine download failed: ${String(e)}`));
+    }
+    return status;
+  }
+
+  function useExisting(id: string): Promise<RuntimeStatus> {
+    const file = found.get(id);
+    if (!file) return Promise.reject(new Error("That choice is no longer on the list. Look again, then pick one."));
+    return adopt(file);
+  }
+
+  async function useFile(path: string): Promise<RuntimeStatus> {
+    const checked = await inspectModelFile(path, discoverOptions());
+    if (!checked.ok) throw new Error(checked.message);
+    return adopt(checked.file);
+  }
+
+  async function forgetExisting(): Promise<RuntimeStatus> {
+    if (installing?.kind === "engine") {
+      installing.abort.abort();
+      await installing.promise.catch(() => undefined);
+    }
+    await stop();
+    const s = ctx.getSettings();
+    if (s.customModel) ctx.updateSettings({ customModel: undefined, modelId: s.modelId === "custom" ? null : s.modelId });
+    set({ ...idleStatus(), modelId: activeModel()?.id ?? null, error: undefined });
+    return status;
   }
 
   // ---- server process ---------------------------------------------------------------------
@@ -238,7 +373,7 @@ export function createRuntimeService(ctx: RuntimeDeps, opts: RuntimeOptions = {}
     throw Object.assign(new Error("The AI on this computer took too long to wake up. Close other apps to free up memory, then try again."), { timeout: true });
   }
 
-  async function launch(model: LocalModel, runtime: RuntimePin, quantized: boolean): Promise<void> {
+  async function launch(model: ActiveModel, runtime: RuntimePin, quantized: boolean): Promise<void> {
     const exe = exeOf(runtime);
     stageVcRuntime(exe);
     const port = await freePort();
@@ -247,7 +382,7 @@ export function createRuntimeService(ctx: RuntimeDeps, opts: RuntimeOptions = {}
     const cache = quantized ? "q8_0" : "f16";
     // No -ngl: llama.cpp's --fit (on by default) puts every layer on the GPU when it fits and spills the rest otherwise.
     const args = [
-      "--model", modelPath(model),
+      "--model", model.path,
       "--ctx-size", String(CONTEXT_TOKENS),
       "--host", "127.0.0.1",
       "--port", String(port),
@@ -338,15 +473,14 @@ export function createRuntimeService(ctx: RuntimeDeps, opts: RuntimeOptions = {}
 
   async function doStart(): Promise<void> {
     if (reason) throw new Error(reason);
-    const modelId = installedModelId();
-    const model = modelId ? findModel(modelId) : undefined;
+    const model = activeModel();
     if (!model) throw new Error("The AI on this computer is not installed yet. Install it first.");
     const list = await candidates();
     const present = list.filter((p) => existsSync(exeOf(p)));
     if (!present.length) throw new Error("The AI helper files are not installed yet. Install them first.");
 
     await killChild();
-    set({ phase: "starting", modelId: model.id, progress: null, bytesDone: null, bytesTotal: null, detail: "Waking up the AI on this computer.", error: undefined, contextTokens: CONTEXT_TOKENS });
+    set({ phase: "starting", modelId: model.id, modelLabel: model.custom ? model.label : undefined, progress: null, bytesDone: null, bytesTotal: null, detail: "Waking up the AI on this computer.", error: undefined, contextTokens: CONTEXT_TOKENS });
     let failure: unknown = null;
     for (const runtime of present) {
       for (const quantized of [true, false]) {
@@ -354,7 +488,7 @@ export function createRuntimeService(ctx: RuntimeDeps, opts: RuntimeOptions = {}
           const t0 = Date.now();
           await launch(model, runtime, quantized);
           starts += 1;
-          ctx.log(`local AI started: ${model.id} on ${runtime.id}, cache ${activeCache}, ${Date.now() - t0} ms`);
+          ctx.log(`local AI started: ${model.id} from ${model.path} on ${runtime.id}, cache ${activeCache}, ${Date.now() - t0} ms`);
           set({ phase: "running", detail: "The AI is running on this computer.", error: undefined });
           if (child) startSampling(child);
           touchIdle();
@@ -442,6 +576,10 @@ export function createRuntimeService(ctx: RuntimeDeps, opts: RuntimeOptions = {}
     start,
     stop,
     client: () => llm,
+    discover,
+    useExisting,
+    useFile,
+    forgetExisting,
     isReady: () => status.phase === "ready" || status.phase === "running" || status.phase === "sleeping",
     debug: () => ({ pid: child?.pid ?? null, baseUrl, runtime: activeRuntime, cacheType: activeCache, starts, logPath }),
   };

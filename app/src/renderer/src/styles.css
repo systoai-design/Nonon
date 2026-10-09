@@ -738,3 +738,14 @@ table.notes tr.n-pair td.num, table.notes tr.n-head td.num { white-space: nowrap
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
+
+/* Finding an AI the person already has (onboarding step 3, Settings > Advanced) */
+.setup-looking { display: flex; gap: 10px; align-items: center; color: var(--muted); font-size: 14.5px; }
+.found-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.found-card h3, .found-card p { margin: 0; }
+.found-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.found-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+.found-main { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; min-width: 0; }
+.found-name { overflow-wrap: anywhere; }
+.found-error { color: var(--red-ink); font-size: 14px; }
+.found-row .btn { flex-shrink: 0; }

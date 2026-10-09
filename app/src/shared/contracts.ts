@@ -48,6 +48,21 @@ export interface Settings {
   idleUnloadSeconds: number;
   /** How big everything is drawn: one of 0.8, 0.9, 1, 1.1, 1.25 (see main/view-scale.ts). Default 0.9. */
   uiScale?: number;
+  /**
+   * An AI file the person already had, used in place (never copied or changed). Only main writes this, after it
+   * has checked the file itself: the window cannot set it through settings:update.
+   */
+  customModel?: CustomModel;
+}
+
+export interface CustomModel {
+  path: string;
+  label: string;
+  /** exact: the same file NONON tests with, stored somewhere else. compatible: a different AI NONON has not tested. */
+  kind: "exact" | "compatible";
+  /** The pinned catalog id when kind is exact. */
+  modelId?: string;
+  bytes: number;
 }
 
 // ---------------------------------------------------------------- where work happens
@@ -114,6 +129,27 @@ export interface RuntimeStatus {
   error?: string;
   /** Peak resident memory of llama-server seen since start, bytes. */
   peakRssBytes?: number;
+  contextTokens?: number;
+  /** Plain name of the AI in use when it is a file the person already had (modelId is then "custom" or the pinned id). */
+  modelLabel?: string;
+}
+
+/**
+ * An AI file found on this computer. The path stays in main: the window only ever sends back `id`.
+ * exact = the same file NONON tests with. compatible = looks runnable, not tested with NONON.
+ * unknown = a kind NONON cannot vouch for; only returned when asked for.
+ */
+export interface DiscoveredModel {
+  id: string;
+  label: string;
+  bytes: number;
+  sizeGb: number;
+  /** Plain place name: "LM Studio", "Ollama", "your Downloads folder". */
+  where: string;
+  kind: "exact" | "compatible" | "unknown";
+  /** Pinned catalog id when kind is exact. */
+  modelId?: string;
+  fileName: string;
   contextTokens?: number;
 }
 

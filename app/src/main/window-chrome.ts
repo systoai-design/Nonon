@@ -48,3 +48,10 @@ export function applyChrome(win: BrowserWindow): void {
     }
   }
 }
+
+// 1280x820 is taller than the usable area of a 1080p laptop at 125% Windows scaling; the message box would hang under the taskbar.
+export function fitToWorkArea(work: { width: number; height: number }): { width: number; height: number; minWidth: number; minHeight: number } {
+  const width = Math.min(1280, work.width);
+  const height = Math.min(820, work.height);
+  return { width, height, minWidth: Math.min(960, width), minHeight: Math.min(640, height) };
+}

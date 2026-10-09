@@ -5,6 +5,7 @@ import { api, useAppState } from "../lib/bridge";
 import { formatBytes, isRuntimeBusy, isRuntimeReady, plainError, setupPhaseLabel } from "../lib/format";
 import { Spinner } from "../components/ui";
 import { Icon } from "../components/Icon";
+import { FoundList, LookingLine, TrustTag, useChooseFound, useFoundModels } from "./ExistingAi";
 
 interface Assessment {
   report: HardwareReport;
@@ -12,8 +13,16 @@ interface Assessment {
 }
 
 const STEPS = ["Getting the AI ready", "Downloading the built-in AI", "Checking the download", "Ready"];
+const ENGINE_STEPS = ["Downloading the AI engine", "Checking the download", "Ready"];
+const SHOWN_AT_SETUP = 3;
 
 const GB = 1024 ** 3;
+
+function engineStepIndex(phase: string): number {
+  if (phase === "downloading-runtime") return 0;
+  if (phase === "verifying" || phase === "installing") return 1;
+  return 2;
+}
 
 function stepIndex(phase: string): number {
   if (phase === "downloading-runtime") return 0;
@@ -29,6 +38,10 @@ export function SetupPanel() {
   const [assessment, setAssessment] = useState<Assessment | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
+  const idle = runtime ? !isRuntimeReady(runtime.phase) && !isRuntimeBusy(runtime.phase) : false;
+  const found = useFoundModels(idle, true);
+  const choose = useChooseFound();
+  const custom = app?.settings.customModel;
 
   useEffect(() => {
     let alive = true;
@@ -84,25 +97,36 @@ export function SetupPanel() {
   const phase = runtime.phase;
 
   if (isRuntimeReady(phase)) {
+    const own = runtime.modelLabel && custom;
     return (
       <div className="notice notice-ok" role="status">
         <Icon name="check" size={20} tone="current" />
         <div>
-          <p className="notice-title">The built-in AI is ready.</p>
-          <p className="muted">It runs on this computer, so it works without the internet.</p>
+          <p className="notice-title">{own ? "Your AI is ready." : "The built-in AI is ready."}</p>
+          <p className="muted">
+            {own ? `NONON will use ${runtime.modelLabel} where it is. It runs on this computer, so it works without the internet.` : "It runs on this computer, so it works without the internet."}
+          </p>
+          {own && (
+            <>
+              <TrustTag kind={custom.kind} />
+              <p className="muted small">Your file stays where it is and is never changed.</p>
+            </>
+          )}
         </div>
       </div>
     );
   }
 
   if (isRuntimeBusy(phase)) {
-    const active = stepIndex(phase);
+    const engineOnly = Boolean(custom) && runtime.modelId !== null && (phase === "downloading-runtime" || phase === "verifying" || phase === "installing");
+    const steps = engineOnly ? ENGINE_STEPS : STEPS;
+    const active = engineOnly ? engineStepIndex(phase) : stepIndex(phase);
     const pct = runtime.progress != null ? Math.round(runtime.progress * 100) : null;
     return (
       <div className="setup-progress" role="status" aria-live="polite">
         <h3>{setupPhaseLabel(phase)}</h3>
         <ol className="setup-steps">
-          {STEPS.map((label, i) => (
+          {steps.map((label, i) => (
             <li key={label} className={i < active ? "done" : i === active ? "active" : ""}>
               <span className="setup-mark" aria-hidden="true">
                 {i < active ? <Icon name="check" size={20} tone="current" /> : i === active ? <Spinner size={18} /> : <span className="setup-dot" />}
@@ -121,6 +145,7 @@ export function SetupPanel() {
         >
           <div className="bar-fill" style={pct == null ? undefined : { width: `${pct}%` }} />
         </div>
+        {engineOnly && <p className="muted small">Your own AI file stays where it is. Only the small AI engine is downloaded, once.</p>}
         <p className="muted small">
           {pct != null && runtime.bytesTotal ? `${formatBytes(runtime.bytesDone)} of ${formatBytes(runtime.bytesTotal)} (${pct}%)` : "Working on it. This can take a few minutes."}
         </p>
@@ -133,9 +158,37 @@ export function SetupPanel() {
 
   const failed = phase === "failed";
   const good = recommendation.mode !== "limited";
+  const options = found.state.phase === "done" ? found.state.models.filter((m) => m.kind !== "unknown") : [];
+  const shown = options.slice(0, SHOWN_AT_SETUP);
+  const compact = shown.length > 0 && !failed;
+  const lostFile = custom && !failed && runtime.detail.startsWith("The AI file you chose");
   const tightDisk = report.diskFreeBytes < Math.max(6 * GB, recommendation.downloadBytes * 1.5);
   return (
     <div className="setup-intro">
+      {found.state.phase === "looking" && <LookingLine />}
+      {shown.length > 0 && (
+        <section className="found-card" aria-labelledby="found-title">
+          <h3 id="found-title">We found an AI on this computer</h3>
+          <p className="muted small">NONON can use it where it is. Your file is never changed, moved or copied.</p>
+          <FoundList models={shown} busyId={choose.busyId} onUse={(id) => void choose.choose(id)} />
+          {options.length > shown.length && <p className="muted small">{options.length - shown.length} more can be chosen later in Settings, under Advanced.</p>}
+          <p className="muted small">If the AI engine is not on this computer yet, NONON downloads that small part once (about 30 to 150 MB).</p>
+          {choose.error && (
+            <p role="alert" className="found-error">
+              {choose.error}
+            </p>
+          )}
+        </section>
+      )}
+      {lostFile && (
+        <div className="notice notice-attn" role="status">
+          <Icon name="alert" size={20} tone="current" />
+          <div>
+            <p className="notice-title">Your AI file was not found.</p>
+            <p className="muted">{runtime.detail}</p>
+          </div>
+        </div>
+      )}
       {failed ? (
         <div className="notice notice-attn" role="alert">
           <Icon name="alert" size={20} tone="current" />
@@ -144,7 +197,7 @@ export function SetupPanel() {
             <p className="muted">{runtime.error ? plainError(runtime.error) : "Something went wrong while getting the built-in AI. Check your internet connection and try again."}</p>
           </div>
         </div>
-      ) : (
+      ) : compact ? null : (
         <div className={`notice ${good ? "notice-ok" : "notice-info"}`}>
           {good ? <Icon name="check" size={20} tone="current" /> : <Icon name="alert" size={20} tone="current" />}
           <div>
@@ -153,35 +206,44 @@ export function SetupPanel() {
           </div>
         </div>
       )}
-      <ul className="facts" aria-label="About this computer">
-        <li>
-          <MemoryStick size={18} aria-hidden="true" />
-          <span>Memory</span>
-          <strong>{formatBytes(report.ramBytes)}</strong>
-        </li>
-        <li>
-          <Icon name="device" size={20} tone="accent" />
-          <span>Graphics card</span>
-          <strong>{report.gpuName ?? "None found"}</strong>
-        </li>
-        <li>
-          <HardDrive size={18} aria-hidden="true" />
-          <span>Free space</span>
-          <strong>{formatBytes(report.diskFreeBytes)}</strong>
-        </li>
-      </ul>
-      <div className="reco">
-        <div className="reco-head">
-          <h3>Built-in AI</h3>
-          <span className="chip chip-ok">{good ? "Good fit" : "May be slow"}</span>
-        </div>
-        <p>It runs on this computer. No account needed.</p>
-        <p className="muted small">One-time download: {formatBytes(recommendation.downloadBytes)}.</p>
-        {tightDisk && <p className="muted small">This computer is short on free space. Free up some space before you start.</p>}
-        <p className="muted small">How fast it feels depends on your computer and what else is open.</p>
-      </div>
-      <button type="button" className="btn btn-primary btn-lg" onClick={() => void api.call("runtime:install", { modelId: recommendation.modelId })}>
-        {failed ? "Try again" : "Download and set up"}
+      {!compact && (
+        <>
+          <ul className="facts" aria-label="About this computer">
+            <li>
+              <MemoryStick size={18} aria-hidden="true" />
+              <span>Memory</span>
+              <strong>{formatBytes(report.ramBytes)}</strong>
+            </li>
+            <li>
+              <Icon name="device" size={20} tone="accent" />
+              <span>Graphics card</span>
+              <strong>{report.gpuName ?? "None found"}</strong>
+            </li>
+            <li>
+              <HardDrive size={18} aria-hidden="true" />
+              <span>Free space</span>
+              <strong>{formatBytes(report.diskFreeBytes)}</strong>
+            </li>
+          </ul>
+          <div className="reco">
+            <div className="reco-head">
+              <h3>Built-in AI</h3>
+              <span className="chip chip-ok">{good ? "Good fit" : "May be slow"}</span>
+            </div>
+            <p>It runs on this computer. No account needed.</p>
+            <p className="muted small">One-time download: {formatBytes(recommendation.downloadBytes)}.</p>
+            {tightDisk && <p className="muted small">This computer is short on free space. Free up some space before you start.</p>}
+            <p className="muted small">How fast it feels depends on your computer and what else is open.</p>
+          </div>
+        </>
+      )}
+      {compact && tightDisk && <p className="muted small">This computer is short on free space. Free up some space before you download.</p>}
+      <button
+        type="button"
+        className={`btn btn-lg ${shown.length > 0 ? "" : "btn-primary"}`}
+        onClick={() => void api.call("runtime:install", { modelId: recommendation.modelId })}
+      >
+        {shown.length > 0 ? `Or download the AI we recommend (about ${formatBytes(recommendation.downloadBytes)})` : failed ? "Try again" : "Download and set up"}
       </button>
     </div>
   );

@@ -5,6 +5,7 @@ import { call, errMsg, formatBytes, useAttempt, useCall, useEvent } from "../lib
 import { ConfirmButton, CopyButton, ErrorLine, Loading, Spinner } from "../ui";
 import type { SettingsCtx } from "./types";
 import { Icon } from "../../components/Icon";
+import { ExistingAiBlock } from "./ExistingAiBlock";
 
 export const PHASE_WORDS: Record<RuntimePhase, { label: string; tone: string }> = {
   "not-installed": { label: "Not set up yet", tone: "chip-attn" },
@@ -116,7 +117,7 @@ export function AdvancedAiSection({ ctx }: { ctx: SettingsCtx }) {
         {rt && (
           <>
             <dl className="m-0 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 text-[14px]">
-              <Row k="Built-in AI" v={rt.modelId ?? "Not chosen yet"} />
+              <Row k={ctx.settings.customModel ? "AI in use" : "Built-in AI"} v={rt.modelLabel ?? rt.modelId ?? "Not chosen yet"} />
               <Row k="Status" v={rt.detail} />
               {rt.progress !== null && <Row k="Progress" v={`${Math.round(rt.progress * 100)}%`} />}
               {rt.peakRssBytes ? <Row k="Most memory used" v={formatBytes(rt.peakRssBytes)} /> : null}
@@ -144,6 +145,8 @@ export function AdvancedAiSection({ ctx }: { ctx: SettingsCtx }) {
         <p className="m-0 text-[13px] muted">Running setup again takes you through the first steps again. Your projects and files are not touched.</p>
         {power.error && <ErrorLine>{power.error}</ErrorLine>}
       </section>
+
+      <ExistingAiBlock settings={ctx.settings} />
 
       <section className="flex max-w-2xl flex-col gap-2" aria-label="Free up memory">
         <label htmlFor="idle-min" className="font-medium">

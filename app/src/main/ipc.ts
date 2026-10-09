@@ -72,6 +72,20 @@ export function registerIpc(ctx: AppCtx, getWindow: () => BrowserWindow | null, 
     "runtime:cancel": () => svc.runtime.cancel(),
     "runtime:start": () => svc.runtime.start(),
     "runtime:stop": () => svc.runtime.stop(),
+    "runtime:discover": () => svc.runtime.discover(),
+    "runtime:use-existing": ({ id }) => svc.runtime.useExisting(id),
+    "runtime:use-file": async () => {
+      const win = getWindow();
+      const opts = {
+        properties: ["openFile"] as "openFile"[],
+        title: "Choose an AI file you already have",
+        filters: [{ name: "AI files", extensions: ["gguf"] }],
+      };
+      const res = win ? await dialog.showOpenDialog(win, opts) : await dialog.showOpenDialog(opts);
+      const picked = res.canceled ? null : (res.filePaths[0] ?? null);
+      return picked ? svc.runtime.useFile(picked) : svc.runtime.status();
+    },
+    "runtime:forget-existing": () => svc.runtime.forgetExisting(),
 
     "procedure:list": ({ pack }) => svc.procedures.list(pack).map(({ run: _run, ...info }) => info),
     "task:list": ({ workspaceId }) => svc.tasks.list(workspaceId),

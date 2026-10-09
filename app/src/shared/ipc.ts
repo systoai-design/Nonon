@@ -2,6 +2,7 @@ import type {
   AppState,
   ChangeProposal,
   ChatEntry,
+  DiscoveredModel,
   EmailBrief,
   FileEntry,
   GmailStatus,
@@ -58,6 +59,14 @@ export interface Channels {
   "runtime:cancel": { arg: void; res: void };
   "runtime:start": { arg: void; res: void };
   "runtime:stop": { arg: void; res: void };
+  /** Looks (read-only, a few seconds) for AI files already on this computer. */
+  "runtime:discover": { arg: void; res: DiscoveredModel[] };
+  /** Uses one of the files the last runtime:discover returned, where it is. Anything else is refused. */
+  "runtime:use-existing": { arg: { id: string }; res: RuntimeStatus };
+  /** Opens the system file dialog in main, checks the chosen .gguf, and uses it where it is. Cancelling returns the current status. */
+  "runtime:use-file": { arg: void; res: RuntimeStatus };
+  /** Stops using a file the person had. The file is not touched. */
+  "runtime:forget-existing": { arg: void; res: RuntimeStatus };
 
   // procedures and tasks
   "procedure:list": { arg: { pack?: PackId }; res: ProcedureInfo[] };

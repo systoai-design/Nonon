@@ -3,6 +3,7 @@ import type {
   ChangeProposal,
   ChangeProposalDraft,
   ChatEntry,
+  DiscoveredModel,
   EmailBrief,
   FileEntry,
   GmailStatus,
@@ -80,6 +81,14 @@ export interface RuntimeService {
   /** The local inference client. Starts the server on first use and unloads it when idle. */
   client(): InferenceClient;
   isReady(): boolean;
+  /** Looks for AI files already on this computer (LM Studio, Ollama, downloads). Read-only; remembers the result for useExisting. */
+  discover(): Promise<DiscoveredModel[]>;
+  /** Uses one file from the last discover() in place. Only the small AI engine may still need downloading. */
+  useExisting(id: string): Promise<RuntimeStatus>;
+  /** Checks a file main got from its own file dialog and uses it in place. Rejects with a plain message. */
+  useFile(path: string): Promise<RuntimeStatus>;
+  /** Stops using a file the person had. The file itself is not touched. */
+  forgetExisting(): Promise<RuntimeStatus>;
 }
 
 export interface WorkspaceService {

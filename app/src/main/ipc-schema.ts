@@ -73,6 +73,10 @@ export const ARG_SCHEMAS = {
   "runtime:cancel": anything,
   "runtime:start": anything,
   "runtime:stop": anything,
+  "runtime:discover": anything,
+  "runtime:use-existing": z.object({ id: z.string().regex(/^[0-9a-f]{40}$/) }),
+  "runtime:use-file": anything,
+  "runtime:forget-existing": anything,
 
   "procedure:list": z.object({ pack: pack.optional() }),
   "task:list": z.object({ workspaceId: id }),

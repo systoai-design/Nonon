@@ -8,12 +8,14 @@
  *   ?runtime=missing start onboarded but with the AI not set up (shows the setup banner)
  *   ?unsupported=1   hardware report says this computer is too small
  *   ?fail=1          the first download attempt fails halfway
+ *   ?found=1         the search for AI files already on the computer finds three (add &engine=missing to see the small engine download)
  */
 import type {
   AppState,
   ChangeProposal,
   ChatEntry,
   CompanionCharacter,
+  DiscoveredModel,
   FileEntry,
   HardwareReport,
   LanStatus,
@@ -440,6 +442,32 @@ export function installMockBridge(): void {
     }, 150);
   }
 
+  // ------------------------------------------------------------ AI files already on the computer
+  const demoFound: DiscoveredModel[] = [
+    { id: "1".repeat(40), label: "Qwen3.5 4B", bytes: 2_740_937_888, sizeGb: 2.6, where: "your Downloads folder", kind: "exact", modelId: "qwen3.5-4b", fileName: "Qwen3.5-4B-Q4_K_M.gguf" },
+    { id: "2".repeat(40), label: "Qwen2.5 14B Instruct", bytes: 8_990_000_000, sizeGb: 8.4, where: "LM Studio", kind: "compatible", fileName: "Qwen2.5-14B-Instruct-Q4_K_M.gguf", contextTokens: 32768 },
+    { id: "3".repeat(40), label: "Gemma 4 E4B it", bytes: 5_340_000_000, sizeGb: 5, where: "LM Studio", kind: "compatible", fileName: "gemma-4-E4B-it-Q4_K_M.gguf", contextTokens: 131072 },
+  ];
+  function adoptDemo(m: DiscoveredModel): RuntimeStatus {
+    settings = { ...settings, modelId: m.kind === "exact" ? (m.modelId ?? "custom") : "custom", customModel: { path: "C:/Models/" + m.fileName, label: m.label, kind: m.kind === "exact" ? "exact" : "compatible", bytes: m.bytes, ...(m.modelId ? { modelId: m.modelId } : {}) } };
+    emit("settings:updated", settings);
+    if (params.get("engine") === "missing") {
+      const t0 = Date.now();
+      setRuntime({ phase: "downloading-runtime", modelId: "custom", modelLabel: m.label, progress: 0, bytesDone: 0, bytesTotal: 150 * MB, detail: "Downloading the helper files the AI needs.", error: undefined });
+      const timer = window.setInterval(() => {
+        const p = Math.min(1, (Date.now() - t0) / 3500);
+        if (p < 1) setRuntime({ phase: "downloading-runtime", progress: p, bytesDone: Math.round(150 * MB * p), bytesTotal: 150 * MB });
+        else {
+          window.clearInterval(timer);
+          setRuntime({ phase: "ready", progress: null, bytesDone: null, bytesTotal: null, detail: "Installed and ready." });
+        }
+      }, 150);
+    } else {
+      setRuntime({ phase: "ready", modelId: m.modelId ?? "custom", modelLabel: m.label, progress: null, bytesDone: null, bytesTotal: null, detail: "Installed and ready.", error: undefined });
+    }
+    return runtime;
+  }
+
   // ------------------------------------------------------------ routine proposal
   function proposeRoutine(workspaceId: string, text: string): Routine {
     const mail = /inbox|email|mail/i.test(text);
@@ -581,6 +609,22 @@ export function installMockBridge(): void {
     },
     "runtime:start": () => setRuntime({ phase: "running" }),
     "runtime:stop": () => setRuntime({ phase: "sleeping" }),
+    "runtime:discover": async () => {
+      await wait(1400);
+      return params.get("found") === "1" ? clone(demoFound) : [];
+    },
+    "runtime:use-existing": async ({ id }) => {
+      const m = demoFound.find((f) => f.id === id);
+      if (!m) throw new Error("That choice is no longer on the list. Look again, then pick one.");
+      return adoptDemo(m);
+    },
+    "runtime:use-file": async () => adoptDemo(demoFound[1] as DiscoveredModel),
+    "runtime:forget-existing": () => {
+      settings = { ...settings, customModel: undefined, modelId: null };
+      emit("settings:updated", settings);
+      setRuntime({ phase: "not-installed", modelId: null, modelLabel: undefined, detail: "The built-in AI is not set up yet" });
+      return runtime;
+    },
 
     "procedure:list": ({ pack }) => procedures.filter((p) => !pack || p.pack === pack),
     "task:list": ({ workspaceId }) => [...tasks.values()].filter((t) => t.workspaceId === workspaceId),
