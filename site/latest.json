@@ -1,21 +1,21 @@
 {
   "version": "0.1.0",
-  "date": "2026-10-09T18:58:29.129Z",
+  "date": "2026-10-09T19:20:05.354Z",
   "files": [
     {
       "platform": "windows",
       "arch": "x64",
       "name": "NONON-0.1.0-win-x64.exe",
-      "size": 105963828,
-      "sha256": "70cd8c8802dba23d99dcb252fd6ccc4756f907b1384737607d6dc853de0c20d1",
+      "size": 107131692,
+      "sha256": "88a5c71c0d4d4d96931a34ed804f72058edce59da559d443c5f48337c3f207f4",
       "signed": false
     },
     {
       "platform": "macos",
       "arch": "arm64",
       "name": "NONON-0.1.0-mac-arm64.dmg",
-      "size": 123046164,
-      "sha256": "4fa6c7d03ea778125b03e40f2548fe3e6e3b059f8e24489aea651d241e6f6f49",
+      "size": 124211433,
+      "sha256": "9bce09e4b67f6a8d99ba919fec27110ad8bd2c94e284f177260c607ba74c03c4",
       "notarized": true
     }
   ]
