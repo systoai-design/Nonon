@@ -20,7 +20,7 @@ NONON is a Windows and Mac desktop app that finishes everyday file work, like co
 Website: https://trynonon.xyz/
 
 ## Public GitHub Repository
-https://github.com/systoai-design/appbuildersph-nonon
+https://github.com/systoai-design/Nonon
 
 ## Demo Video
 https://youtu.be/zwAGvHim_kw

@@ -133,7 +133,7 @@ Home sections all use `--section` (158.4px at 1440, 88px at 375 and 768); inner 
 ### Three download options
 
 Hero, final call to action, footer ("Get NONON") and /download all show exactly three options: Windows, Mac, "GitHub (public repository)" with
-"Source code on GitHub. Read, build or fork NONON. Free and open source, Apache 2.0.", the link going to https://github.com/systoai-design/appbuildersph-nonon
+"Source code on GitHub. Read, build or fork NONON. Free and open source, Apache 2.0.", the link going to https://github.com/systoai-design/Nonon
 in a new tab with `rel="noopener"`. The option for this computer is the filled card; GitHub is never the default. They stack to one column at
 720px and below with equal 12px gaps (`site3-home-375-sheet.png`, `site3-download-375.png`). /download shows file name, size, version and SHA-256
 for Windows and Mac (from the manifest) and the repo URL and licence for GitHub. Also added: nav link "GitHub", FAQ "Is it open source?", JSON-LD

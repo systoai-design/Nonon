@@ -741,7 +741,7 @@ Environment variables that help in development:
 
 ## Contributing and feedback
 
-- Questions, bugs and ideas: open an issue at https://github.com/systoai-design/appbuildersph-nonon/issues. Please say your system (Windows or Mac), your memory size, and what you were doing.
+- Questions, bugs and ideas: open an issue at https://github.com/systoai-design/Nonon/issues. Please say your system (Windows or Mac), your memory size, and what you were doing.
 - Pull requests are welcome. Before you open one: run `pnpm typecheck` and `pnpm test` in `app/`, keep wording plain (follow [`docs/project/COPY-GUIDE.md`](docs/project/COPY-GUIDE.md)), label any test that uses a fake as mocked, and list reused code in [`docs/project/reuse-inventory.md`](docs/project/reuse-inventory.md).
 - Rules the project keeps: originals are never written before approval and every change makes a recovery copy first; a project set to this-computer-only never uses an online AI, including from routines; secrets never reach the window, the logs or a command line; code does the arithmetic and the model explains.
 - To check this README's links and images: `node docs/readme/check-readme.mjs`.

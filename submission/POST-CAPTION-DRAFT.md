@@ -15,7 +15,7 @@ Optional connections (Claude, Codex, Antigravity, Gmail) are there if you want t
 Built for #AppBuildersPH. This 60-second film is a product preview made with sample data.
 
 Free download: https://trynonon.xyz
-Open source: https://github.com/systoai-design/appbuildersph-nonon
+Open source: https://github.com/systoai-design/Nonon
 
 #AppBuildersPH #OpenSource #AI #LocalAI #Productivity #Hackathon #Philippines
 Tag Devin / Cognition (required by the briefing) and keep #AppBuildersPH.
@@ -30,7 +30,7 @@ NONON is our entry for the AppBuildersPH Hackathon. A free, open-source desktop 
 NONON is open source (Apache-2.0) and free to download. We made it in under a day, and we may keep developing it for the community.
 This film is a product preview made with sample data.
 Free download: https://trynonon.xyz
-Open source: https://github.com/systoai-design/appbuildersph-nonon
+Open source: https://github.com/systoai-design/Nonon
 
 Made with Blender, ElevenLabs (narration, sound effects and music) and ffmpeg. Mascot artwork Pip (shown as Non) reused from Pragma by Systo AI under Apache-2.0.
 

@@ -33,7 +33,7 @@ Worker: `src/worker.ts`. Config: `wrangler.jsonc`. Release data lives only in R2
    `brand-src/`). The static 3D Non poses are the fitted copies from `brand/derived/non-*-fit.png`. The footer and
    licenses page carry "Non is the Pragma mascot Pip, used with permission of its owner."
 4b. **GitHub link**: the three download options end with "GitHub (public repository)" pointing at
-   `https://github.com/systoai-design/appbuildersph-nonon`. The repository must be public before the site is published, or that link and
+   `https://github.com/systoai-design/Nonon`. The repository must be public before the site is published, or that link and
    the "open source" lines on `/`, `/status` and `/licenses` are not true yet.
 5. **Contact**: the site lists no contact address (none was provided). Add one to
    `partials/footer.html` and `pages/privacy.html` if you want one, then `node scripts/build-pages.mjs`.
