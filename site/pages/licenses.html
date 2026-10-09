@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{headcommon}}
+<title>NONON licenses and credits</title>
+<meta name="description" content="NONON is Apache-2.0 and open source on GitHub. Credits and licenses for Non, Nunito, GSAP, llama.cpp, Qwen3.5, Pragma and the other software it is built with.">
+<link rel="canonical" href="https://trynonon.xyz/licenses">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NONON">
+<meta property="og:title" content="NONON licenses and credits">
+<meta property="og:description" content="Apache-2.0, with credits for Non, Nunito, llama.cpp, Qwen3.5 and Pragma.">
+<meta property="og:url" content="https://trynonon.xyz/licenses">
+<meta property="og:image" content="https://trynonon.xyz/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/inner.css">
+<script src="/assets/site.js" defer></script>
+<script src="/assets/inner.js" defer></script>
+</head>
+<body>
+{{header}}
+<main id="main" class="page">
+  <header class="page__head wrap">
+    <div class="page__titles">
+      <p class="kicker">Credits</p>
+      <h1 class="page__h1" data-split="mask">Licenses and credits</h1>
+      <p class="intro">NONON stands on other people's work. Here is what it uses and under which terms.</p>
+    </div>
+    <div class="page__non" aria-hidden="true">{{non:non--page}}</div>
+  </header>
+
+  <div class="page__body">
+  <div class="wrap">
+
+    <div class="prose">
+      <h2>NONON</h2>
+      <p>Copyright 2026 Kyle Cabahug. NONON is licensed under the Apache License, Version 2.0. The full texts are here: <a href="/legal/LICENSE.txt">LICENSE</a> and <a href="/legal/NOTICE.txt">NOTICE</a>. They also ship inside the app, in its licenses folder.</p>
+
+      <h2>The source code</h2>
+      <p>The NONON source code is public on GitHub: <a href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">github.com/systoai-design/Nonon</a>. You can read it, build it or fork it, under the Apache License 2.0.</p>
+
+      <h2>Pragma</h2>
+      <p>NONON is derived from components of Pragma (<a href="https://www.trypragma.xyz" rel="noopener">trypragma.xyz</a>), Copyright 2026 Systo AI, used under the Apache License, Version 2.0. The reused parts are the pinned references to the AI program build and AI files (with their checksums), and the way NONON connects to Claude, Codex and Antigravity. Pragma is itself a derivative of OpenMausBot (Copyright 2026 Milind Soni and OpenMausBot contributors, Apache License 2.0).</p>
+
+      <h2>Non, the companion</h2>
+      <div class="credit-card">{{img:non-rest}}<p>Non is the Pragma mascot Pip, used with permission of its owner. Pip was the name in Pragma. NONON shows the name Non.</p></div>
+
+      <h2 id="fonts">Font</h2>
+      <p><strong>Nunito</strong> by The Nunito Project Authors, under the SIL Open Font License 1.1. This site serves its own copy, unmodified apart from leaving out letters the pages never use. The license text is here: <a href="/fonts/NUNITO-OFL.txt">NUNITO-OFL.txt</a>.</p>
+
+      <h2 id="gsap">Motion on this website</h2>
+      <p><strong>GSAP</strong> and its <strong>ScrollTrigger</strong> plugin, version 3.15.0, Copyright 2026 GreenSock, used under the GSAP Standard License (<a href="https://gsap.com/standard-license" rel="noopener">gsap.com/standard-license</a>). They animate this website only. They are not part of the NONON app. This site serves its own copy, so your browser does not contact anyone else to load them. The page-building code that uses them is adapted from the Pragma website (Apache License 2.0).</p>
+
+      <h2>The AI that runs on your computer</h2>
+      <ul>
+        <li><strong>llama.cpp</strong> (<a href="https://github.com/ggml-org/llama.cpp" rel="noopener">github.com/ggml-org/llama.cpp</a>), MIT License, Copyright (c) 2023-2026 The ggml authors. NONON downloads the official release build on first use and does not modify it.</li>
+        <li><strong>Qwen3.5</strong> AI files by Alibaba Cloud's Qwen team (GGUF conversions by Unsloth), Apache License 2.0. NONON downloads them on first use and does not modify them.</li>
+      </ul>
+
+      <h2>Software inside the app</h2>
+      <p>Electron (MIT), React (MIT), Vite (MIT), Tailwind CSS (MIT), ExcelJS (MIT), Papa Parse (MIT), docx (MIT), mammoth (BSD-2-Clause), unpdf (MIT), Croner (MIT), JSZip (MIT or GPL-3.0, used under MIT), zod (MIT) and lucide-react (ISC).</p>
+
+      <h2>Optional connections</h2>
+      <p>Claude (Anthropic), Codex (OpenAI) and Antigravity (Google) are optional connections to your own installed and signed-in tools. NONON does not bundle, modify or redistribute them, and does not collect or store their credentials. Gmail access is a direct connection to Google's service using your own authorization. These names belong to their owners, and NONON is not affiliated with or endorsed by them.</p>
+    </div>
+  </div>
+  </div>
+</main>
+{{footer}}
+</body>
+</html>

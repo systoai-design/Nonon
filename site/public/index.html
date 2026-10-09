@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/nunito-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/base.css">
+<script src="/assets/boot.js"></script>
+<title>NONON: finish everyday work with your own files</title>
+<meta name="description" content="NONON is a free helper for Windows and Mac. The AI works on your computer, so it keeps working when the internet doesn't. You check every change first.">
+<link rel="canonical" href="https://trynonon.xyz/">
+<link rel="stylesheet" href="/assets/home.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NONON">
+<meta property="og:title" content="NONON: finish everyday work with your own files">
+<meta property="og:description" content="The AI works on your computer, so it keeps working when the internet doesn't. Free for Windows and Mac.">
+<meta property="og:url" content="https://trynonon.xyz/">
+<meta property="og:image" content="https://trynonon.xyz/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NONON. Non, a small black character with an orange sprout, next to the words Finish everyday work with your own files.">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":["SoftwareApplication","SoftwareSourceCode"],"name":"NONON","description":"A desktop helper that finishes everyday work with your own files. The AI runs on your computer, so core jobs keep working without the internet after a one-time setup download.","applicationCategory":"BusinessApplication","operatingSystem":"Windows 10, Windows 11, macOS on Apple silicon","url":"https://trynonon.xyz/","downloadUrl":"https://trynonon.xyz/download","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://www.apache.org/licenses/LICENSE-2.0","codeRepository":"https://github.com/systoai-design/Nonon"}</script>
+<script src="/vendor/gsap.min.js" defer></script>
+<script src="/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/home.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="nav__bar">
+    <a class="brand" href="/" aria-label="NONON home"><img class="brand__logo" src="/brand/nonon-logo-horizontal-color.svg" width="118" height="28" alt="NONON"></a>
+    <nav class="nav__links" id="navLinks" aria-label="Main">
+      <span class="nav__thumb" id="navThumb" aria-hidden="true"></span>
+      <a href="/#does" data-nav>What it does</a>
+      <a href="/#control" data-nav>Your control</a>
+      <a href="/#how" data-nav>How it works</a>
+      <a href="/#faq" data-nav>Questions</a>
+      <a href="/status">What works today</a>
+      <a class="nav__ext" href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--primary btn--sm" href="/download" data-press>Download <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/></g></svg></a>
+    </div>
+    <details class="nav__menu">
+      <summary aria-label="Menu"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path class="nav__menu-open" d="M3.5 6h13M3.5 10h13M3.5 14h13"/><path class="nav__menu-close" d="M5 5l10 10M15 5 5 15"/></svg></summary>
+      <nav class="nav__sheet" aria-label="Site menu">
+        <a href="/#does">What it does</a>
+        <a href="/#control">Your control</a>
+        <a href="/#how">How it works</a>
+        <a href="/#faq">Questions</a>
+        <a href="/status">What works today</a>
+        <a href="/privacy">Privacy</a>
+        <a href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">GitHub (public repository)<span class="sr-only"> (opens in a new tab)</span></a>
+      </nav>
+    </details>
+  </div>
+</header>
+<main id="main">
+
+  <!-- hero: the words and Non first; on a wide screen the app window then rises while the page holds still -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__pin" id="heroPin">
+      <div class="hero__grid" aria-hidden="true"></div>
+
+      <div class="hero__stage" id="heroStage">
+        <div class="stage" id="stage">
+          <span class="stage__disc" aria-hidden="true"></span>
+          <span class="stage__ring" aria-hidden="true"></span>
+          <button class="stage__non" id="nonBtn" type="button" aria-label="Say hi to Non"><svg class="non non--hero" viewBox="0 -8 256 272" data-state="idle" aria-hidden="true" focusable="false"><g class="non-body-group"><ellipse cx="128" cy="210" rx="119" ry="38" fill="#F47B32"/><path d="M26 201C34 148 48 98 76 68C89 52 108 43 128 43C150 43 169 52 183 69C209 101 222 153 230 201Q128 235 26 201Z" fill="#111111"/><ellipse cx="156" cy="27" rx="16" ry="33" transform="rotate(40 156 27)" fill="#F47B32"/><ellipse class="non-eye" cx="93" cy="139" rx="11" ry="22" fill="#FFFFFF"/><ellipse class="non-eye" cx="165" cy="139" rx="11" ry="22" fill="#FFFFFF"/><path class="non-smile" d="M118 175Q128 187 139 175" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><ellipse class="non-talk-mouth" cx="128" cy="178" rx="10" ry="12" fill="#FFFFFF"/></g><g class="non-thought-dots" fill="#A84208"><circle cx="104" cy="245" r="4"/><circle cx="128" cy="245" r="4"/><circle cx="152" cy="245" r="4"/></g></svg></button>
+          <p class="hello" id="hello">Hi, I'm Non.</p>
+          <span class="chip chip--1" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></g></svg>bank-list.csv</span>
+          <span class="chip chip--2" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M7 2v5M17 2v5"/></g></svg>meeting-notes.docx</span>
+          <span class="chip chip--3" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m1 8 11-6 11 6-11 6ZM5 10v7q7 5 14 0v-7M23 8v10"/></g></svg>reading.pdf</span>
+        </div>
+      </div>
+
+      <div class="hero__copy wrap" id="heroCopy">
+        <a class="news" href="/download" data-press>
+          <span class="news__dot" aria-hidden="true"></span>
+          <b>Free for Windows and Mac</b>
+          <span class="news__sep" aria-hidden="true"></span>
+          <span class="news__sub">See install notes</span>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 4 8 8-8 8"/></g></svg>
+        </a>
+        <h1 class="display" id="hero-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Finish</span></span> <span class="w" data-i="1"><span class="wi">everyday</span></span> <span class="w" data-i="2"><span class="wi">work</span></span> <span class="w" data-i="3"><span class="wi">with</span></span> <span class="hl"><span class="w" data-i="4"><span class="wi">your</span></span> <span class="w" data-i="5"><span class="wi">own</span></span> <span class="w" data-i="6"><span class="wi">files.</span></span></span></h1>
+        <p class="hero__lede">The AI works on your computer, so it keeps working when the internet doesn't.</p>
+        <div class="hero__cta">
+          <div class="dl-group" data-dl-group role="group" aria-label="Ways to get NONON">
+  <a class="dl-opt" data-dl="windows" href="/download#windows" data-press>
+    <span class="dl-opt__top"><span class="dl-opt__name">Windows</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/></g></svg></span>
+    <span class="dl-opt__sub" data-dl-sub="windows">Download for Windows 10 or 11 (64-bit).</span>
+  </a>
+  <a class="dl-opt" data-dl="macos" href="/download#mac" data-press>
+    <span class="dl-opt__top"><span class="dl-opt__name">Mac</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/></g></svg></span>
+    <span class="dl-opt__sub" data-dl-sub="macos">Download for Macs with Apple silicon.</span>
+  </a>
+  <a class="dl-opt" data-dl="github" href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener" data-press>
+    <span class="dl-opt__top"><span class="dl-opt__name">GitHub (public repository)</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0M16 8l2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0" transform="translate(1 -1) scale(.92)"/></g></svg></span>
+    <span class="dl-opt__sub"><b>Source code on GitHub.</b> Read, build or fork NONON. Free and open source, Apache 2.0.<span class="sr-only"> Opens in a new tab.</span></span>
+  </a>
+</div>
+<p class="dl-note" data-dl-note>Free. Windows 10 or 11, or a Mac with Apple silicon.</p>
+<p class="dl-note dl-note--version" data-dl-version></p>
+          <p class="dl-note dl-note--setup">Needs the internet once to download the AI (3 to 6 GB). <a href="/download">Install notes</a></p>
+        </div>
+        <ul class="hero__facts">
+          <li><b>Windows and Mac</b><span>Apple silicon Macs, not Intel</span></li>
+          <li><b>Your computer</b><span>The AI runs here</span></li>
+          <li><b>Your OK first</b><span>Nothing changes until you say so</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__app" id="app">
+        <figure class="win" id="win">
+          <div class="win__bar">
+            <span class="win__title"><img src="/brand/nonon-mark-color.svg" width="14" height="14" alt="">NONON</span>
+            <span class="win__spacer" aria-hidden="true"></span>
+            <span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span>
+          </div>
+          <div class="win__body"><picture><source type="image/webp" srcset="/img/app/shot-hero-680.webp 680w, /img/app/shot-hero-1020.webp 1020w, /img/app/shot-hero-1360.webp 1360w" sizes="(min-width: 1200px) 1118px, 92vw"><img class="shot-img" src="/img/app/shot-hero-1020.webp" width="1020" height="645" alt="The NONON window after comparing two spreadsheets. The results panel says the two files differ by PHP 2,565.60, with 19 matched pairs, 4 rows only in the first file, 5 only in the second, 1 listed twice and 3 not sure." loading="eager" decoding="async"></picture></div>
+        </figure>
+        <p class="win__hint">A real screenshot. NONON has just compared two spreadsheets and lists every row that does not match.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- one sentence that inks in as you read it -->
+  <section class="why" id="why">
+    <div class="wrap">
+      <p class="kicker" data-reveal>Meet NONON</p>
+      <p class="why__text" data-split="ink"><span class="w">NONON</span> <span class="w">is</span> <span class="w">a</span> <span class="w">helper</span> <img class="why__face" src="/brand/nonon-mark-color.svg" width="40" height="40" alt="" loading="lazy"> <span class="w">for</span> <span class="w">the</span> <span class="w">files</span> <span class="w">you</span> <span class="w">already</span> <span class="w">have.</span> <span class="w">Say</span> <span class="w">what</span> <span class="w">you</span> <span class="w">need</span> <span class="w">in</span> <span class="w">your</span> <span class="w">own</span> <span class="w">words.</span> <span class="w">It</span> <span class="w">does</span> <span class="w">the</span> <span class="w">work</span> <span class="w">on</span> <span class="w">your</span> <span class="w">computer,</span> <span class="w">shows</span> <span class="w">you</span> <span class="w">the</span> <span class="w">result,</span> <span class="w">and</span> <span class="w">asks</span> <span class="w">before</span> <span class="w">it</span> <span class="w">changes</span> <span class="w">anything.</span></p>
+    </div>
+  </section>
+
+  <section class="jobs" id="does" aria-labelledby="does-title">
+    <div class="wrap">
+      <header class="head">
+        <p class="kicker" data-reveal>What it does</p>
+        <h2 class="h2" id="does-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Three</span></span> <span class="w" data-i="1"><span class="wi">things</span></span> <span class="w" data-i="2"><span class="wi">NONON</span></span> <span class="w" data-i="3"><span class="wi">does.</span></span></h2>
+        <p class="head__lede" data-reveal>Give it your files and say what you need. Here is what it can do today.</p>
+      </header>
+
+      <div class="jobs__tabs" id="jobs" data-reveal>
+        <input class="vh" type="radio" name="job" id="job-compare" checked>
+        <input class="vh" type="radio" name="job" id="job-meeting">
+        <input class="vh" type="radio" name="job" id="job-study">
+        <input class="vh" type="radio" name="job" id="job-tidy">
+        <input class="vh" type="radio" name="job" id="job-draft">
+        <input class="vh" type="radio" name="job" id="job-routine">
+
+        <div class="contacts" id="contacts" role="group" aria-label="Choose a job">
+          <span class="contacts__thumb" id="contactsThumb" aria-hidden="true"></span>
+          <label class="contact" for="job-compare" data-job="compare"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></g></svg></span><span class="contact__meta"><span class="contact__name">Compare two spreadsheets</span><span class="contact__role">Find what does not match</span></span></label>
+          <label class="contact" for="job-meeting" data-job="meeting"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M7 2v5M17 2v5"/></g></svg></span><span class="contact__meta"><span class="contact__name">Turn meeting notes into a follow-up</span><span class="contact__role">Who does what</span></span></label>
+          <label class="contact" for="job-study" data-job="study"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m1 8 11-6 11 6-11 6ZM5 10v7q7 5 14 0v-7M23 8v10"/></g></svg></span><span class="contact__meta"><span class="contact__name">Turn a reading into a study sheet</span><span class="contact__role">With an answer key</span></span></label>
+          <p class="contacts__label">And also</p>
+          <label class="contact" for="job-tidy" data-job="tidy"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M2 7a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"/></g></svg></span><span class="contact__meta"><span class="contact__name">Tidy a folder</span><span class="contact__role">Every move listed first</span></span></label>
+          <label class="contact" for="job-draft" data-job="draft"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 5 5-13 13-6 1 1-6ZM14 5l5 5"/></g></svg></span><span class="contact__meta"><span class="contact__name">Draft a document</span><span class="contact__role">A first draft to edit</span></span></label>
+          <label class="contact" for="job-routine" data-job="routine"><span class="contact__ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8a8 8 0 1 0 1 9M20 3v5h-5"/><path d="M12 7v5l3 2"/></g></svg></span><span class="contact__meta"><span class="contact__name">Run it on a schedule</span><span class="contact__role">Repeat a job every week</span></span></label>
+        </div>
+
+        <div class="profiles">
+          <article class="profile" data-for="compare">
+            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></g></svg></span></div>
+            <div class="profile__info">
+              <p class="profile__role">Job 1 of 3</p>
+              <h3 class="profile__name">Compare two spreadsheets</h3>
+              <p class="profile__job">Give it two Excel or .csv spreadsheets, like your bank list and your own records. It shows every row that does not match. It adds up the money itself, so the totals are exact.</p>
+              <dl class="pair"><div><dt>You give it</dt><dd>Two spreadsheets</dd></div><div><dt>You get</dt><dd>Every row that does not match</dd></div></dl>
+              <div class="tally" id="tally">
+                <p class="tally__label">From a real comparison of two test files, 51 rows in all</p>
+                <ul class="tally__list">
+                  <li><b data-count="38">38</b><span>match</span></li>
+                  <li><b data-count="4">4</b><span>only in the first</span></li>
+                  <li><b data-count="5">5</b><span>only in the second</span></li>
+                  <li><b data-count="1">1</b><span>listed twice</span></li>
+                  <li><b data-count="3">3</b><span>not sure</span></li>
+                </ul>
+                <p class="tally__gap">The two totals differ by <b data-count="2565.6" data-decimals="2">2,565.60</b> PHP. Code added it up, so it is exact.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="profile" data-for="meeting">
+            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M7 2v5M17 2v5"/></g></svg></span></div>
+            <div class="profile__info">
+              <p class="profile__role">Job 2 of 3</p>
+              <h3 class="profile__name">Turn meeting notes into a follow-up</h3>
+              <p class="profile__job">Give it your notes. You get a short summary and a list of who does what. Anything missing, like a name or a date, is marked for you.</p>
+              <dl class="pair"><div><dt>You give it</dt><dd>Your meeting notes</dd></div><div><dt>You get</dt><dd>A summary and a list of who does what</dd></div></dl>
+            </div>
+          </article>
+
+          <article class="profile" data-for="study">
+            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m1 8 11-6 11 6-11 6ZM5 10v7q7 5 14 0v-7M23 8v10"/></g></svg></span></div>
+            <div class="profile__info">
+              <p class="profile__role">Job 3 of 3</p>
+              <h3 class="profile__name">Turn a reading into a study sheet</h3>
+              <p class="profile__job">Give it a reading. You get a study sheet with practice questions and an answer key. It is built only from your reading.</p>
+              <dl class="pair"><div><dt>You give it</dt><dd>A reading</dd></div><div><dt>You get</dt><dd>A study sheet with an answer key</dd></div></dl>
+            </div>
+          </article>
+
+          <article class="profile" data-for="tidy">
+            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M2 7a2 2 0 0 1 2-2h5l2 2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"/></g></svg></span></div>
+            <div class="profile__info">
+              <p class="profile__role">And also</p>
+              <h3 class="profile__name">Tidy a folder</h3>
+              <p class="profile__job">NONON lists every move first. Nothing moves until you say OK.</p>
+              <dl class="pair"><div><dt>You give it</dt><dd>A messy folder</dd></div><div><dt>You get</dt><dd>A list of every move, waiting for your OK</dd></div></dl>
+            </div>
+          </article>
+
+          <article class="profile" data-for="draft">
+            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 5 5-13 13-6 1 1-6ZM14 5l5 5"/></g></svg></span></div>
+            <div class="profile__info">
+              <p class="profile__role">And also</p>
+              <h3 class="profile__name">Draft a document</h3>
+              <p class="profile__job">Get a first draft from your notes or a file. Then edit it your way.</p>
+              <dl class="pair"><div><dt>You give it</dt><dd>Your notes or a file</dd></div><div><dt>You get</dt><dd>A first draft you can edit</dd></div></dl>
+            </div>
+          </article>
+
+          <article class="profile" data-for="routine">
+            <div class="profile__art" aria-hidden="true"><span class="profile__ring"></span><span class="profile__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8a8 8 0 1 0 1 9M20 3v5h-5"/><path d="M12 7v5l3 2"/></g></svg></span></div>
+            <div class="profile__info">
+              <p class="profile__role">And also</p>
+              <h3 class="profile__name">Run it on a schedule</h3>
+              <p class="profile__job">Repeat a job every week. It runs while your computer is on and awake.</p>
+              <dl class="pair"><div><dt>You give it</dt><dd>A job and a time</dd></div><div><dt>You get</dt><dd>The job done again, every week</dd></div></dl>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="control" id="control" aria-labelledby="control-title">
+    <div class="wrap">
+      <header class="head head--split">
+        <div>
+          <p class="kicker" data-reveal>Your control</p>
+          <h2 class="h2" id="control-title" data-split="mask"><span class="w" data-i="0"><span class="wi">You</span></span> <span class="w" data-i="1"><span class="wi">stay</span></span> <span class="w" data-i="2"><span class="wi">in</span></span> <span class="w" data-i="3"><span class="wi">charge.</span></span> <span class="soft"><span class="w" data-i="4"><span class="wi">NONON</span></span> <span class="w" data-i="5"><span class="wi">asks</span></span> <span class="w" data-i="6"><span class="wi">first.</span></span></span></h2>
+        </div>
+        <p class="head__lede" data-reveal>NONON is a helper, not the boss. It asks before it changes anything.</p>
+      </header>
+
+      <div class="control__grid" id="controlGrid" data-demo="wait">
+        <ol class="charge" data-stagger>
+          <li data-step="show"><span class="charge__n">01</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="14" height="19" rx="3"/><path d="M8 7h6M8 11h5m-3 5 3 3 7-7"/></g></svg><h3>It shows you first.</h3><p>NONON shows what it wants to change and waits for your OK.</p></li>
+          <li data-step="backup"><span class="charge__n">02</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H5a1 1 0 0 0-1 1v18h16V9Zm0 0v7h7M8 13h8M8 17h6"/></g></svg><h3>It keeps a backup.</h3><p>Before it changes a file, it saves a copy of the original.</p></li>
+          <li data-step="undo"><span class="charge__n">03</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7"/></g></svg><h3>You can undo.</h3><p>Changed your mind? Undo it. If you edited the file since, NONON stops and tells you. It will not erase your work.</p></li>
+        </ol>
+
+        <article class="tile demo" data-spot data-reveal>
+          <p class="tile__label">Try it <span class="demo__tag">A demonstration. Nothing on your computer is touched.</span></p>
+          <div class="ask" id="ask" data-state="wait">
+            <div class="ask__pane" data-pane="wait">
+              <div class="ask__head"><svg class="non non--mini" viewBox="0 -8 256 272" data-state="idle" aria-hidden="true" focusable="false"><g class="non-body-group"><ellipse cx="128" cy="210" rx="119" ry="38" fill="#F47B32"/><path d="M26 201C34 148 48 98 76 68C89 52 108 43 128 43C150 43 169 52 183 69C209 101 222 153 230 201Q128 235 26 201Z" fill="#111111"/><ellipse cx="156" cy="27" rx="16" ry="33" transform="rotate(40 156 27)" fill="#F47B32"/><ellipse class="non-eye" cx="93" cy="139" rx="11" ry="22" fill="#FFFFFF"/><ellipse class="non-eye" cx="165" cy="139" rx="11" ry="22" fill="#FFFFFF"/><path class="non-smile" d="M118 175Q128 187 139 175" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><ellipse class="non-talk-mouth" cx="128" cy="178" rx="10" ry="12" fill="#FFFFFF"/></g><g class="non-thought-dots" fill="#A84208"><circle cx="104" cy="245" r="4"/><circle cx="128" cy="245" r="4"/><circle cx="152" cy="245" r="4"/></g></svg><p><b>Non</b> wants to move 3 files<span>into a new folder called Invoices 2026</span></p></div>
+              <ul class="ask__moves">
+                <li><span>receipt-march.pdf</span><i aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 4 8 8-8 8"/></g></svg></i><span>Invoices 2026</span></li>
+                <li><span>receipt-april.pdf</span><i aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 4 8 8-8 8"/></g></svg></i><span>Invoices 2026</span></li>
+                <li><span>receipt-may.pdf</span><i aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 4 8 8-8 8"/></g></svg></i><span>Invoices 2026</span></li>
+              </ul>
+              <p class="ask__wait">Waiting for your OK. Nothing has moved yet.</p>
+              <div class="ask__actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-answer="no" data-press>No, leave them</button>
+                <button class="btn btn--primary btn--sm" type="button" data-answer="yes" data-press>OK, make the change</button>
+              </div>
+            </div>
+            <div class="ask__pane" data-pane="left">
+              <p class="ask__result"><b>Nothing changed.</b> The 3 files stay exactly where they were.</p>
+              <div class="ask__actions"><button class="btn btn--ghost btn--sm" type="button" data-answer="again" data-press>Ask again</button></div>
+            </div>
+            <div class="ask__pane" data-pane="done">
+              <div class="ask__head"><svg class="non non--mini" viewBox="0 -8 256 272" data-state="idle" aria-hidden="true" focusable="false"><g class="non-body-group"><ellipse cx="128" cy="210" rx="119" ry="38" fill="#F47B32"/><path d="M26 201C34 148 48 98 76 68C89 52 108 43 128 43C150 43 169 52 183 69C209 101 222 153 230 201Q128 235 26 201Z" fill="#111111"/><ellipse cx="156" cy="27" rx="16" ry="33" transform="rotate(40 156 27)" fill="#F47B32"/><ellipse class="non-eye" cx="93" cy="139" rx="11" ry="22" fill="#FFFFFF"/><ellipse class="non-eye" cx="165" cy="139" rx="11" ry="22" fill="#FFFFFF"/><path class="non-smile" d="M118 175Q128 187 139 175" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><ellipse class="non-talk-mouth" cx="128" cy="178" rx="10" ry="12" fill="#FFFFFF"/></g><g class="non-thought-dots" fill="#A84208"><circle cx="104" cy="245" r="4"/><circle cx="128" cy="245" r="4"/><circle cx="152" cy="245" r="4"/></g></svg><p class="ask__result"><b>Done.</b> A copy of each original was saved first, so you can go back.</p></div>
+              <div class="ask__actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-answer="undo" data-press><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7"/></g></svg> Undo</button>
+              </div>
+            </div>
+            <div class="ask__pane" data-pane="undone">
+              <p class="ask__result"><b>Undone.</b> The files are back where they were.</p>
+              <div class="ask__actions"><button class="btn btn--ghost btn--sm" type="button" data-answer="again" data-press>Try it again</button></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="local" id="local" data-online="true" aria-labelledby="local-title">
+    <span class="local__dark" id="localDark" aria-hidden="true"></span>
+    <div class="wrap local__grid">
+      <div class="local__copy">
+        <p class="kicker" data-reveal>Where it runs</p>
+        <h2 class="h2 h2--md" id="local-title" data-split="mask"><span class="w" data-i="0"><span class="wi">The</span></span> <span class="w" data-i="1"><span class="wi">AI</span></span> <span class="w" data-i="2"><span class="wi">stays</span></span> <span class="w" data-i="3"><span class="wi">on</span></span> <span class="w" data-i="4"><span class="wi">your</span></span> <span class="w" data-i="5"><span class="wi">computer.</span></span> <span class="soft"><span class="w" data-i="6"><span class="wi">So</span></span> <span class="w" data-i="7"><span class="wi">it</span></span> <span class="w" data-i="8"><span class="wi">keeps</span></span> <span class="w" data-i="9"><span class="wi">working</span></span> <span class="w" data-i="10"><span class="wi">when</span></span> <span class="w" data-i="11"><span class="wi">the</span></span> <span class="w" data-i="12"><span class="wi">internet</span></span> <span class="w" data-i="13"><span class="wi">doesn't.</span></span></span></h2>
+        <p class="head__lede" data-reveal>Your files, backups and routines stay in your folders. Try the switch to see what keeps working with no internet.</p>
+        <p class="honest" data-reveal><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0M16 8l2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0" transform="translate(1 -1) scale(.92)"/></g></svg><span><strong>Needs the internet once to download the AI (3 to 6 GB).</strong> After that, its core jobs work offline. Gmail and online AI always need the internet. Some parts are still being tested, so please read <a href="/status">what works today</a>.</span></p>
+      </div>
+
+      <div class="rig" data-reveal>
+        <button class="cable" id="cable" type="button" aria-pressed="false" data-press>
+          <span class="cable__track" aria-hidden="true"><span class="cable__knob"></span></span>
+          <span class="cable__text"><b id="cableLabel">Turn the internet off</b><small id="cableSub">Pretend, just to see. Your real connection is not touched.</small></span>
+        </button>
+
+        <div class="where">
+          <section class="where__group" aria-labelledby="where-a">
+            <h3 id="where-a"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M1 21h22M9 16v5M15 16v5"/></g></svg>On your computer</h3>
+            <p class="where__tag">This is how NONON starts.</p>
+            <ul class="survive" id="surviveA">
+              <li data-on="The AI is here" data-off="Still working"><span class="survive__dot"></span><b>The AI</b><span class="survive__state">Runs here</span><span class="survive__what">It reads your files and writes the results right here.</span></li>
+              <li data-on="In your folders" data-off="Still there"><span class="survive__dot"></span><b>Your files, backups and routines</b><span class="survive__state">In your folders</span><span class="survive__what">They stay in your folders.</span></li>
+              <li data-on="Never online" data-off="Still private"><span class="survive__dot"></span><b>Local-only projects</b><span class="survive__state">Never online</span><span class="survive__what">These never use online AI, even on a schedule.</span></li>
+            </ul>
+          </section>
+          <section class="where__group where__group--opt" aria-labelledby="where-b">
+            <h3 id="where-b"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V3m-5 5 5-5 5 5M3 15v6h18v-6"/></g></svg>Only if you turn it on</h3>
+            <p class="where__tag">Off until you switch it on. NONON tells you what will be sent first.</p>
+            <ul class="survive" id="surviveB">
+              <li data-on="Off until you turn it on" data-off="Needs the internet"><span class="survive__dot"></span><b>Online AI: Claude, Codex or Antigravity</b><span class="survive__state">Off until you turn it on</span><span class="survive__what">The words and files for that job go to the company that runs it. You pay them on your own plan.</span></li>
+              <li data-on="Off until you turn it on" data-off="Needs the internet"><span class="survive__dot"></span><b>Gmail</b><span class="survive__state">Off until you turn it on</span><span class="survive__what">NONON can read the messages you allow, straight from Google, and summarize them with the AI on your computer. It does not send or delete mail.</span></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how" aria-labelledby="how-title">
+    <div class="how__pin" id="howPin">
+      <div class="wrap how__grid">
+        <header class="how__head">
+          <p class="kicker" data-reveal>How it works</p>
+          <h2 class="h2" id="how-title" data-split="mask"><span class="w" data-i="0"><span class="wi">How</span></span> <span class="w" data-i="1"><span class="wi">it</span></span> <span class="w" data-i="2"><span class="wi">works.</span></span></h2>
+          <p class="head__lede" data-reveal>Three steps. You do not need to learn how to write prompts.</p>
+        </header>
+        <ol class="steps" id="steps">
+          <li class="step is-on" data-step="0">
+            <div class="step__text"><span class="step__n">01</span><h3>Pick a folder</h3><p>Choose the folder with your files. NONON only works where you point it.</p></div>
+            <div class="step__shot"><figure class="win win--sm"><div class="win__bar"><span class="win__title"><img src="/brand/nonon-mark-color.svg" width="14" height="14" alt="">NONON</span><span class="win__spacer" aria-hidden="true"></span><span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span></div><div class="win__body"><picture><source type="image/webp" srcset="/img/app/shot-step1-560.webp 560w, /img/app/shot-step1-1120.webp 1120w" sizes="(min-width: 1024px) 700px, 92vw"><img class="shot-img" src="/img/app/shot-step1-1120.webp" width="1120" height="708" alt="The NONON setup step Pick a folder to work in, with the choices Use my own folder and Try sample files." loading="lazy" decoding="async"></picture></div></figure></div>
+          </li>
+          <li class="step" data-step="1">
+            <div class="step__text"><span class="step__n">02</span><h3>Tell Non what you need</h3><p>Say it in your own words, like you would to a coworker. Non asks a question only when the answer matters.</p></div>
+            <div class="step__shot"><figure class="win win--sm"><div class="win__bar"><span class="win__title"><img src="/brand/nonon-mark-color.svg" width="14" height="14" alt="">NONON</span><span class="win__spacer" aria-hidden="true"></span><span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span></div><div class="win__body"><picture><source type="image/webp" srcset="/img/app/shot-step2-560.webp 560w, /img/app/shot-step2-1120.webp 1120w" sizes="(min-width: 1024px) 700px, 92vw"><img class="shot-img" src="/img/app/shot-step2-1120.webp" width="1120" height="708" alt="Non asks a few questions before comparing: whether to treat the amounts as the same, which dates to compare, and how far apart amounts and dates can be, each with a suggested answer." loading="lazy" decoding="async"></picture></div></figure></div>
+          </li>
+          <li class="step" data-step="2">
+            <div class="step__text"><span class="step__n">03</span><h3>Check and approve</h3><p>Look over the result and any change waiting for your OK. Your files stay the same until you approve.</p></div>
+            <div class="step__shot"><figure class="win win--sm"><div class="win__bar"><span class="win__title"><img src="/brand/nonon-mark-color.svg" width="14" height="14" alt="">NONON</span><span class="win__spacer" aria-hidden="true"></span><span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span></div><div class="win__body"><picture><source type="image/webp" srcset="/img/app/shot-step3-560.webp 560w, /img/app/shot-step3-1120.webp 1120w" sizes="(min-width: 1024px) 700px, 92vw"><img class="shot-img" src="/img/app/shot-step3-1120.webp" width="1120" height="708" alt="The Changes to check panel: one change is waiting for your OK, with a before and after view of the two columns it would add." loading="lazy" decoding="async"></picture></div></figure></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="who" id="who" aria-labelledby="who-title">
+    <div class="wrap">
+      <header class="head">
+        <p class="kicker" data-reveal>Who it is for</p>
+        <h2 class="h2" id="who-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Who</span></span> <span class="w" data-i="1"><span class="wi">it</span></span> <span class="w" data-i="2"><span class="wi">is</span></span> <span class="w" data-i="3"><span class="wi">for.</span></span></h2>
+        <p class="head__lede" data-reveal>People who work with files all day and do not want to become AI experts.</p>
+      </header>
+      <ol class="audience" data-stagger>
+        <li><span class="audience__n">01</span><h3>Small-business owners</h3><p>Match your bank list to your own records. Tidy a messy folder.</p></li>
+        <li><span class="audience__n">02</span><h3>Freelancers</h3><p>Turn client call notes into a follow-up with who does what.</p></li>
+        <li><span class="audience__n">03</span><h3>Bookkeepers</h3><p>Compare two statements and see every row that does not match.</p></li>
+        <li><span class="audience__n">04</span><h3>Teachers and students</h3><p>Turn a reading into a study sheet, or plan a lesson.</p></li>
+      </ol>
+    </div>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__row" data-marquee="1">
+        <div class="marquee__set"><span>Small-business owners</span><i></i><span>Freelancers</span><i></i><span>Bookkeepers</span><i></i><span>Teachers</span><i></i><span>Students</span><i></i></div>
+      </div>
+      <div class="marquee__row marquee__row--soft" data-marquee="-1">
+        <div class="marquee__set"><span>Your files</span><b></b><span>Your computer</span><b></b><span>Your OK</span><b></b><span>Your undo</span><b></b></div>
+      </div>
+    </div>
+    <p class="sr-only">NONON is for small-business owners, freelancers, bookkeepers, teachers and students.</p>
+
+    <div class="wrap">
+      <aside class="notyet" id="notyet" aria-labelledby="notyet-title" data-reveal>
+        <div class="notyet__copy">
+          <p class="kicker kicker--dark">Not yet</p>
+          <h3 id="notyet-title">We would rather say it plainly.</h3>
+          <p>These are not ready. <a href="/status">See what works today</a>.</p>
+        </div>
+        <ul class="notyet__list">
+          <li>A phone app</li>
+          <li>Linux</li>
+          <li>Intel Macs</li>
+          <li>Scanned PDFs</li>
+          <li>Other characters, later</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq__grid">
+      <div>
+        <p class="kicker" data-reveal>Questions</p>
+        <h2 class="h2" id="faq-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Questions</span></span> <span class="w" data-i="1"><span class="wi">people</span></span> <span class="w" data-i="2"><span class="wi">ask.</span></span></h2>
+      </div>
+      <div class="faq__list" data-stagger>
+        <details>
+          <summary>Is it free?</summary>
+          <div class="answer"><p>NONON is free to use. Online AI services you connect may charge you on their own plans.</p></div>
+        </details>
+        <details>
+          <summary>Is it open source?</summary>
+          <div class="answer"><p>Yes. NONON is open source under the Apache License 2.0, and the code is on GitHub. You can read it, build it or fork it. <a href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">Source code on GitHub<span class="sr-only"> (opens in a new tab)</span></a>.</p></div>
+        </details>
+        <details>
+          <summary>Does it need the internet?</summary>
+          <div class="answer"><p>Only once, to download the AI (3 to 6 GB). After that, its core jobs work with no connection. Gmail and online AI always need the internet, because those services do.</p></div>
+        </details>
+        <details>
+          <summary>Is my data sent anywhere?</summary>
+          <div class="answer"><p>Not by default. Your files and the AI stay on your computer, and this site has no tracking. Setup downloads the AI from public websites. If you turn on Claude, Codex, Antigravity or Gmail, the content of that job goes to that service. NONON tells you before it does. Read the <a href="/privacy">privacy page</a> for the full list.</p></div>
+        </details>
+        <details>
+          <summary>Which computers does it run on?</summary>
+          <div class="answer"><p>Windows 10 or 11 (64-bit), and Macs with Apple silicon (M1 or later). It does not run on Intel Macs, Linux or phones. Aim for 8 GB of memory at least. 16 GB is better.</p></div>
+        </details>
+        <details>
+          <summary>Which AI does it use?</summary>
+          <div class="answer"><p>By default, a small open AI that runs on your computer. You can also connect Claude, Codex or Antigravity if you already use them. They are optional.</p></div>
+        </details>
+        <details>
+          <summary>What if the AI is wrong?</summary>
+          <div class="answer"><p>A small AI can make mistakes. So NONON adds up the numbers with ordinary code, shows where each result came from, and marks what is missing. It never changes your files until you say OK. Check its work the way you would check a new helper's.</p></div>
+        </details>
+        <details>
+          <summary>Can I undo a change?</summary>
+          <div class="answer"><p>Yes. NONON saves a copy of the original before it changes a file, and you can undo from there. If you edited the file after that, NONON stops and tells you instead of writing over your work.</p></div>
+        </details>
+        <details>
+          <summary>Who made it?</summary>
+          <div class="answer"><p>Kyle Cabahug, an independent developer. NONON builds on open work: llama.cpp, Qwen3.5 and Pragma. Non is the Pragma mascot Pip, used with permission of its owner. The <a href="/licenses">credits page</a> has the details.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="download" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="cta__panel" id="ctaPanel">
+        <p class="kicker kicker--center" data-reveal>Free to try</p>
+        <h2 class="h2 h2--xl" id="cta-title" data-split="mask"><span class="w" data-i="0"><span class="wi">Try</span></span> <span class="w" data-i="1"><span class="wi">it</span></span> <span class="w" data-i="2"><span class="wi">on</span></span> <span class="w" data-i="3"><span class="wi">a</span></span> <span class="w" data-i="4"><span class="wi">folder</span></span> <span class="w" data-i="5"><span class="wi">of</span></span> <span class="w" data-i="6"><span class="wi">your</span></span> <span class="w" data-i="7"><span class="wi">own</span></span> <span class="w" data-i="8"><span class="wi">files.</span></span></h2>
+        <p class="cta__lede" data-reveal>Start with the sample files if you like. Nothing of yours is touched.</p>
+        <div class="cta__row" data-reveal>
+          <div class="dl-group" data-dl-group role="group" aria-label="Ways to get NONON">
+  <a class="dl-opt" data-dl="windows" href="/download#windows" data-press>
+    <span class="dl-opt__top"><span class="dl-opt__name">Windows</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/></g></svg></span>
+    <span class="dl-opt__sub" data-dl-sub="windows">Download for Windows 10 or 11 (64-bit).</span>
+  </a>
+  <a class="dl-opt" data-dl="macos" href="/download#mac" data-press>
+    <span class="dl-opt__top"><span class="dl-opt__name">Mac</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/></g></svg></span>
+    <span class="dl-opt__sub" data-dl-sub="macos">Download for Macs with Apple silicon.</span>
+  </a>
+  <a class="dl-opt" data-dl="github" href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener" data-press>
+    <span class="dl-opt__top"><span class="dl-opt__name">GitHub (public repository)</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m10 14 4-4M8 16l-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0M16 8l2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0" transform="translate(1 -1) scale(.92)"/></g></svg></span>
+    <span class="dl-opt__sub"><b>Source code on GitHub.</b> Read, build or fork NONON. Free and open source, Apache 2.0.<span class="sr-only"> Opens in a new tab.</span></span>
+  </a>
+</div>
+<p class="dl-note" data-dl-note>Free. Windows 10 or 11, or a Mac with Apple silicon.</p>
+<p class="dl-note dl-note--version" data-dl-version></p>
+        </div>
+        <p class="cta__fine" data-reveal><a href="/download">Install notes and checksums</a></p>
+        <div class="peek" id="peek" aria-hidden="true"><svg class="non non--peek" viewBox="0 -8 256 272" data-state="idle" aria-hidden="true" focusable="false"><g class="non-body-group"><ellipse cx="128" cy="210" rx="119" ry="38" fill="#F47B32"/><path d="M26 201C34 148 48 98 76 68C89 52 108 43 128 43C150 43 169 52 183 69C209 101 222 153 230 201Q128 235 26 201Z" fill="#111111"/><ellipse cx="156" cy="27" rx="16" ry="33" transform="rotate(40 156 27)" fill="#F47B32"/><ellipse class="non-eye" cx="93" cy="139" rx="11" ry="22" fill="#FFFFFF"/><ellipse class="non-eye" cx="165" cy="139" rx="11" ry="22" fill="#FFFFFF"/><path class="non-smile" d="M118 175Q128 187 139 175" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><ellipse class="non-talk-mouth" cx="128" cy="178" rx="10" ry="12" fill="#FFFFFF"/></g><g class="non-thought-dots" fill="#A84208"><circle cx="104" cy="245" r="4"/><circle cx="128" cy="245" r="4"/><circle cx="152" cy="245" r="4"/></g></svg></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <a class="brand" href="/" aria-label="NONON home"><img class="brand__logo" src="/brand/nonon-logo-horizontal-color.svg" width="118" height="28" alt="NONON" loading="lazy"></a>
+      <p>Finish everyday work with your own files. The AI works on your computer, so it keeps working when the internet doesn't.</p>
+    </div>
+    <nav class="foot__col" aria-label="Get NONON">
+      <p>Get NONON</p>
+      <a href="/download#windows">Windows</a>
+      <a href="/download#mac">Mac</a>
+      <a href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">GitHub (public repository)<span class="sr-only"> (opens in a new tab)</span></a>
+    </nav>
+    <nav class="foot__col" aria-label="Site">
+      <p>Site</p>
+      <a href="/download">Download and checksums</a>
+      <a href="/status">What works today</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/licenses">Licenses and credits</a>
+    </nav>
+    <div class="foot__col">
+      <p>Built with</p>
+      <a href="https://github.com/ggml-org/llama.cpp" rel="noopener">llama.cpp (MIT license)</a>
+      <a href="https://huggingface.co/Qwen" rel="noopener">Qwen3.5 (Apache-2.0)</a>
+      <a href="/licenses#fonts">Nunito (Open Font License)</a>
+      <a href="/licenses#gsap">GSAP (for this site's motion)</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="foot__legal foot__legal--credit">Non is the Pragma mascot Pip, used with permission of its owner. App derived from components of Pragma (Apache-2.0).</p>
+    <p class="foot__legal">NONON is released under the Apache License 2.0. Copyright 2026 Kyle Cabahug. Claude is a product of Anthropic, Codex of OpenAI, and Antigravity and Gmail of Google. NONON is not affiliated with or endorsed by them. This site uses no cookies and no analytics.</p>
+  </div>
+  <p class="foot__word" aria-hidden="true">NONON</p>
+</footer>
+</body>
+</html>

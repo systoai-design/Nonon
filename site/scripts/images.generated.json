@@ -1,0 +1,146 @@
+{
+  "non-rest": {
+    "name": "non-rest",
+    "src": "/img/non/non-rest-325.webp",
+    "box": {
+      "left": 0,
+      "top": 0,
+      "width": 325,
+      "height": 461
+    },
+    "widths": [
+      325
+    ],
+    "alt": "Non, standing quietly.",
+    "class": "non-img",
+    "sizes": "200px",
+    "loading": "lazy",
+    "width": 325,
+    "height": 461,
+    "sources": [
+      {
+        "type": "image/avif",
+        "srcset": "/img/non/non-rest-325.avif 325w"
+      },
+      {
+        "type": "image/webp",
+        "srcset": "/img/non/non-rest-325.webp 325w"
+      }
+    ]
+  },
+  "non-wave": {
+    "name": "non-wave",
+    "src": "/img/non/non-wave-325.webp",
+    "box": {
+      "left": 0,
+      "top": 0,
+      "width": 325,
+      "height": 461
+    },
+    "widths": [
+      325
+    ],
+    "alt": "Non, a small round black character with an orange ring around its middle, waving hello.",
+    "class": "non-img",
+    "sizes": "200px",
+    "loading": "lazy",
+    "width": 325,
+    "height": 461,
+    "sources": [
+      {
+        "type": "image/avif",
+        "srcset": "/img/non/non-wave-325.avif 325w"
+      },
+      {
+        "type": "image/webp",
+        "srcset": "/img/non/non-wave-325.webp 325w"
+      }
+    ]
+  },
+  "shot-hero": {
+    "name": "shot-hero",
+    "src": "/img/app/shot-hero-1020.webp",
+    "widths": [
+      680,
+      1020,
+      1360
+    ],
+    "alt": "The NONON window after comparing two spreadsheets. The results panel says the two files differ by PHP 2,565.60, with 19 matched pairs, 4 rows only in the first file, 5 only in the second, 1 listed twice and 3 not sure.",
+    "class": "shot-img",
+    "sizes": "(min-width: 1200px) 1118px, 92vw",
+    "loading": "eager",
+    "fetchpriority": "auto",
+    "width": 1020,
+    "height": 645,
+    "sources": [
+      {
+        "type": "image/webp",
+        "srcset": "/img/app/shot-hero-680.webp 680w, /img/app/shot-hero-1020.webp 1020w, /img/app/shot-hero-1360.webp 1360w"
+      }
+    ],
+    "sourceFile": "brand2-12-success-results-panel.png"
+  },
+  "shot-step1": {
+    "name": "shot-step1",
+    "src": "/img/app/shot-step1-1120.webp",
+    "widths": [
+      560,
+      1120
+    ],
+    "alt": "The NONON setup step Pick a folder to work in, with the choices Use my own folder and Try sample files.",
+    "class": "shot-img",
+    "sizes": "(min-width: 1024px) 700px, 92vw",
+    "loading": "lazy",
+    "width": 1120,
+    "height": 708,
+    "sources": [
+      {
+        "type": "image/webp",
+        "srcset": "/img/app/shot-step1-560.webp 560w, /img/app/shot-step1-1120.webp 1120w"
+      }
+    ],
+    "sourceFile": "brand2-04-onboarding-folder.png"
+  },
+  "shot-step2": {
+    "name": "shot-step2",
+    "src": "/img/app/shot-step2-1120.webp",
+    "widths": [
+      560,
+      1120
+    ],
+    "alt": "Non asks a few questions before comparing: whether to treat the amounts as the same, which dates to compare, and how far apart amounts and dates can be, each with a suggested answer.",
+    "class": "shot-img",
+    "sizes": "(min-width: 1024px) 700px, 92vw",
+    "loading": "lazy",
+    "width": 1120,
+    "height": 708,
+    "sources": [
+      {
+        "type": "image/webp",
+        "srcset": "/img/app/shot-step2-560.webp 560w, /img/app/shot-step2-1120.webp 1120w"
+      }
+    ],
+    "sourceFile": "brand2-10-clarifying-question.png"
+  },
+  "shot-step3": {
+    "name": "shot-step3",
+    "src": "/img/app/shot-step3-1120.webp",
+    "widths": [
+      560,
+      1120
+    ],
+    "alt": "The Changes to check panel: one change is waiting for your OK, with a before and after view of the two columns it would add.",
+    "class": "shot-img",
+    "sizes": "(min-width: 1024px) 700px, 92vw",
+    "loading": "lazy",
+    "width": 1120,
+    "height": 708,
+    "sources": [
+      {
+        "type": "image/webp",
+        "srcset": "/img/app/shot-step3-560.webp 560w, /img/app/shot-step3-1120.webp 1120w"
+      }
+    ],
+    "sourceFile": "brand2-13-review-panel.png"
+  }
+}

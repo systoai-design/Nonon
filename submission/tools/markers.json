@@ -1,0 +1,96 @@
+[
+  {
+    "name": "home_ready",
+    "t": 5.12
+  },
+  {
+    "name": "project_open",
+    "t": 9.98
+  },
+  {
+    "name": "typing_start",
+    "t": 11.09
+  },
+  {
+    "name": "typing_end",
+    "t": 15
+  },
+  {
+    "name": "sent",
+    "t": 15.02
+  },
+  {
+    "name": "questions_visible",
+    "t": 17.87
+  },
+  {
+    "name": "continue_clicked",
+    "t": 23.91
+  },
+  {
+    "name": "running",
+    "t": 24.91
+  },
+  {
+    "name": "task_done",
+    "t": 26.93,
+    "state": "review",
+    "seconds": 3
+  },
+  {
+    "name": "results_visible",
+    "t": 30.45
+  },
+  {
+    "name": "sheets_start",
+    "t": 32.97,
+    "tabs": [
+      "Summary61",
+      "Matched19",
+      "Only in A4",
+      "Only in B5",
+      "Listed twice1",
+      "Not sure3",
+      "About this comparison46"
+    ]
+  },
+  {
+    "name": "sheet_1",
+    "t": 36.32,
+    "tab": "Matched19"
+  },
+  {
+    "name": "sheet_2",
+    "t": 39.67,
+    "tab": "Only in A4"
+  },
+  {
+    "name": "sheet_3",
+    "t": 43,
+    "tab": "Only in B5"
+  },
+  {
+    "name": "review_open",
+    "t": 47.37
+  },
+  {
+    "name": "apply_clicked",
+    "t": 52.4
+  },
+  {
+    "name": "applied_shown",
+    "t": 55.91
+  },
+  {
+    "name": "undo_confirm_shown",
+    "t": 57.65
+  },
+  {
+    "name": "undone_shown",
+    "t": 61.68
+  },
+  {
+    "name": "end_hold",
+    "t": 65.36
+  }
+]

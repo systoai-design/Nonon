@@ -1,0 +1,164 @@
+{
+  "ranAt": "2026-10-09T09:37:48.098Z",
+  "runs": [
+    {
+      "label": "photosynthesis-intermediate-16",
+      "requested": 16,
+      "ms": 34282,
+      "llm": {
+        "calls": 2,
+        "retries": 0,
+        "failures": 0,
+        "ms": 34253
+      },
+      "kept": {
+        "ideas": 2,
+        "questions": 16,
+        "terms": 6
+      },
+      "dropped": [],
+      "countCheck": {
+        "id": "question-count",
+        "label": "16 practice questions, as requested",
+        "status": "pass"
+      },
+      "questions": [
+        "photosynthesis.txt:6 | What is the green colour of leaves caused by? -> chlorophyll",
+        "photosynthesis.txt:6 | Which light does chlorophyll absorb mostly? -> red and blue light",
+        "photosynthesis.txt:9 | What three things does a plant need for photosynthesis? -> light, water and carbon dioxide",
+        "photosynthesis.txt:9 | Through what do carbon dioxide molecules enter the leaf from the air? -> small openings called stomata",
+        "photosynthesis.txt:9 | What are the two products of photosynthesis? -> glucose and oxygen",
+        "photosynthesis.txt:14 | Where do the light reactions take place inside the chloroplast? -> the thylakoid membranes",
+        "photosynthesis.txt:14 | What two energy-carrying molecules do the light reactions make? -> ATP and NADPH",
+        "photosynthesis.txt:16 | Where does the Calvin cycle take place? -> the stroma",
+        "photosynthesis.txt:22 | What happens to the photosynthesis process when light intensity increases? -> More light speeds the process up until the plant is using all the light it can handle.",
+        "photosynthesis.txt:22 | Why do very high temperatures slow down photosynthesis? -> Because enzymes such as RuBisCO stop working properly above about 40 degrees Celsius.",
+        "photosynthesis.txt:22 | What is the effect of hot and dry weather on carbon dioxide supply? -> The stomata close to save water, which also cuts off the supply of carbon dioxide.",
+        "photosynthesis.txt:22 | What specific temperature threshold causes enzymes to stop working properly? -> Above about 40 degrees Celsius.",
+        "photosynthesis.txt:25 | What is the primary source of oxygen in the air? -> Almost all the oxygen in the air comes from photosynthesis.",
+        "photosynthesis.txt:25 | How do plants produce the food that animals eat? -> Almost all the food eaten by animals starts as sugar made by plants, algae or some bacteria.",
+        "photosynthesis.txt:25 | What are two human activities that reduce the carbon dioxide plants can absorb? -> Burning fossil fuels and cutting down forests.",
+        "photosynthesis.txt:25 | Why do scientists study photosynthesis so closely? -> Because burning fossil fuels and cutting down forests reduce the amount of carbon dioxide that plants and algae can absorb."
+      ]
+    },
+    {
+      "label": "photosynthesis-docx-12",
+      "requested": 12,
+      "ms": 30638,
+      "llm": {
+        "calls": 2,
+        "retries": 0,
+        "failures": 0,
+        "ms": 30608
+      },
+      "kept": {
+        "ideas": 4,
+        "questions": 12,
+        "terms": 5
+      },
+      "dropped": [],
+      "countCheck": {
+        "id": "question-count",
+        "label": "12 practice questions, as requested",
+        "status": "pass"
+      },
+      "questions": [
+        "photosynthesis.docx:2 | What is the process plants use to turn light energy into chemical energy? -> Photosynthesis",
+        "photosynthesis.docx:2 | Where does photosynthesis happen mainly? -> In the leaves",
+        "photosynthesis.docx:2 | What are the tiny green structures inside leaves called? -> Chloroplasts",
+        "photosynthesis.docx:4 | What is the green colour of leaves caused by? -> Chlorophyll",
+        "photosynthesis.docx:4 | What light does chlorophyll absorb? -> Red and blue light",
+        "photosynthesis.docx:6 | What three things does a plant need for photosynthesis? -> Light, water and carbon dioxide",
+        "photosynthesis.docx:6 | Through what do carbon dioxide molecules enter the leaf? -> Stomata",
+        "photosynthesis.docx:14 | What are the three main factors that change how fast photosynthesis runs? -> light intensity, carbon dioxide concentration and temperature",
+        "photosynthesis.docx:14 | What happens to photosynthesis when the temperature gets very high? -> it slows down",
+        "photosynthesis.docx:14 | Why do enzymes stop working properly at high temperatures? -> because they stop working properly above about 40 degrees Celsius",
+        "photosynthesis.docx:16 | Where does almost all the oxygen in the air come from? -> photosynthesis",
+        "photosynthesis.docx:16 | What starts as sugar made by plants, algae or some bacteria? -> almost all the food eaten by animals"
+      ]
+    },
+    {
+      "label": "water-cycle-sample-10",
+      "requested": 10,
+      "ms": 22672,
+      "llm": {
+        "calls": 2,
+        "retries": 0,
+        "failures": 0,
+        "ms": 22648
+      },
+      "kept": {
+        "ideas": 1,
+        "questions": 9,
+        "terms": 3
+      },
+      "dropped": [
+        {
+          "kind": "question",
+          "text": "What is the name of the process where the sun warms oceans, lakes, and rivers?",
+          "reason": "answer not supported by the quote: the question already contains the answer"
+        }
+      ],
+      "countCheck": {
+        "id": "question-count",
+        "label": "Only 9 of 10 requested questions could be backed by the source",
+        "status": "warn",
+        "detail": "Fewer than requested because 1 candidate question failed the quote and answer checks. Short questions are better than unsupported ones."
+      },
+      "questions": [
+        "The water cycle.txt:3 | What is the name of the process where liquid water turns into invisible gas? -> evaporation",
+        "The water cycle.txt:3 | What process do plants use to release water vapor from their leaves? -> transpiration",
+        "The water cycle.txt:5 | What happens to water vapor when it rises into the sky? -> the air gets colder",
+        "The water cycle.txt:5 | What is the name of the change from gas to liquid water? -> condensation",
+        "The water cycle.txt:5 | What do billions of tiny drops of liquid water gather together to form? -> clouds",
+        "The water cycle.txt:5 | What happens to water vapor when the air gets colder? -> The vapor cools and turns back into tiny drops of liquid water.",
+        "The water cycle.txt:7 | What falls to the ground when drops in a cloud grow heavy enough? -> precipitation",
+        "The water cycle.txt:7 | What are the four types of precipitation mentioned in the text? -> rain, snow, sleet or hail",
+        "The water cycle.txt:9 | What is the name of the water that soaks into the soil and stays underground? -> groundwater"
+      ]
+    },
+    {
+      "label": "water-cycle-sample-20",
+      "requested": 20,
+      "ms": 18092,
+      "llm": {
+        "calls": 2,
+        "retries": 0,
+        "failures": 0,
+        "ms": 18072
+      },
+      "kept": {
+        "ideas": 1,
+        "questions": 12,
+        "terms": 3
+      },
+      "dropped": [
+        {
+          "kind": "question",
+          "text": "What is the name of the process where the sun warms oceans, lakes, and rivers?",
+          "reason": "answer not supported by the quote: the question already contains the answer"
+        }
+      ],
+      "countCheck": {
+        "id": "question-count",
+        "label": "Only 12 of 20 requested questions could be backed by the source",
+        "status": "warn",
+        "detail": "Fewer than requested because 1 candidate question failed the quote and answer checks. Short questions are better than unsupported ones."
+      },
+      "questions": [
+        "The water cycle.txt:3 | What is the name of the process where liquid water turns into invisible gas? -> evaporation",
+        "The water cycle.txt:3 | What process do plants use to release water vapor from their leaves? -> transpiration",
+        "The water cycle.txt:3 | What happens to some of the liquid water when the sun warms it? -> It turns into water vapor.",
+        "The water cycle.txt:3 | What do plants release from their leaves? -> Water vapor.",
+        "The water cycle.txt:5 | What happens to water vapor when it rises into the sky? -> the air gets colder",
+        "The water cycle.txt:5 | What is the name of the change from gas to liquid water? -> condensation",
+        "The water cycle.txt:5 | What forms when billions of tiny drops of water gather together? -> clouds",
+        "The water cycle.txt:5 | What happens to the air as water vapor rises into the sky? -> The air gets colder.",
+        "The water cycle.txt:5 | What happens to water vapor when the air gets cold? -> It turns back into tiny drops of liquid water.",
+        "The water cycle.txt:7 | What falls to the ground when drops in a cloud grow heavy enough? -> precipitation",
+        "The water cycle.txt:7 | What are the four types of precipitation mentioned in the text? -> rain, snow, sleet or hail",
+        "The water cycle.txt:7 | What happens to about three quarters of Earth's rain? -> falls straight back into the ocean"
+      ]
+    }
+  ]
+}

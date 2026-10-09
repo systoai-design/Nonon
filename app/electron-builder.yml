@@ -1,0 +1,70 @@
+appId: xyz.trynonon.app
+productName: NONON
+copyright: Copyright 2026 Kyle Cabahug
+artifactName: NONON-${version}-${os}-${arch}.${ext}
+
+directories:
+  buildResources: build
+  output: release
+
+files:
+  - out/**
+  - package.json
+  - "!**/*.map"
+
+# Samples and notices ship beside the app, outside the asar, so the main process can copy sample files.
+extraResources:
+  - from: resources
+    to: resources
+  - from: ../LICENSE
+    to: licenses/NONON-LICENSE.txt
+  - from: ../NOTICE
+    to: licenses/NONON-NOTICE.txt
+
+asar: true
+
+# Electron fuses, flipped into the packaged executable. Each value was tried on a packed Windows build that then ran the
+# whole flow. Left at their defaults on purpose: runAsNode (providers/bin.ts starts Electron as Node when no node is on
+# PATH), enableNodeCliInspectArguments (the e2e scripts drive the packed app), grantFileProtocolExtraPrivileges
+# (turning it off makes the app unable to load its own page from the asar).
+electronFuses:
+  runAsNode: true
+  enableNodeOptionsEnvironmentVariable: false
+  enableNodeCliInspectArguments: true
+  enableEmbeddedAsarIntegrityValidation: true
+  onlyLoadAppFromAsar: true
+
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: build/icon.ico
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: false
+  createDesktopShortcut: true
+  shortcutName: NONON
+
+mac:
+  # Local models need Apple silicon (Metal), so there is no Intel build.
+  target:
+    - target: dmg
+      arch: [arm64]
+    - target: zip
+      arch: [arm64]
+  icon: build/icon.png
+  category: public.app-category.productivity
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  # Signing is chosen per build on the Mac (CSC_NAME / CSC_IDENTITY_AUTO_DISCOVERY), never auto-discovered.
+  identity: null
+
+dmg:
+  title: NONON ${version}
+  # Sign the disk image itself so Gatekeeper accepts it as well as the app inside.
+  sign: true

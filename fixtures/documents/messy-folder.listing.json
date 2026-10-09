@@ -1,0 +1,29 @@
+{
+  "note": "Relative paths in messy-folder/ and their sizes",
+  "files": {
+    "IMG_20260914_101500.jpg": 134,
+    "IMG_20260914_101500 (copy).jpg": 134,
+    "IMG_20260914_101502.jpg": 137,
+    "Screenshot 2026-09-20 at 10.15.22.png": 70,
+    "invoice march.pdf": 647,
+    "Invoice-0042_Acme.pdf": 651,
+    "receipt_cafe_20260801.pdf": 631,
+    "scan0042.pdf": 629,
+    "New Document (3).docx": 9579,
+    "notes.txt": 85,
+    "report final.docx": 9543,
+    "report_final.docx": 9554,
+    "Q3_report_FINAL_v2.docx": 9540,
+    "meeting_2026_09_30.txt": 53,
+    "song.mp3": 20,
+    "clip.MP4": 16,
+    "backup.zip": 113,
+    "budget 2026.xlsx": 6403,
+    ".hidden-settings.txt": 28,
+    "NONON Output/Old follow-up.md": 37,
+    "Projects/keep-me.txt": 37,
+    "Sorted/Images/already-sorted.jpg": 134,
+    "Samples/Invoice-0042_Acme.pdf": 651,
+    "Samples/sample-notes.txt": 18
+  }
+}

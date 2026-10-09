@@ -1,0 +1,49 @@
+{
+  "rules": {
+    "amountToleranceCents": 0,
+    "dateToleranceDays": 3,
+    "signRule": "opposite",
+    "period": "overlap"
+  },
+  "counts": {
+    "totalA": 25,
+    "totalB": 26,
+    "matched": 19,
+    "onlyA": 4,
+    "onlyB": 5,
+    "duplicateA": 1,
+    "duplicateB": 0,
+    "ambiguousA": 1,
+    "ambiguousB": 2
+  },
+  "rows": {
+    "onlyA": [
+      10,
+      11,
+      23,
+      24
+    ],
+    "onlyB": [
+      9,
+      11,
+      22,
+      26,
+      27
+    ],
+    "duplicateA": [
+      4
+    ],
+    "ambiguousA": [
+      15
+    ],
+    "ambiguousB": [
+      14,
+      16
+    ]
+  },
+  "totalsCents": {
+    "a": 7085230,
+    "b": 6828670,
+    "difference": 256560
+  }
+}

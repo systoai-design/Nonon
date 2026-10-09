@@ -1,0 +1,19 @@
+{
+  "note": "Known answers for app/resources/samples/general/product-brief.md. A draft that follows the brief should contain these facts; the real-run tests record which ones a model kept, they do not fail on paraphrase.",
+  "goal": "A one page summary of what the bakery needs, for a web builder who will quote the job.",
+  "editedGoal": "A short note for the bakery owner that lists the open questions she still has to decide.",
+  "facts": [
+    { "label": "budget 1,500 USD", "anyOf": ["1,500", "1500"] },
+    { "label": "live before 14 November", "anyOf": ["14 november", "november 14"] },
+    { "label": "pay in the shop, not online", "anyOf": ["pay in the shop", "in the shop", "not online"] },
+    { "label": "no customer accounts", "anyOf": ["no customer accounts", "customer accounts", "loyalty"] },
+    { "label": "no delivery for now", "anyOf": ["delivery is not wanted", "no delivery", "not wanted", "pick up", "pickup"] },
+    { "label": "order email to the shop", "anyOf": ["email"] }
+  ],
+  "unsupportedTraps": [
+    "Any price per loaf",
+    "Any delivery radius or delivery fee",
+    "Any online payment provider",
+    "Any launch date other than 14 November"
+  ]
+}

@@ -1,0 +1,56 @@
+node_modules/
+out/
+release/
+release-mac/
+dist/
+.pnpm-store/
+*.log
+.env
+.env.*
+!.env.example
+.wrangler/
+.dev.vars
+.dev.vars.*
+models/
+.DS_Store
+Thumbs.db
+
+# Installers and build outputs (large; published through the release bucket, never committed)
+*.dmg
+*.exe
+*.msi
+*.AppImage
+*.gguf
+
+# Local app data, tooling state and test scratch
+data/
+logs/
+.codegraph/
+.claude/
+.vscode/
+.idea/
+google-client.json
+*.tsbuildinfo
+
+# Signing and credential material
+*.p12
+*.p8
+*.pem
+*.key
+*.cer
+*.mobileprovision
+*.keychain
+*.keychain-db
+notary.env
+keychain-password
+
+# Local machine settings (hosts, keys)
+scripts/mac/local.env
+app/resources/vcruntime/
+brand/
+
+# Private agent and planning files (not part of the product)
+CLAUDE.md
+docs/project/AGENT-BRIEF.md
+docs/project/STATE.md
+docs/project/04-build-log/publication-readiness.md

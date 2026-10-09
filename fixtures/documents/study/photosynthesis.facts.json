@@ -1,0 +1,109 @@
+{
+  "note": "Known facts in photosynthesis.txt; used to judge generated questions.",
+  "facts": [
+    {
+      "id": "chloroplasts",
+      "fact": "Photosynthesis happens inside chloroplasts",
+      "keywords": [
+        "chloroplast"
+      ],
+      "line": 3
+    },
+    {
+      "id": "pigment",
+      "fact": "Chlorophyll is the pigment that absorbs red and blue light and reflects green",
+      "keywords": [
+        "chlorophyll"
+      ],
+      "line": 6
+    },
+    {
+      "id": "inputs",
+      "fact": "Light, water and carbon dioxide are needed",
+      "keywords": [
+        "light",
+        "water",
+        "carbon dioxide"
+      ],
+      "line": 3
+    },
+    {
+      "id": "stomata",
+      "fact": "Carbon dioxide enters through stomata",
+      "keywords": [
+        "stomata"
+      ],
+      "line": 9
+    },
+    {
+      "id": "xylem",
+      "fact": "Water travels up through xylem",
+      "keywords": [
+        "xylem"
+      ],
+      "line": 9
+    },
+    {
+      "id": "products",
+      "fact": "Glucose and oxygen are the products",
+      "keywords": [
+        "glucose",
+        "oxygen"
+      ],
+      "line": 9
+    },
+    {
+      "id": "equation",
+      "fact": "6CO2 + 6H2O -> C6H12O6 + 6O2",
+      "keywords": [
+        "6"
+      ],
+      "line": 11
+    },
+    {
+      "id": "light-reactions",
+      "fact": "Light reactions occur in the thylakoid membranes and make ATP and NADPH and release oxygen",
+      "keywords": [
+        "thylakoid",
+        "ATP",
+        "NADPH"
+      ],
+      "line": 14
+    },
+    {
+      "id": "calvin",
+      "fact": "The Calvin cycle occurs in the stroma and uses RuBisCO",
+      "keywords": [
+        "stroma",
+        "RuBisCO"
+      ],
+      "line": 16
+    },
+    {
+      "id": "storage",
+      "fact": "Excess glucose becomes starch (storage) or cellulose (cell walls)",
+      "keywords": [
+        "starch",
+        "cellulose"
+      ],
+      "line": 19
+    },
+    {
+      "id": "phloem",
+      "fact": "Sugar travels through phloem",
+      "keywords": [
+        "phloem"
+      ],
+      "line": 19
+    },
+    {
+      "id": "rate",
+      "fact": "Light intensity, carbon dioxide and temperature affect the rate; enzymes stop above about 40 degrees Celsius",
+      "keywords": [
+        "temperature",
+        "40"
+      ],
+      "line": 22
+    }
+  ]
+}

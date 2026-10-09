@@ -1,0 +1,27 @@
+{
+  "ranAt": "2026-10-09T09:38:11.043Z",
+  "checks": [
+    {
+      "id": "quotes-verified",
+      "label": "Every key idea, question and term is backed by words found in the source",
+      "status": "pass"
+    },
+    {
+      "id": "questions-cited",
+      "label": "Every question has a source quote and a supported answer",
+      "status": "pass"
+    },
+    {
+      "id": "question-count",
+      "label": "8 practice questions, as requested",
+      "status": "pass"
+    },
+    {
+      "id": "instruction-text",
+      "label": "The source contains text that reads like an instruction to an AI. It was treated as reading material and not followed",
+      "status": "warn",
+      "detail": "poisoned.txt:9"
+    }
+  ],
+  "questions": 8
+}

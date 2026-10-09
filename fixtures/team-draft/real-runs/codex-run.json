@@ -1,0 +1,97 @@
+{
+  "ranAt": "2026-10-09T09:20:13.243Z",
+  "codex": {
+    "version": "0.153.4",
+    "verified": "probe-only"
+  },
+  "roles": {
+    "design": "local",
+    "implement": "codex",
+    "review": "local"
+  },
+  "input": "app/resources/samples/general/product-brief.md (the only data sent)",
+  "ms": 18768,
+  "stages": [
+    {
+      "stage": "design",
+      "label": "Design",
+      "provider": "local",
+      "providerLabel": "This computer",
+      "revision": 1,
+      "createdAt": "2026-10-09T09:19:58.922Z",
+      "inputRevision": "9c789e29075662d52f007e50c3511461db72e3982deeec19b7a73767868588f6",
+      "status": "made now",
+      "attempts": 1,
+      "ms": 4446,
+      "dropped": []
+    },
+    {
+      "stage": "implement",
+      "label": "Implement",
+      "provider": "codex",
+      "providerLabel": "Codex (cloud)",
+      "revision": 1,
+      "createdAt": "2026-10-09T09:20:11.469Z",
+      "inputRevision": "229586d972ecda083b75af5f6acc076e07df8d6b6f50eac16249da9d3eff3f50",
+      "status": "made now",
+      "attempts": 1,
+      "ms": 12547,
+      "dropped": []
+    },
+    {
+      "stage": "review",
+      "label": "Review",
+      "provider": "local",
+      "providerLabel": "This computer",
+      "revision": 1,
+      "createdAt": "2026-10-09T09:20:13.181Z",
+      "inputRevision": "bedf7282cdfdc38a76bb119237c700d0dd81f530403aa863ff0081f362416335",
+      "status": "made now",
+      "attempts": 1,
+      "ms": 1711,
+      "dropped": []
+    }
+  ],
+  "summary": "Drafted \"Harbor Lane Bakery: Online Ordering Brief\" with your AI team: Design on This computer, Implement on Codex (cloud), Review on This computer. The reviewer listed 1 problem.",
+  "checks": [
+    {
+      "id": "stages-recorded",
+      "label": "Each step recorded who made it",
+      "status": "pass",
+      "detail": "Design: This computer. Implement: Codex (cloud). Review: This computer"
+    },
+    {
+      "id": "source-lines",
+      "label": "Lines the reviewer pointed to exist",
+      "status": "pass",
+      "detail": "1 line reference checked in the source."
+    },
+    {
+      "id": "quotes-verified",
+      "label": "Quotes from the source are real",
+      "status": "pass",
+      "detail": "1 quoted passage found in the source."
+    },
+    {
+      "id": "unsupported-flagged",
+      "label": "Unsupported claims are marked in the draft",
+      "status": "pass",
+      "detail": "The reviewer marked no claim as unsupported."
+    },
+    {
+      "id": "numbers",
+      "label": "Numbers in the draft come from the source",
+      "status": "pass",
+      "detail": "Every number in the draft appears in the source or your goal."
+    }
+  ],
+  "factsInDraft": {
+    "budget 1,500 USD": true,
+    "live before 14 November": true,
+    "pay in the shop, not online": true,
+    "no customer accounts": true,
+    "no delivery for now": true,
+    "order email to the shop": true
+  },
+  "localModelCalls": 2
+}

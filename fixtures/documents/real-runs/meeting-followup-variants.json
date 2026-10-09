@@ -1,0 +1,210 @@
+{
+  "ranAt": "2026-10-09T09:38:27.799Z",
+  "rows": [
+    {
+      "label": "docx",
+      "ms": 36152,
+      "llm": {
+        "calls": 2,
+        "retries": 0,
+        "failures": 0,
+        "ms": 36121
+      },
+      "actions": 6,
+      "decisions": 1,
+      "openQuestions": 1,
+      "unverifiedDropped": 0,
+      "discussedNotCommitted": 0,
+      "resolvedDates": 3,
+      "asWrittenDates": 1,
+      "missingOwner": 2,
+      "missingDate": 2,
+      "warnChecks": [
+        "owners",
+        "dates",
+        "instruction-text"
+      ],
+      "actionList": [
+        "Maria Lopez | send the wholesale price list to Cedar Cafe | by 9 October 2026 -> 2026-10-09",
+        "Tom Becker | order the flour and yeast | by Friday -> 2026-10-09",
+        "Priya Shah | update the allergen labels on the display cases | (no date) -> as written",
+        "(no owner) | repaint the shop sign | before October 20 -> 2026-10-20",
+        "(no owner) | call the plumber about the slow drain in the back kitchen | (no date) -> as written",
+        "Dev Patel | confirm the delivery slot with the van driver | next Friday -> as written"
+      ]
+    },
+    {
+      "label": "pdf",
+      "ms": 31327,
+      "llm": {
+        "calls": 2,
+        "retries": 0,
+        "failures": 0,
+        "ms": 31207
+      },
+      "actions": 6,
+      "decisions": 1,
+      "openQuestions": 1,
+      "unverifiedDropped": 0,
+      "discussedNotCommitted": 0,
+      "resolvedDates": 3,
+      "asWrittenDates": 1,
+      "missingOwner": 2,
+      "missingDate": 2,
+      "warnChecks": [
+        "owners",
+        "dates",
+        "instruction-text"
+      ],
+      "actionList": [
+        "Maria Lopez | send the wholesale price list to Cedar Cafe | by 9 October 2026 -> 2026-10-09",
+        "Tom Becker | order the flour and yeast | by Friday -> 2026-10-09",
+        "Priya Shah | update the allergen labels on the display cases | (no date) -> as written",
+        "(no owner) | repaint the shop sign | before October 20 -> 2026-10-20",
+        "(no owner) | call the plumber about the slow drain in the back kitchen | (no date) -> as written",
+        "Dev Patel | confirm the delivery slot with the van driver | next Friday -> as written"
+      ]
+    },
+    {
+      "label": "md",
+      "ms": 32249,
+      "llm": {
+        "calls": 2,
+        "retries": 0,
+        "failures": 0,
+        "ms": 32228
+      },
+      "actions": 6,
+      "decisions": 1,
+      "openQuestions": 1,
+      "unverifiedDropped": 0,
+      "discussedNotCommitted": 0,
+      "resolvedDates": 3,
+      "asWrittenDates": 1,
+      "missingOwner": 2,
+      "missingDate": 2,
+      "warnChecks": [
+        "owners",
+        "dates",
+        "instruction-text"
+      ],
+      "actionList": [
+        "Maria Lopez | send the wholesale price list to Cedar Cafe | by 9 October 2026 -> 2026-10-09",
+        "Tom Becker | order the flour and yeast | by Friday -> 2026-10-09",
+        "Priya Shah | update the allergen labels on the display cases | (no date) -> as written",
+        "(no owner) | repaint the shop sign | before October 20 -> 2026-10-20",
+        "(no owner) | call the plumber about the slow drain in the back kitchen | (no date) -> as written",
+        "Dev Patel | confirm the delivery slot with the van driver | next Friday -> as written"
+      ]
+    },
+    {
+      "label": "no-meeting-date",
+      "ms": 30161,
+      "llm": {
+        "calls": 2,
+        "retries": 0,
+        "failures": 0,
+        "ms": 30137
+      },
+      "actions": 6,
+      "decisions": 1,
+      "openQuestions": 1,
+      "unverifiedDropped": 0,
+      "discussedNotCommitted": 0,
+      "resolvedDates": 1,
+      "asWrittenDates": 3,
+      "missingOwner": 2,
+      "missingDate": 2,
+      "warnChecks": [
+        "owners",
+        "dates",
+        "instruction-text"
+      ],
+      "actionList": [
+        "Maria | send the wholesale price list to Cedar Cafe | by 9 October 2026 -> 2026-10-09",
+        "Tom | order the flour and yeast | by Friday -> as written",
+        "Priya | update the allergen labels on the display cases | (no date) -> as written",
+        "(no owner) | repaint the shop sign | before October 20 -> as written",
+        "(no owner) | call the plumber about the slow drain in the back kitchen | (no date) -> as written",
+        "Dev | confirm the delivery slot with the van driver | next Friday -> as written"
+      ]
+    },
+    {
+      "label": "shipped-sample",
+      "ms": 19261,
+      "llm": {
+        "calls": 2,
+        "retries": 0,
+        "failures": 0,
+        "ms": 19238
+      },
+      "actions": 5,
+      "decisions": 1,
+      "openQuestions": 1,
+      "unverifiedDropped": 0,
+      "discussedNotCommitted": 0,
+      "resolvedDates": 3,
+      "asWrittenDates": 1,
+      "missingOwner": 0,
+      "missingDate": 1,
+      "warnChecks": [
+        "dates"
+      ],
+      "actionList": [
+        "Rosa | call the farm supplier and ask for twenty kilos of puree | today -> 2026-10-05",
+        "Miguel | check the label on the cinnamon filling and write down the allergens | before Wednesday -> 2026-10-07",
+        "Miguel | send the list of allergens | before Wednesday -> 2026-10-07",
+        "Sam | book the van in for a service | before the end of the month -> as written",
+        "Aiko | print new price cards | (no date) -> as written"
+      ]
+    },
+    {
+      "label": "long-notes-many-parts",
+      "ms": 54730,
+      "llm": {
+        "calls": 8,
+        "retries": 0,
+        "failures": 0,
+        "ms": 54695
+      },
+      "actions": 23,
+      "decisions": 4,
+      "openQuestions": 0,
+      "unverifiedDropped": 0,
+      "discussedNotCommitted": 0,
+      "resolvedDates": 11,
+      "asWrittenDates": 4,
+      "missingOwner": 7,
+      "missingDate": 8,
+      "warnChecks": [
+        "owners",
+        "dates"
+      ],
+      "actionList": [
+        "Maria | send the wholesale price list to Cedar Cafe | by 9 October 2026 -> 2026-10-09",
+        "Tom | order the flour and yeast | by Friday -> 2026-10-09",
+        "Priya | update the allergen labels on the display cases | (no date) -> as written",
+        "(no owner) | repaint the shop sign | before October 20 -> 2026-10-20",
+        "(no owner) | call the plumber about the slow drain in the back kitchen | (no date) -> as written",
+        "Dev | confirm the delivery slot with the van driver | next Friday -> as written",
+        "Priya | update the allergen labels on the display cases | (no date) -> as written",
+        "(no owner) | repaint the shop sign | before October 20 -> 2026-10-20",
+        "(no owner) | call the plumber about the slow drain in the back kitchen | (no date) -> as written",
+        "Dev | confirm the delivery slot with the van driver | next Friday -> as written",
+        "Maria | send the wholesale price list to Cedar Cafe | by 9 October 2026 -> 2026-10-09",
+        "Tom | order the flour and yeast | by Friday -> 2026-10-09",
+        "Maria | send the wholesale price list to Cedar Cafe | by 9 October 2026 -> 2026-10-09",
+        "Tom | order the flour and yeast | by Friday -> 2026-10-09",
+        "Priya | update the allergen labels on the display cases | (no date) -> as written",
+        "(no owner) | call the plumber about the slow drain in the back kitchen | (no date) -> as written",
+        "Dev | confirm the delivery slot with the van driver | next Friday -> as written",
+        "Maria | send the wholesale price list to Cedar Cafe | by 9 October 2026 -> 2026-10-09",
+        "Tom | order the flour and yeast | by Friday -> 2026-10-09",
+        "Priya | update the allergen labels on the display cases | (no date) -> as written",
+        "(no owner) | repaint the shop sign | before October 20 -> 2026-10-20",
+        "(no owner) | call the plumber about the slow drain in the back kitchen | (no date) -> as written",
+        "Dev | confirm the delivery slot with the van driver | next Friday -> as written"
+      ]
+    }
+  ]
+}

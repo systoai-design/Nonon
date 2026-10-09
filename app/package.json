@@ -1,0 +1,56 @@
+{
+  "name": "nonon",
+  "productName": "NONON",
+  "version": "0.1.0",
+  "description": "NONON: finish everyday work with your own files, with AI that keeps working offline.",
+  "author": "Kyle Cabahug",
+  "license": "Apache-2.0",
+  "private": true,
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit",
+    "test": "vitest run",
+    "start": "electron-vite preview",
+    "package:win": "node scripts/prepare-vcruntime.mjs && pnpm build && electron-builder --win --publish never",
+    "package:mac": "pnpm build && electron-builder --mac --publish never",
+    "dev:web": "vite --config vite.web.config.ts"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/node": "^26.2.0",
+    "@types/papaparse": "^5.3.15",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "clsx": "^2.1.1",
+    "croner": "^10.0.1",
+    "docx": "^9.9.0",
+    "electron": "^43.4.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "exceljs": "^4.4.0",
+    "fflate": "^0.8.3",
+    "jszip": "^3.10.2",
+    "lucide-react": "^0.539.0",
+    "mammoth": "^1.13.0",
+    "papaparse": "^5.5.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "selfsigned": "^5.5.0",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3",
+    "unpdf": "^1.8.1",
+    "vite": "^7.1.0",
+    "vitest": "^4.1.10",
+    "zod": "4.4.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "esbuild",
+      "electron-winstaller"
+    ]
+  }
+}

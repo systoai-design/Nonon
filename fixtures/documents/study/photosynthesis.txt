@@ -1,0 +1,25 @@
+How Plants Make Their Food
+
+Photosynthesis is the process plants use to turn light energy into chemical energy stored in sugar. It happens mainly in the leaves, inside tiny green structures called chloroplasts. A single leaf cell can contain dozens of chloroplasts, and each one is a small factory that captures sunlight.
+
+Chlorophyll
+The green colour of leaves comes from chlorophyll, a pigment found inside the chloroplasts. Chlorophyll absorbs mostly red and blue light and reflects green light, which is why leaves look green to our eyes. The energy it absorbs is what drives the rest of the process.
+
+What goes in and what comes out
+A plant needs three things for photosynthesis: light, water and carbon dioxide. The roots take up water from the soil, and the water travels up to the leaves through narrow tubes called xylem. Carbon dioxide enters the leaf from the air through small openings called stomata. The products are glucose, a simple sugar, and oxygen. The oxygen leaves the leaf through the stomata as a waste gas.
+
+The overall reaction can be written as: six molecules of carbon dioxide plus six molecules of water, using light energy, make one molecule of glucose and six molecules of oxygen. In symbols this is 6CO2 + 6H2O -> C6H12O6 + 6O2.
+
+The two stages
+Photosynthesis happens in two connected stages. The first stage is called the light reactions. It takes place in the thylakoid membranes, which are stacks of flat discs inside the chloroplast. Here, light energy splits water molecules, which releases oxygen. The light reactions also make two energy-carrying molecules called ATP and NADPH.
+
+The second stage is called the Calvin cycle. It takes place in the stroma, the fluid that surrounds the thylakoids. The Calvin cycle uses the ATP and NADPH from the first stage to turn carbon dioxide into sugar. An enzyme called RuBisCO grabs the carbon dioxide and attaches it to a five-carbon molecule. The Calvin cycle does not need light directly, but it can only keep running while the light reactions keep supplying ATP and NADPH.
+
+Where the sugar goes
+Glucose made in the leaves has several uses. The plant burns some of it for energy through cellular respiration. Some is joined together to make starch, which is stored in roots, seeds and stems. Some is used to make cellulose, the tough material in plant cell walls. Sugar is also carried from the leaves to other parts of the plant through tubes called phloem.
+
+Things that change the rate
+Three main factors change how fast photosynthesis runs: light intensity, carbon dioxide concentration and temperature. More light speeds the process up until the plant is using all the light it can handle. Very high temperatures slow it down because enzymes such as RuBisCO stop working properly above about 40 degrees Celsius. When the weather is hot and dry, the stomata close to save water, which also cuts off the supply of carbon dioxide.
+
+Why it matters
+Almost all the oxygen in the air comes from photosynthesis, and almost all the food eaten by animals starts as sugar made by plants, algae or some bacteria. Burning fossil fuels and cutting down forests both reduce the amount of carbon dioxide that plants and algae can absorb, which is one reason scientists study photosynthesis so closely.

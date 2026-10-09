@@ -1,0 +1,277 @@
+{
+  "kind": "done",
+  "summary": "Drafted \"Harbor Lane Bakery: Online Ordering Brief\" with your AI team: Design on This computer, Implement on Codex (cloud), Review on This computer. The reviewer listed 1 problem.",
+  "outputs": [
+    {
+      "path": "C:\\Users\\Kyle\\AppData\\Local\\Temp\\nonon-doc-YbJMuq\\NONON Output\\Team draft.docx",
+      "label": "Team draft",
+      "kind": "docx"
+    },
+    {
+      "path": "C:\\Users\\Kyle\\AppData\\Local\\Temp\\nonon-doc-YbJMuq\\NONON Output\\Team draft.md",
+      "label": "Team draft (plain text copy)",
+      "kind": "md"
+    },
+    {
+      "path": "C:\\Users\\Kyle\\AppData\\Local\\Temp\\nonon-doc-YbJMuq\\NONON Output\\Team draft - spec and review.md",
+      "label": "Plan, draft and review with who made each step",
+      "kind": "md"
+    }
+  ],
+  "proposals": [],
+  "checks": [
+    {
+      "id": "stages-recorded",
+      "label": "Each step recorded who made it",
+      "status": "pass",
+      "detail": "Design: This computer. Implement: Codex (cloud). Review: This computer"
+    },
+    {
+      "id": "source-lines",
+      "label": "Lines the reviewer pointed to exist",
+      "status": "pass",
+      "detail": "1 line reference checked in the source."
+    },
+    {
+      "id": "quotes-verified",
+      "label": "Quotes from the source are real",
+      "status": "pass",
+      "detail": "1 quoted passage found in the source."
+    },
+    {
+      "id": "unsupported-flagged",
+      "label": "Unsupported claims are marked in the draft",
+      "status": "pass",
+      "detail": "The reviewer marked no claim as unsupported."
+    },
+    {
+      "id": "numbers",
+      "label": "Numbers in the draft come from the source",
+      "status": "pass",
+      "detail": "Every number in the draft appears in the source or your goal."
+    }
+  ],
+  "report": {
+    "goal": "A one page summary of what the bakery needs, for a web builder who will quote the job.",
+    "source": {
+      "name": "product-brief.md",
+      "lines": 28
+    },
+    "verdict": "needs-changes",
+    "stages": [
+      {
+        "stage": "design",
+        "label": "Design",
+        "provider": "local",
+        "providerLabel": "This computer",
+        "revision": 1,
+        "createdAt": "2026-10-09T09:19:58.922Z",
+        "inputRevision": "9c789e29075662d52f007e50c3511461db72e3982deeec19b7a73767868588f6",
+        "status": "made now",
+        "attempts": 1,
+        "ms": 4446,
+        "dropped": []
+      },
+      {
+        "stage": "implement",
+        "label": "Implement",
+        "provider": "codex",
+        "providerLabel": "Codex (cloud)",
+        "revision": 1,
+        "createdAt": "2026-10-09T09:20:11.469Z",
+        "inputRevision": "229586d972ecda083b75af5f6acc076e07df8d6b6f50eac16249da9d3eff3f50",
+        "status": "made now",
+        "attempts": 1,
+        "ms": 12547,
+        "dropped": []
+      },
+      {
+        "stage": "review",
+        "label": "Review",
+        "provider": "local",
+        "providerLabel": "This computer",
+        "revision": 1,
+        "createdAt": "2026-10-09T09:20:13.181Z",
+        "inputRevision": "bedf7282cdfdc38a76bb119237c700d0dd81f530403aa863ff0081f362416335",
+        "status": "made now",
+        "attempts": 1,
+        "ms": 1711,
+        "dropped": []
+      }
+    ],
+    "findings": [
+      {
+        "n": 1,
+        "kind": "missing-point",
+        "issue": "The draft includes 'Delivery is not wanted for now' in the Constraints section, but this point was not explicitly listed in the specification's Constraints section (which only covered budget, deadline, no accounts/loyalty, and ease of use).",
+        "cited": [
+          {
+            "line": 9,
+            "text": "- Most regular customers live within 2 km of the shop and pick up their order. Delivery is not wanted for now."
+          }
+        ],
+        "quote": "verified",
+        "marked": "n/a"
+      }
+    ],
+    "numbersNotInSource": [],
+    "spec": {
+      "audience": "web builder",
+      "purpose": "provide a one page summary of what the bakery needs",
+      "sections": [
+        {
+          "heading": "Current Operations",
+          "covers": "sales volume, missed calls, customer location, hours",
+          "sourceLines": [
+            3,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "heading": "Requirements",
+          "covers": "product listing, pickup time selection, payment method, email confirmation",
+          "sourceLines": [
+            12,
+            14,
+            15,
+            16
+          ]
+        },
+        {
+          "heading": "Constraints",
+          "covers": "budget, deadline, no accounts/loyalty, ease of use for staff",
+          "sourceLines": [
+            18,
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "heading": "Open Questions",
+          "covers": "who updates the list, cut-off time decision",
+          "sourceLines": [
+            25,
+            27,
+            28
+          ]
+        }
+      ],
+      "keyPoints": [
+        {
+          "point": "The shop sells about 120 loaves and 60 pastries on a normal weekday.",
+          "sourceLines": [
+            7
+          ]
+        },
+        {
+          "point": "Phone orders are missed on busy mornings; Maria estimates 8 to 10 calls a week go unanswered.",
+          "sourceLines": [
+            8
+          ]
+        },
+        {
+          "point": "Most regular customers live within 2 km of the shop and pick up their order.",
+          "sourceLines": [
+            9
+          ]
+        },
+        {
+          "point": "The shop opens at 6:30 am and closes at 3:00 pm, Tuesday to Sunday.",
+          "sourceLines": [
+            10
+          ]
+        },
+        {
+          "point": "Budget for the first version is 1,500 USD in total.",
+          "sourceLines": [
+            20
+          ]
+        },
+        {
+          "point": "The site must go live before the Saturday market on 14 November.",
+          "sourceLines": [
+            21
+          ]
+        },
+        {
+          "point": "Maria does not want customer accounts or a loyalty scheme in the first version.",
+          "sourceLines": [
+            22
+          ]
+        },
+        {
+          "point": "Everything must be easy for staff who are not technical to update.",
+          "sourceLines": [
+            23
+          ]
+        }
+      ],
+      "constraints": [
+        "Budget for the first version is 1,500 USD in total.",
+        "The site must go live before the Saturday market on 14 November.",
+        "Maria does not want customer accounts or a loyalty scheme in the first version.",
+        "Everything must be easy for staff who are not technical to update: prices and the daily list change often.",
+        "Delivery is not wanted for now.",
+        "Customers choose a pickup time and pay in the shop, not online."
+      ]
+    },
+    "draft": {
+      "title": "Harbor Lane Bakery: Online Ordering Brief",
+      "sections": [
+        {
+          "heading": "Current Operations",
+          "paragraphs": [
+            "Harbor Lane Bakery is a neighbourhood bakery with one shop and four staff. All orders are currently taken by phone or at the counter. Owner Maria Santos wants customers to order ahead on a simple website.",
+            "The shop sells about 120 loaves and 60 pastries on a normal weekday. Phone orders are missed on busy mornings; Maria estimates that 8 to 10 calls a week go unanswered.",
+            "Most regular customers live within 2 km of the shop and pick up their orders. The shop opens at 6:30 am and closes at 3:00 pm, Tuesday to Sunday."
+          ]
+        },
+        {
+          "heading": "Requirements",
+          "paragraphs": [
+            "- Provide a page listing the daily bread and pastries with prices.",
+            "- Let customers choose a pickup time and pay in the shop, not online.",
+            "- Send an email to the shop for each order so nothing is missed."
+          ]
+        },
+        {
+          "heading": "Constraints",
+          "paragraphs": [
+            "- The total budget for the first version is 1,500 USD.",
+            "- The site must go live before the Saturday market on 14 November.",
+            "- Customer accounts and a loyalty scheme are excluded from the first version.",
+            "- Prices and the daily list change often, so everything must be easy for staff who are not technical to update.",
+            "- Delivery is not wanted for now."
+          ]
+        },
+        {
+          "heading": "Open Questions",
+          "paragraphs": [
+            "- Who will update the daily list each morning? Maria thinks it could be the opening baker.",
+            "- Whether to offer a cut-off time for same-day orders has not been decided."
+          ]
+        }
+      ]
+    },
+    "review": {
+      "verdict": "needs-changes",
+      "summary": "The draft includes a constraint about delivery not being wanted, but this point was not explicitly listed in the 'Constraints' section of the specification design step, although it is mentioned in the source document under 'What we know'.",
+      "findings": [
+        {
+          "kind": "missing-point",
+          "issue": "The draft includes 'Delivery is not wanted for now' in the Constraints section, but this point was not explicitly listed in the specification's Constraints section (which only covered budget, deadline, no accounts/loyalty, and ease of use).",
+          "draftQuote": "- Delivery is not wanted for now.",
+          "sourceLines": [
+            9
+          ],
+          "sourceQuote": "Delivery is not wanted for now."
+        }
+      ]
+    }
+  }
+}

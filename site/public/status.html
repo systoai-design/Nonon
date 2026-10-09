@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/nunito-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/base.css">
+<script src="/assets/boot.js"></script>
+<title>What works today: NONON status</title>
+<meta name="description" content="An honest list of what NONON can do today, what has limits, and what is built but not fully tested yet. Updated as the app changes.">
+<link rel="canonical" href="https://trynonon.xyz/status">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NONON">
+<meta property="og:title" content="What works today: NONON status">
+<meta property="og:description" content="What works, what has limits, and what is built but not fully tested yet.">
+<meta property="og:url" content="https://trynonon.xyz/status">
+<meta property="og:image" content="https://trynonon.xyz/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/inner.css">
+<script src="/assets/site.js" defer></script>
+<script src="/assets/inner.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="nav__bar">
+    <a class="brand" href="/" aria-label="NONON home"><img class="brand__logo" src="/brand/nonon-logo-horizontal-color.svg" width="118" height="28" alt="NONON"></a>
+    <nav class="nav__links" id="navLinks" aria-label="Main">
+      <span class="nav__thumb" id="navThumb" aria-hidden="true"></span>
+      <a href="/#does" data-nav>What it does</a>
+      <a href="/#control" data-nav>Your control</a>
+      <a href="/#how" data-nav>How it works</a>
+      <a href="/#faq" data-nav>Questions</a>
+      <a href="/status" aria-current="page">What works today</a>
+      <a class="nav__ext" href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--primary btn--sm" href="/download" data-press>Download <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v13m-5-5 5 5 5-5M3 15v6h18v-6"/></g></svg></a>
+    </div>
+    <details class="nav__menu">
+      <summary aria-label="Menu"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path class="nav__menu-open" d="M3.5 6h13M3.5 10h13M3.5 14h13"/><path class="nav__menu-close" d="M5 5l10 10M15 5 5 15"/></svg></summary>
+      <nav class="nav__sheet" aria-label="Site menu">
+        <a href="/#does">What it does</a>
+        <a href="/#control">Your control</a>
+        <a href="/#how">How it works</a>
+        <a href="/#faq">Questions</a>
+        <a href="/status" aria-current="page">What works today</a>
+        <a href="/privacy">Privacy</a>
+        <a href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">GitHub (public repository)<span class="sr-only"> (opens in a new tab)</span></a>
+      </nav>
+    </details>
+  </div>
+</header>
+<main id="main" class="page">
+  <header class="page__head wrap">
+    <div class="page__titles">
+      <p class="kicker">Status</p>
+      <h1 class="page__h1" data-split="mask"><span class="w" data-i="0"><span class="wi">What</span></span> <span class="w" data-i="1"><span class="wi">works</span></span> <span class="w" data-i="2"><span class="wi">today</span></span></h1>
+      <p class="intro">We would rather tell you plainly than let a menu item suggest something works when it does not. This is an early release.</p>
+      <p class="updated">Last reviewed 9 October 2026.</p>
+      <p class="intro intro--small">NONON is open source under the Apache License 2.0. The code is on GitHub: <a href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">github.com/systoai-design/Nonon</a>.</p>
+    </div>
+    <div class="page__non" aria-hidden="true"><svg class="non non--page" viewBox="0 -8 256 272" data-state="idle" aria-hidden="true" focusable="false"><g class="non-body-group"><ellipse cx="128" cy="210" rx="119" ry="38" fill="#F47B32"/><path d="M26 201C34 148 48 98 76 68C89 52 108 43 128 43C150 43 169 52 183 69C209 101 222 153 230 201Q128 235 26 201Z" fill="#111111"/><ellipse cx="156" cy="27" rx="16" ry="33" transform="rotate(40 156 27)" fill="#F47B32"/><ellipse class="non-eye" cx="93" cy="139" rx="11" ry="22" fill="#FFFFFF"/><ellipse class="non-eye" cx="165" cy="139" rx="11" ry="22" fill="#FFFFFF"/><path class="non-smile" d="M118 175Q128 187 139 175" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><ellipse class="non-talk-mouth" cx="128" cy="178" rx="10" ry="12" fill="#FFFFFF"/></g><g class="non-thought-dots" fill="#A84208"><circle cx="104" cy="245" r="4"/><circle cx="128" cy="245" r="4"/><circle cx="152" cy="245" r="4"/></g></svg></div>
+  </header>
+
+  <div class="page__body">
+  <div class="wrap">
+
+    <ul class="legend" aria-label="What the labels mean">
+      <li><span class="st st-works">Works</span> Checked on real files.</li>
+      <li><span class="st st-limited">Works, with limits</span> Checked, for the cases listed.</li>
+      <li><span class="st st-untested">Built, not fully tested yet</span> The code is there. We have not proved it for real.</li>
+    </ul>
+
+    <section class="status-group" data-reveal aria-labelledby="g-core">
+      <h2 id="g-core">The basics</h2>
+      <ul class="status-list">
+        <li><div><b>The AI on your computer</b><span class="what">A small AI runs on your computer and reads and writes your files. While it answered, it only talked to NONON on the same computer.</span></div><span class="st st-works">Works</span></li>
+        <li><div><b>Working offline after setup</b><span class="what">Setup downloads the AI once, 3 to 6 GB. After that, the core jobs below do not need the internet.</span></div><span class="st st-works">Works</span></li>
+        <li><div><b>First-run setup</b><span class="what">Checks your computer, picks an AI that fits, downloads it, pauses and resumes, and checks that it downloaded correctly.</span></div><span class="st st-works">Works</span></li>
+        <li><div><b>Results shown inside the app</b><span class="what">Spreadsheets and documents open in the app. You can also open them in their own program.</span></div><span class="st st-works">Works</span></li>
+        <li><div><b>Changes wait for your OK, with backup and undo</b><span class="what">NONON shows a change first, saves a backup, and can undo it. If you edited the file afterward, it stops and tells you instead of writing over your work.</span></div><span class="st st-works">Works</span></li>
+      </ul>
+    </section>
+
+    <section class="status-group" data-reveal aria-labelledby="g-jobs">
+      <h2 id="g-jobs">The jobs</h2>
+      <ul class="status-list">
+        <li><div><b>Compare two spreadsheets</b><span class="what">Excel (.xlsx) and .csv files. It finds matches, rows in only one file, rows listed twice, and rows it is not sure about. Code adds up the money. Macros, links to other workbooks and fancy formatting are not supported yet.</span></div><span class="st st-limited">Works, with limits</span></li>
+        <li><div><b>Turn meeting notes into a follow-up</b><span class="what">Text, Word and PDF files that hold real text. Scanned PDFs are not read. The AI is small, so check the names and dates it lists.</span></div><span class="st st-limited">Works, with limits</span></li>
+        <li><div><b>Turn a reading into a study sheet</b><span class="what">Same file types as above. You get explanations, practice questions and an answer key, based on your reading. Check the answers before you hand them out.</span></div><span class="st st-limited">Works, with limits</span></li>
+        <li><div><b>Plan a lesson</b><span class="what">A first-draft outline from your material, with its assumptions stated. Same file types as above.</span></div><span class="st st-limited">Works, with limits</span></li>
+        <li><div><b>Draft a document</b><span class="what">A short summary and a draft reply or report from one file, with the lines each part came from.</span></div><span class="st st-limited">Works, with limits</span></li>
+        <li><div><b>Tidy a folder</b><span class="what">Lists every move first. Nothing moves until you approve. It never writes over a file or moves one out of your project folder.</span></div><span class="st st-works">Works</span></li>
+        <li><div><b>Run a job on a schedule</b><span class="what">Set it up in plain words, like every weekday at 8. It runs while your computer is on and awake. We tested it with a real AI and a pretend clock, not by waiting for days.</span></div><span class="st st-limited">Works, with limits</span></li>
+        <li><div><b>Draft a document with several AIs in turn</b><span class="what">One AI makes a plan, one writes, one checks. We ran it fully on this computer, and once with Codex for the writing step. The checking AI can be wrong, so the notes say so.</span></div><span class="st st-limited">Works, with limits</span></li>
+      </ul>
+    </section>
+
+    <section class="status-group" data-reveal aria-labelledby="g-conn">
+      <h2 id="g-conn">Optional connections</h2>
+      <p class="intro">Off until you turn them on. When you use them, the content of that job leaves your computer. You pay for online AI on your own plan.</p>
+      <ul class="status-list">
+        <li><div><b>Codex</b><span class="what">A short real test job ran and could be cancelled. Longer jobs are not tested.</span></div><span class="st st-limited">Works, with limits</span></li>
+        <li><div><b>Antigravity</b><span class="what">A short real test job ran and could be cancelled. Longer jobs are not tested.</span></div><span class="st st-limited">Works, with limits</span></li>
+        <li><div><b>Claude</b><span class="what">Claude was not signed in on our test computer, so no real job ran. We checked that NONON shows a clear message to sign in.</span></div><span class="st st-untested">Built, not fully tested yet</span></li>
+        <li><div><b>Gmail</b><span class="what">Reads only the messages you allow and writes a brief with the AI on your computer. It cannot send or delete mail. We tested it against a pretend Google, not a real Google account yet.</span></div><span class="st st-untested">Built, not fully tested yet</span></li>
+        <li><div><b>Sharing AI between your own computers on one network</b><span class="what">You pair two of your computers with a code, and one lends its AI to the other. Built and tested on one computer. Not tried on two yet.</span></div><span class="st st-untested">Built, not fully tested yet</span></li>
+      </ul>
+    </section>
+
+    <section class="status-group" data-reveal aria-labelledby="g-plat">
+      <h2 id="g-plat">Computers</h2>
+      <ul class="status-list">
+        <li><div><b>Windows 10 or 11 (64-bit)</b><span class="what">The installer is built and the app runs on our Windows 11 test computer. The download page says whether this version is code-signed.</span></div><span class="st st-works">Works</span></li>
+        <li><div><b>Mac with Apple silicon</b><span class="what">The app opens on an Apple silicon Mac. We have tested it much less than on Windows.</span></div><span class="st st-untested">Built, not fully tested yet</span></li>
+        <li><div><b>Computers with 8 GB or 16 GB of memory</b><span class="what">We aim for 8 GB at least and 16 GB is better. Our test computer has far more, so we have not tested these sizes yet.</span></div><span class="st st-untested">Built, not fully tested yet</span></li>
+      </ul>
+      <p class="not-yet">Not yet: a phone app, Linux, Intel Macs, scanned PDFs, and other characters. For now, Non is your helper.</p>
+    </section>
+  </div>
+  </div>
+</main>
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <a class="brand" href="/" aria-label="NONON home"><img class="brand__logo" src="/brand/nonon-logo-horizontal-color.svg" width="118" height="28" alt="NONON" loading="lazy"></a>
+      <p>Finish everyday work with your own files. The AI works on your computer, so it keeps working when the internet doesn't.</p>
+    </div>
+    <nav class="foot__col" aria-label="Get NONON">
+      <p>Get NONON</p>
+      <a href="/download#windows">Windows</a>
+      <a href="/download#mac">Mac</a>
+      <a href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">GitHub (public repository)<span class="sr-only"> (opens in a new tab)</span></a>
+    </nav>
+    <nav class="foot__col" aria-label="Site">
+      <p>Site</p>
+      <a href="/download">Download and checksums</a>
+      <a href="/status">What works today</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/licenses">Licenses and credits</a>
+    </nav>
+    <div class="foot__col">
+      <p>Built with</p>
+      <a href="https://github.com/ggml-org/llama.cpp" rel="noopener">llama.cpp (MIT license)</a>
+      <a href="https://huggingface.co/Qwen" rel="noopener">Qwen3.5 (Apache-2.0)</a>
+      <a href="/licenses#fonts">Nunito (Open Font License)</a>
+      <a href="/licenses#gsap">GSAP (for this site's motion)</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="foot__legal foot__legal--credit">Non is the Pragma mascot Pip, used with permission of its owner. App derived from components of Pragma (Apache-2.0).</p>
+    <p class="foot__legal">NONON is released under the Apache License 2.0. Copyright 2026 Kyle Cabahug. Claude is a product of Anthropic, Codex of OpenAI, and Antigravity and Gmail of Google. NONON is not affiliated with or endorsed by them. This site uses no cookies and no analytics.</p>
+  </div>
+  <p class="foot__word" aria-hidden="true">NONON</p>
+</footer>
+</body>
+</html>

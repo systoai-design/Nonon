@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dl/
+
+Sitemap: https://trynonon.xyz/sitemap.xml

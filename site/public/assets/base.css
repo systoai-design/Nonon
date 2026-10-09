@@ -1,0 +1,365 @@
+/* ============================================================================
+   NONON site: the shared system
+
+   Tokens, type, buttons, the pill nav, the footer and Non's own motion, used by every page
+   (home.css and inner.css sit on top). The layout system follows the Pragma site: large tight
+   headlines, white and grey grounds that alternate with no borders between sections, a floating
+   pill nav, soft cards, a giant word in the footer. The brand is NONON's: black, white and
+   orange, Nunito, and the orange kept off small text.
+
+   Orange rules (see scripts/contrast.mjs for the numbers):
+     --orange      #F47B32  marks, dots, big shapes, icons next to words, on black. Never small text on light.
+     --orange-ink  #A84208  orange you read or press on light grounds (6.4:1 on white)
+   ========================================================================== */
+
+@font-face {
+  font-family: "Nunito";
+  src: url("/fonts/nunito-var-latin.woff2") format("woff2");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+/* The fallback is sized to Nunito's metrics so the swap moves nothing. */
+@font-face {
+  font-family: "Nunito Fallback";
+  src: local("Arial");
+  size-adjust: 101.5%;
+  ascent-override: 99.6%;
+  descent-override: 34.8%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --orange:      #F47B32;
+  --orange-ink:  #A84208;
+  --orange-soft: #FFF1E8;
+
+  --paper:    #FFFFFF;
+  --surface:  #FAFAFA;
+  --ground:   #F4F4F4;
+  --ground-2: #EBEBEB;
+  --inset:    #F0F0F0;
+  --control:  #E8E8E8;
+  --line:     #DADADA;
+  --line-2:   #BDBDBD;
+
+  --ink:    #111111;
+  --text-2: #595959;
+  --text-3: #6B6B6B;
+  /* The quiet half of a two-tone headline: large text, 3:1 or better on both grounds. */
+  --soft:   color-mix(in oklab, var(--ink) 50%, var(--paper));
+
+  --ok:     #1F7A4D;
+  --warn:   #8A5A00;
+  --danger: #B3261E;
+
+  --r-sm: 10px;
+  --r:    16px;
+  --r-lg: 24px;
+  --r-xl: 36px;
+
+  --shadow-1: 0 1px 2px rgb(17 17 17 / .06), 0 3px 10px -4px rgb(17 17 17 / .10);
+  --shadow-2: 0 1px 3px rgb(17 17 17 / .06), 0 22px 48px -24px rgb(17 17 17 / .30);
+  --shadow-3: 0 2px 6px rgb(17 17 17 / .05), 0 60px 120px -48px rgb(17 17 17 / .42);
+
+  --expo: cubic-bezier(.16, 1, .3, 1);
+  --press: 120ms cubic-bezier(.2, .7, .3, 1);
+
+  /* One spacing scale for the whole site (px at 1440; the big ones flex with the viewport). */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
+  --sp-6: 32px; --sp-7: 48px; --sp-8: 64px; --sp-9: 96px;
+  --section: clamp(88px, 11vw, 160px);        /* vertical padding of every home section */
+  --section-sm: clamp(56px, 7vw, 96px);       /* inner-page blocks and tight bands */
+  --maxw: 1240px;
+  --gut: clamp(20px, 4.4vw, 56px);            /* the same left and right gutter on every page */
+  --nav-h: 64px;
+
+  --sans: "Nunito", "Nunito Fallback", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+}
+
+/* ── reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 88px; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(16px, .3vw + 15px, 17.5px);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  /* clip, not hidden: hidden makes body the scroller and breaks every measurement of scrollTop */
+  overflow-x: clip;
+}
+img, svg, video { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+code { font-family: var(--mono); font-size: .88em; }
+::selection { background: color-mix(in oklab, var(--orange) 32%, transparent); color: var(--ink); }
+
+.sr-only, .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip {
+  position: absolute; left: -999px; top: 8px; z-index: 100;
+  background: var(--ink); color: var(--paper); padding: .7rem 1.1rem; border-radius: var(--r-sm); font-weight: 700;
+}
+.skip:focus { left: 8px; }
+:where(a, button, summary, label, [tabindex]):focus-visible {
+  outline: 3px solid var(--orange-ink);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+.vh:focus-visible + * { outline: none; }
+
+.wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gut); }
+.ico { width: 1.25em; height: 1.25em; flex: none; color: var(--orange-ink); }
+
+/* ── type ──────────────────────────────────────────────────────────────── */
+/* Tracking is size-specific: zero at display size reads as gaps between the letters. */
+.display {
+  font-weight: 900;
+  font-size: clamp(3.1rem, 7.2vw, 7rem);
+  line-height: .96;
+  letter-spacing: -.045em;
+  margin: .28em 0 .3em;
+  text-wrap: balance;
+}
+.h2 {
+  font-weight: 900;
+  font-size: clamp(2.3rem, 4.9vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+.h2--md { font-size: clamp(2.1rem, 4.1vw, 3.9rem); }
+.h2--xl { font-size: clamp(2.8rem, 7vw, 6.6rem); letter-spacing: -.045em; line-height: .96; }
+.soft { color: var(--soft); }
+
+.kicker {
+  display: inline-flex; align-items: center; gap: .7em;
+  font-size: .8rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 1.4rem;
+}
+.kicker::before { content: ""; width: 1.4em; height: 3px; border-radius: 3px; background: var(--orange); }
+.kicker--center { justify-content: center; }
+
+.head { max-width: 800px; }
+.head__lede { margin-top: 1.5rem; max-width: 36rem; font-size: 1.14em; color: var(--text-2); line-height: 1.55; text-wrap: pretty; }
+.head--split {
+  max-width: none;
+  display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: 2rem 4rem; align-items: end;
+}
+.head--split .head__lede { margin: 0 0 .5rem; }
+
+/* Split headlines: each word rides up out of its own mask. Built at page build time. */
+.w { display: inline-block; vertical-align: top; }
+.w .wi { display: inline-block; }
+[data-split="mask"] .w { overflow: clip; padding: .06em 0 .16em; margin: -.06em 0 -.16em; }
+[data-split="ink"] .w { transition: none; }
+
+/* ── buttons ───────────────────────────────────────────────────────────── */
+.btn {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+  height: 46px; padding: 0 22px;
+  border-radius: 999px; border: 1.5px solid transparent;
+  font-weight: 800; font-size: 15.5px; letter-spacing: -.005em; white-space: nowrap;
+  cursor: pointer; isolation: isolate; overflow: hidden;
+  transition: scale var(--press), background-color .25s, border-color .25s, box-shadow .25s, color .25s;
+}
+.btn .ico { color: inherit; width: 1.15em; height: 1.15em; }
+/* Feedback on pointer-down, never on release. `scale` rather than transform, so the magnet (which
+   owns `translate`) and the press never overwrite each other. */
+.btn.is-pressed { scale: .955; }
+.btn--sm { height: 40px; padding: 0 16px; font-size: 14.5px; }
+.btn--lg { height: 56px; padding: 0 28px; font-size: 17px; }
+.btn--xl { height: 66px; padding: 0 34px; font-size: 19px; }
+
+.btn--primary {
+  background: var(--ink); color: #fff;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .16), 0 1px 2px rgb(17 17 17 / .2), 0 14px 30px -14px rgb(17 17 17 / .6);
+}
+.btn--primary:hover { background: #2B2B2B; }
+/* The arrow is the one place orange meets the black button. */
+.btn--primary .ico { color: var(--orange); transition: translate .35s var(--expo); }
+.btn--primary:hover .ico { translate: 0 2px; }
+/* A sheen that crosses the button once on hover: white light over a flat black fill. */
+.btn--primary::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / .22) 48%, transparent 66%);
+  translate: -110% 0;
+}
+.btn--primary:hover::after { translate: 110% 0; transition: translate .8s var(--expo); }
+
+.btn--ghost { background: var(--paper); color: var(--ink); border-color: var(--line); box-shadow: var(--shadow-1); }
+.btn--ghost:hover { border-color: var(--line-2); }
+.btn--ghost .ico { color: var(--orange-ink); }
+
+/* The ways to get NONON: Windows, Mac and the source code on GitHub, always all three, always equal in
+   size. The one that matches this computer is the filled one; a Mac visitor moves the fill to Mac.
+   GitHub is never the filled one: it is a different kind of choice, not the default download. */
+.dl-group { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-3); }
+.dl-opt {
+  display: flex; flex-direction: column; gap: .4rem; padding: 16px 18px 18px;
+  border-radius: var(--r); border: 1.5px solid var(--line); background: var(--paper); color: var(--ink);
+  box-shadow: var(--shadow-1); text-align: left; min-width: 0;
+  transition: scale var(--press), border-color .25s, background-color .25s, box-shadow .25s;
+}
+.dl-opt.is-pressed { scale: .975; }
+.dl-opt:hover { border-color: var(--ink); box-shadow: var(--shadow-2); }
+.dl-opt__top { display: flex; justify-content: space-between; align-items: flex-start; gap: .6rem; }
+.dl-opt__name { font-weight: 900; font-size: 1.1rem; letter-spacing: -.02em; line-height: 1.2; overflow-wrap: anywhere; }
+.dl-opt .ico { width: 22px; height: 22px; margin-top: 1px; color: var(--orange-ink); transition: translate .35s var(--expo); }
+.dl-opt:hover .ico { translate: 0 2px; }
+.dl-opt[data-dl="github"]:hover .ico { translate: 2px -2px; }
+.dl-opt__sub { min-height: 2.8em; font-size: .86rem; font-weight: 600; line-height: 1.4; color: var(--text-2); }
+.dl-opt__sub b { color: var(--ink); font-weight: 800; }
+.dl-opt[data-dl="windows"], .is-mac .dl-opt[data-dl="macos"] {
+  background: var(--ink); border-color: var(--ink); color: #fff;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .16), 0 1px 2px rgb(17 17 17 / .2), 0 14px 30px -14px rgb(17 17 17 / .6);
+}
+.dl-opt[data-dl="windows"]:hover, .is-mac .dl-opt[data-dl="macos"]:hover { background: #2B2B2B; }
+.dl-opt[data-dl="windows"] .ico, .is-mac .dl-opt[data-dl="macos"] .ico { color: var(--orange); }
+.dl-opt[data-dl="windows"] .dl-opt__sub, .is-mac .dl-opt[data-dl="macos"] .dl-opt__sub { color: #D2D2D2; }
+.is-mac .dl-opt[data-dl="windows"] { background: var(--paper); border-color: var(--line); color: var(--ink); box-shadow: var(--shadow-1); }
+.is-mac .dl-opt[data-dl="windows"]:hover { background: var(--paper); border-color: var(--ink); }
+.is-mac .dl-opt[data-dl="windows"] .ico { color: var(--orange-ink); }
+.is-mac .dl-opt[data-dl="windows"] .dl-opt__sub { color: var(--text-2); }
+.dl-note { margin-top: .9rem; font-size: .88rem; color: var(--text-2); line-height: 1.5; }
+.dl-note a { color: var(--ink); font-weight: 800; text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+.dl-note a:hover { text-decoration-color: var(--orange); }
+/* Filled in from /api/latest once it answers; the line is reserved so nothing moves. */
+.dl-note--version { min-height: 1.5em; margin-top: .35rem; color: var(--text-3); }
+
+/* ── nav ───────────────────────────────────────────────────────────────── */
+.nav {
+  position: fixed; top: 12px; left: 0; right: 0; z-index: 50;
+  padding-inline: 12px;
+  pointer-events: none;
+}
+.nav__bar {
+  pointer-events: auto;
+  max-width: 1180px; margin: 0 auto; height: 56px;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0 8px 0 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: background-color .4s, border-color .4s, box-shadow .4s;
+}
+.nav.is-stuck .nav__bar, .nav--solid .nav__bar {
+  background: rgb(255 255 255 / .8);
+  border-color: rgb(17 17 17 / .08);
+  box-shadow: 0 1px 2px rgb(17 17 17 / .04), 0 12px 32px -16px rgb(17 17 17 / .22);
+  backdrop-filter: saturate(1.6) blur(18px);
+  -webkit-backdrop-filter: saturate(1.6) blur(18px);
+}
+.brand { display: inline-flex; align-items: center; }
+.brand__logo { height: 28px; width: auto; }
+.nav__links { position: relative; display: flex; gap: 2px; }
+.nav__actions { display: flex; align-items: center; gap: 8px; }
+.nav__links a {
+  position: relative; z-index: 1;
+  font-size: .92rem; font-weight: 700; color: var(--text-2);
+  padding: .5rem .9rem; border-radius: 999px;
+  transition: color .2s, background-color .2s;
+}
+.nav__links a:hover, .nav__links a.is-on, .nav__links a[aria-current="page"] { color: var(--ink); }
+.nav__links a[aria-current="page"] { background: color-mix(in oklab, var(--ink) 7%, transparent); }
+.nav__ext::after { content: "\2197"; margin-left: .3em; font-weight: 800; color: var(--orange-ink); }
+.nav__thumb {
+  position: absolute; left: 0; top: 0; height: 100%; width: 0;
+  border-radius: 999px; background: color-mix(in oklab, var(--ink) 7%, transparent);
+  opacity: 0; transition: opacity .3s;
+}
+.nav__links.has-on .nav__thumb { opacity: 1; }
+
+/* The menu on a phone, where the links do not fit. A <details>, so it works with no script. */
+.nav__menu { display: none; position: relative; }
+.nav__menu > summary {
+  list-style: none; width: 40px; height: 40px; border-radius: 999px; cursor: pointer;
+  display: grid; place-items: center; color: var(--ink); position: relative;
+  transition: background-color .2s;
+}
+.nav__menu > summary::-webkit-details-marker { display: none; }
+.nav__menu > summary:hover { background: color-mix(in oklab, var(--ink) 5%, transparent); }
+.nav__menu[open] > summary { background: color-mix(in oklab, var(--ink) 7%, transparent); }
+.nav__menu svg path { fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; }
+.nav__menu-close, .nav__menu[open] .nav__menu-open { display: none; }
+.nav__menu[open] .nav__menu-close { display: inline; }
+.nav__sheet {
+  position: absolute; right: 0; top: calc(100% + 10px); min-width: 230px;
+  display: grid; gap: 2px; padding: 6px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow-2);
+}
+.nav__sheet a { padding: .7rem .9rem; border-radius: 12px; font-size: 1rem; font-weight: 700; color: var(--text-2); }
+.nav__sheet a:hover { background: var(--ground); color: var(--ink); }
+.nav__sheet a[aria-current="page"] { color: var(--ink); background: color-mix(in oklab, var(--ink) 7%, transparent); }
+
+/* ── footer ────────────────────────────────────────────────────────────── */
+.foot { background: var(--ground); padding: clamp(64px, 8vw, 110px) 0 0; overflow: clip; }
+.foot__grid { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+.foot__brand p { margin-top: 1rem; color: var(--text-2); font-size: .95rem; line-height: 1.55; max-width: 26rem; }
+.foot__col { display: grid; align-content: start; gap: .6rem; font-size: .95rem; }
+.foot__col p { font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: .3rem; }
+.foot__col a { color: var(--text-2); justify-self: start; background: linear-gradient(var(--orange), var(--orange)) 0 100% / 0 2px no-repeat; transition: color .2s, background-size .4s var(--expo); padding-bottom: 1px; }
+.foot__col a:hover { color: var(--ink); background-size: 100% 2px; }
+.foot__legal { margin-top: 3rem; font-size: .8rem; color: var(--text-3); max-width: 52rem; line-height: 1.55; }
+.foot__legal--credit { margin-top: 2.5rem; color: var(--text-2); font-weight: 700; }
+.foot__legal + .foot__legal { margin-top: .8rem; }
+.foot__word {
+  font-weight: 900;
+  font-size: clamp(5rem, 25vw, 23rem); line-height: .78; letter-spacing: -.06em;
+  text-align: center; color: color-mix(in oklab, var(--ink) 6%, var(--ground));
+  margin: 3rem 0 -.08em; user-select: none;
+}
+
+/* ── Non: the brand's own motion (pack: motion/non-motion.css), scoped here because the CSP blocks the
+      <style> that ships inside the SVG. The state lives on data-state; home.js and site.js set it. ── */
+.non { display: block; width: 100%; height: auto; overflow: visible; }
+.non .non-body-group { transform-box: fill-box; transform-origin: center 75%; }
+.non .non-eye { transform-box: fill-box; transform-origin: center; animation: non-blink 5.6s infinite; }
+.non .non-talk-mouth, .non .non-thought-dots { opacity: 0; }
+.non[data-state="idle"] .non-body-group { animation: non-breathe 4.2s ease-in-out infinite; }
+.non[data-state="greeting"] .non-body-group { animation: non-greet 1s ease-in-out 2; }
+.non[data-state="listening"] .non-body-group { transform: rotate(-4deg); }
+.non[data-state="thinking"] .non-body-group { animation: non-think 2.4s ease-in-out infinite; }
+.non[data-state="thinking"] .non-thought-dots { opacity: 1; animation: non-dots 1.2s ease-in-out infinite; }
+.non[data-state="success"] .non-body-group { animation: non-success .7s ease-out 2; }
+.non[data-state="success"] .non-eye { animation: non-blink 1.2s 1; }
+.non[data-paused="true"] *, .non[data-reduced="true"] * { animation: none !important; transition: none !important; }
+@keyframes non-blink { 0%, 43%, 47%, 100% { transform: scaleY(1); } 45% { transform: scaleY(.08); } }
+@keyframes non-breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes non-greet { 0%, 100% { transform: rotate(0) translateY(0); } 25% { transform: rotate(-6deg) translateY(-4px); } 65% { transform: rotate(5deg) translateY(-2px); } }
+@keyframes non-think { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes non-dots { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@keyframes non-success { 0%, 100% { transform: translateY(0) scale(1); } 40% { transform: translateY(-8px) scale(1.03); } }
+
+@media (max-width: 900px) {
+  .nav__links { display: none; }
+  .nav__menu { display: block; }
+  .foot__grid { grid-template-columns: 1fr 1fr; }
+  .foot__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 460px) {
+  .nav__actions .btn { padding: 0 14px; }
+}
+@media (max-width: 720px) {
+  .dl-group { grid-template-columns: 1fr; }
+  .dl-opt { padding: 16px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+  .btn--primary::after { display: none; }
+  .non .non-eye, .non .non-body-group { animation: none !important; }
+}
+@media (prefers-contrast: more) {
+  :root { --soft: var(--text-2); --line: var(--line-2); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .nav.is-stuck .nav__bar, .nav--solid .nav__bar { background: var(--paper); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}

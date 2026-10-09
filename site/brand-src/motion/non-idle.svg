@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 -8 256 272" role="img" aria-label="Non companion, idle" data-state="idle"><title>Non companion, idle</title><style>
+.non-body-group{transform-box:fill-box;transform-origin:center 75%}
+.non-eye{transform-box:fill-box;transform-origin:center;animation:non-blink 5.6s infinite}
+.non-talk-mouth,.non-thought-dots{opacity:0}
+[data-state="idle"] .non-body-group{animation:non-breathe 4.2s ease-in-out infinite}
+[data-state="greeting"] .non-body-group{animation:non-greet 1s ease-in-out 2}
+[data-state="listening"] .non-body-group{transform:rotate(-4deg)}
+[data-state="thinking"] .non-body-group{animation:non-think 2.4s ease-in-out infinite}
+[data-state="thinking"] .non-thought-dots{opacity:1;animation:non-dots 1.2s ease-in-out infinite}
+[data-state="talking"] .non-smile{opacity:0}
+[data-state="talking"] .non-talk-mouth{opacity:1;transform-box:fill-box;transform-origin:center;animation:non-talk .48s ease-in-out infinite}
+[data-state="talking"] .non-body-group{animation:non-breathe 1.8s ease-in-out infinite}
+[data-state="success"] .non-body-group{animation:non-success .7s ease-out 2}
+[data-state="success"] .non-eye{animation:non-blink 1.2s 1}
+@keyframes non-blink{0%,43%,47%,100%{transform:scaleY(1)}45%{transform:scaleY(.08)}}
+@keyframes non-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes non-greet{0%,100%{transform:rotate(0) translateY(0)}25%{transform:rotate(-6deg) translateY(-4px)}65%{transform:rotate(5deg) translateY(-2px)}}
+@keyframes non-think{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes non-dots{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes non-talk{0%,100%{transform:scaleY(.2) scaleX(.9)}35%{transform:scaleY(.9) scaleX(1)}65%{transform:scaleY(.5) scaleX(.85)}}
+@keyframes non-success{0%,100%{transform:translateY(0) scale(1)}40%{transform:translateY(-8px) scale(1.03)}}
+[data-paused="true"] *,[data-reduced-motion="true"] *{animation:none!important;transition:none!important}
+[data-reduced-motion="true"] .non-talk-mouth{opacity:0}
+[data-reduced-motion="true"] .non-smile{opacity:1}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.non-talk-mouth{opacity:0!important}.non-smile{opacity:1!important}}
+</style><g class="non-body-group"><ellipse cx="128" cy="210" rx="119" ry="38" fill="#F47B32"/><path d="M26 201C34 148 48 98 76 68C89 52 108 43 128 43C150 43 169 52 183 69C209 101 222 153 230 201Q128 235 26 201Z" fill="#111111"/><ellipse cx="156" cy="27" rx="16" ry="33" transform="rotate(40 156 27)" fill="#F47B32"/><ellipse class="non-eye" cx="93" cy="139" rx="11" ry="22" fill="#FFFFFF"/><ellipse class="non-eye" cx="165" cy="139" rx="11" ry="22" fill="#FFFFFF"/><path class="non-smile" d="M118 175Q128 187 139 175" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/><ellipse class="non-talk-mouth" cx="128" cy="178" rx="10" ry="12" fill="#FFFFFF"/></g><g class="non-thought-dots" fill="#A84208"><circle cx="104" cy="245" r="4"/><circle cx="128" cy="245" r="4"/><circle cx="152" cy="245" r="4"/></g></svg>

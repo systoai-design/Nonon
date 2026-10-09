@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{headcommon}}
+<title>Download NONON for Windows and Mac</title>
+<meta name="description" content="Download NONON for Windows 10 or 11, or a Mac with Apple silicon. Free. File sizes and SHA-256 checksums are shown for every release.">
+<link rel="canonical" href="https://trynonon.xyz/download">
+<link rel="stylesheet" href="/assets/inner.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NONON">
+<meta property="og:title" content="Download NONON">
+<meta property="og:description" content="Free for Windows 10 or 11 and Macs with Apple silicon. Checksums shown for every file.">
+<meta property="og:url" content="https://trynonon.xyz/download">
+<meta property="og:image" content="https://trynonon.xyz/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script src="/assets/site.js" defer></script>
+<script src="/assets/download.js" defer></script>
+<script src="/assets/inner.js" defer></script>
+</head>
+<body>
+{{header}}
+<main id="main" class="page">
+  <header class="page__head wrap">
+    <div class="page__titles">
+      <p class="kicker">Download</p>
+      <h1 class="page__h1" data-split="mask">Download NONON</h1>
+      <p class="intro">Free, for Windows 10 or 11 and Macs with Apple silicon, and the source code on GitHub. The apps need the internet once to download the AI (3 to 6 GB). After that, its core jobs work offline.</p>
+    </div>
+    <div class="page__non" aria-hidden="true">{{non:non--page}}</div>
+  </header>
+
+  <div class="page__body">
+    <div class="wrap">
+      <div id="dl-state" class="state" role="status" aria-live="polite" hidden>
+        <h2>Checking for the latest version</h2>
+        <p>One moment.</p>
+      </div>
+      <noscript>
+        <div class="state">
+          <h2>This page needs JavaScript to list the files</h2>
+          <p>You can read the current release details directly at <a href="/api/latest">/api/latest</a>, and download a file from the address shown there.</p>
+        </div>
+      </noscript>
+
+      <p id="release-line" class="release-line">Checking for the latest version.</p>
+
+      <div class="platforms" id="platforms">
+        <article class="platform" id="windows" aria-labelledby="h-windows">
+          <span class="yours">Matches this computer</span>
+          <h2 id="h-windows">Windows</h2>
+          <p class="req-line">Windows 10 or 11, 64-bit (x64).</p>
+          <a class="btn btn--primary btn--lg" data-role="button" aria-disabled="true">Download for Windows</a>
+          <dl class="meta">
+            <dt>File</dt><dd data-role="name">Not available yet</dd>
+            <dt>Size</dt><dd data-role="size">-</dd>
+            <dt>Version</dt><dd data-role="version">-</dd>
+            <dt>Checksum (SHA-256)</dt><dd class="hash"><code data-role="sha">-</code><button type="button" class="copy" data-role="copy" hidden>Copy</button></dd>
+          </dl>
+          <div class="dl-notes">
+            <h3>Installing</h3>
+            <p data-when="unsigned">This installer is not code-signed yet, so Windows may show a blue "Windows protected your PC" screen. If the SHA-256 above matches the file you downloaded, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</p>
+            <p data-when="signed" hidden>This installer is code-signed. Windows should show the publisher name when you run it.</p>
+            <ol>
+              <li>Open the downloaded file from your Downloads folder.</li>
+              <li>Follow the installer. You can choose where NONON is installed.</li>
+              <li>The first time NONON opens, it checks your computer and offers to download the AI (3 to 6 GB).</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="platform" id="mac" aria-labelledby="h-macos">
+          <span class="yours">Matches this computer</span>
+          <h2 id="h-macos">Mac</h2>
+          <p class="req-line">Apple silicon (M1 or later). Not for Intel Macs.</p>
+          <a class="btn btn--primary btn--lg" data-role="button" aria-disabled="true">Download for Mac</a>
+          <dl class="meta">
+            <dt>File</dt><dd data-role="name">Not available yet</dd>
+            <dt>Size</dt><dd data-role="size">-</dd>
+            <dt>Version</dt><dd data-role="version">-</dd>
+            <dt>Checksum (SHA-256)</dt><dd class="hash"><code data-role="sha">-</code><button type="button" class="copy" data-role="copy" hidden>Copy</button></dd>
+          </dl>
+          <div class="dl-notes">
+            <h3>Installing</h3>
+            <p data-when="unsigned">This version is not notarized by Apple yet, so macOS will say it cannot check NONON for malware. After step 2, open <strong>System Settings, then Privacy and Security</strong>, scroll to the message about NONON and choose <strong>Open Anyway</strong>. You only need to do this once.</p>
+            <p data-when="signed" hidden>This version is signed by its developer and notarized by Apple, so it opens like any other app.</p>
+            <ol>
+              <li>Open the downloaded .dmg file.</li>
+              <li>Drag NONON into your Applications folder, then open it.</li>
+              <li>The first time NONON opens, it checks your Mac and offers to download the AI (3 to 6 GB).</li>
+            </ol>
+          </div>
+        </article>
+
+        <article class="platform platform--source" id="github" aria-labelledby="h-github">
+          <h2 id="h-github">GitHub (public repository)</h2>
+          <p class="req-line"><strong>Source code on GitHub.</strong> Read, build or fork NONON. Free and open source, Apache 2.0.</p>
+          <a class="btn btn--ghost btn--lg" href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">Source code on GitHub {{icon:link}}<span class="sr-only"> (opens in a new tab)</span></a>
+          <dl class="meta">
+            <dt>Repository</dt><dd><a href="https://github.com/systoai-design/Nonon" target="_blank" rel="noopener">github.com/systoai-design/Nonon</a></dd>
+            <dt>Licence</dt><dd>Apache License 2.0. <a href="/legal/LICENSE.txt">Read the licence</a></dd>
+            <dt>What you can do</dt><dd>Read the code, build it yourself, or copy it and change it.</dd>
+          </dl>
+          <div class="dl-notes">
+            <h3>Do I need this?</h3>
+            <p>No. To use NONON, download the Windows or Mac file. The source code is for people who want to look inside or build on it.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="prose" id="verify">
+        <h2>Check your download (optional)</h2>
+        <p>The checksum (SHA-256) is a code worked out from the exact file we published. If your downloaded file gives the same code, it downloaded correctly and is the same file.</p>
+        <h3>Windows (PowerShell)</h3>
+        <pre><code>Get-FileHash "$HOME\Downloads\<span data-fill="windows-name">NONON-setup.exe</span>" -Algorithm SHA256</code></pre>
+        <h3>Mac (Terminal)</h3>
+        <pre><code>shasum -a 256 ~/Downloads/<span data-fill="macos-name">NONON.dmg</span></code></pre>
+      </div>
+
+      <div class="prose">
+        <h2>Before you install</h2>
+        <ul>
+          <li>NONON runs on Windows 10 or 11 (64-bit) and Macs with Apple silicon (M1 or later). There is no phone, Linux or Intel Mac version.</li>
+          <li>Aim for 8 GB of memory at least. 16 GB is better. These are targets we are testing, not promises.</li>
+          <li>See <a href="/status">what works today</a>, and what leaves your computer on the <a href="/privacy">privacy page</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+{{footer}}
+</body>
+</html>

@@ -1,0 +1,132 @@
+{
+  "ranAt": "2026-10-09T09:36:02.385Z",
+  "msFirst": 25349,
+  "msTotal": 42816,
+  "questions": [
+    {
+      "id": "gradeLevel",
+      "prompt": "Who is the lesson for?",
+      "kind": "choice",
+      "options": [
+        {
+          "value": "Grades 1-3",
+          "label": "Grades 1-3"
+        },
+        {
+          "value": "Grades 4-6",
+          "label": "Grades 4-6"
+        },
+        {
+          "value": "Grades 7-9",
+          "label": "Grades 7-9"
+        },
+        {
+          "value": "Grades 10-12",
+          "label": "Grades 10-12"
+        },
+        {
+          "value": "Adult learners",
+          "label": "Adult learners"
+        }
+      ],
+      "suggested": "Grades 7-9"
+    },
+    {
+      "id": "duration",
+      "prompt": "How many minutes is the lesson?",
+      "kind": "text",
+      "suggested": "45"
+    },
+    {
+      "id": "objectives",
+      "prompt": "What should students be able to do at the end? (Separate goals with a semicolon.)",
+      "kind": "text",
+      "suggested": "Explain how plants convert light energy into chemical energy stored as sugar.; Name the three inputs required for photosynthesis and the two stages of the process."
+    }
+  ],
+  "checks": [
+    {
+      "id": "assumptions",
+      "label": "Grade level, length and objectives are listed as assumptions you can change",
+      "status": "pass"
+    },
+    {
+      "id": "time-total",
+      "label": "Section times add up to 45 minutes",
+      "status": "pass"
+    },
+    {
+      "id": "source-links",
+      "label": "Every section points to lines in your reading",
+      "status": "pass"
+    },
+    {
+      "id": "no-new-figures",
+      "label": "No dates or figures that are not in your material",
+      "status": "pass"
+    }
+  ],
+  "summary": "Lesson outline for Grades 7-9, 45 minutes, 5 sections. The assumptions are listed at the top so you can change them.",
+  "report": {
+    "title": "Photosynthesis: Converting Light to Chemical Energy",
+    "gradeLevel": "Grades 7-9",
+    "minutes": 45,
+    "objectives": [
+      "Explain how plants convert light energy into chemical energy stored as sugar.",
+      "Name the three inputs required for photosynthesis and the two stages of the process."
+    ],
+    "sections": [
+      {
+        "title": "Introduction to Photosynthesis",
+        "minutes": 10,
+        "refs": [
+          {
+            "cite": "photosynthesis.txt:3"
+          }
+        ]
+      },
+      {
+        "title": "The Role of Chlorophyll",
+        "minutes": 8,
+        "refs": [
+          {
+            "cite": "photosynthesis.txt:6"
+          }
+        ]
+      },
+      {
+        "title": "Inputs and Transport Systems",
+        "minutes": 10,
+        "refs": [
+          {
+            "cite": "photosynthesis.txt:9"
+          }
+        ]
+      },
+      {
+        "title": "Stage One: Light Reactions",
+        "minutes": 10,
+        "refs": [
+          {
+            "cite": "photosynthesis.txt:14"
+          }
+        ]
+      },
+      {
+        "title": "Stage Two: The Calvin Cycle",
+        "minutes": 7,
+        "refs": [
+          {
+            "cite": "photosynthesis.txt:14"
+          }
+        ]
+      }
+    ],
+    "llm": {
+      "calls": 1,
+      "retries": 0,
+      "failures": 0,
+      "ms": 17442
+    }
+  }
+}

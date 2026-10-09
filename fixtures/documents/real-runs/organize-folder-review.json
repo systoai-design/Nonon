@@ -1,0 +1,233 @@
+{
+  "ranAt": "2026-10-09T09:35:32.408Z",
+  "ms": 21272,
+  "summary": "Proposed 20 moves in 3 groups. Nothing has been changed; review the list and approve what you want.",
+  "checks": [
+    {
+      "id": "exact-list",
+      "label": "20 exact moves listed; nothing has been changed yet",
+      "status": "pass"
+    },
+    {
+      "id": "safe-moves",
+      "label": "No move overwrites a file, leaves the workspace folder or flattens one of your folders",
+      "status": "pass"
+    },
+    {
+      "id": "duplicates",
+      "label": "2 identical copies grouped in \"Possible duplicates\"",
+      "status": "pass",
+      "detail": "Nothing is deleted; you decide which to keep."
+    },
+    {
+      "id": "ai-folders",
+      "label": "The AI suggested folders for 8 of 8 unclear files",
+      "status": "pass",
+      "detail": "Based on the file name and the first words inside; you review every one."
+    }
+  ],
+  "proposals": [
+    {
+      "reason": "Invoices, contracts, documents, spreadsheets and presentations: 12 files into Sorted by type.",
+      "count": 12
+    },
+    {
+      "reason": "Images, screenshots, audio and video files: 5 files into Sorted by type.",
+      "count": 5
+    },
+    {
+      "reason": "Archives, installers, possible duplicates and anything else: 3 files into Sorted by type.",
+      "count": 3
+    }
+  ],
+  "report": {
+    "groupBy": "type",
+    "moves": [
+      {
+        "from": "backup.zip",
+        "to": "Sorted/Archives/backup.zip",
+        "category": "Archives",
+        "reason": ".zip file",
+        "source": "rule",
+        "renamed": false
+      },
+      {
+        "from": "budget 2026.xlsx",
+        "to": "Sorted/Spreadsheets/budget 2026.xlsx",
+        "category": "Spreadsheets",
+        "reason": ".xlsx file",
+        "source": "rule",
+        "renamed": false
+      },
+      {
+        "from": "clip.MP4",
+        "to": "Sorted/Video/clip.mp4",
+        "category": "Video",
+        "reason": ".mp4 file",
+        "source": "rule",
+        "renamed": true
+      },
+      {
+        "from": "IMG_20260914_101500 (copy).jpg",
+        "to": "Sorted/Possible duplicates/IMG 2026-09-14 101500 (copy).jpg",
+        "category": "Possible duplicates",
+        "reason": "identical to IMG_20260914_101500.jpg",
+        "source": "duplicate",
+        "renamed": true
+      },
+      {
+        "from": "IMG_20260914_101500.jpg",
+        "to": "Sorted/Images/IMG 2026-09-14 101500.jpg",
+        "category": "Images",
+        "reason": ".jpg file",
+        "source": "rule",
+        "renamed": true
+      },
+      {
+        "from": "IMG_20260914_101502.jpg",
+        "to": "Sorted/Images/IMG 2026-09-14 101502.jpg",
+        "category": "Images",
+        "reason": ".jpg file",
+        "source": "rule",
+        "renamed": true
+      },
+      {
+        "from": "invoice march.pdf",
+        "to": "Sorted/Invoices/invoice march.pdf",
+        "category": "Invoices",
+        "reason": ".pdf with \"invoice\" in the name",
+        "source": "rule",
+        "renamed": false
+      },
+      {
+        "from": "Invoice-0042_Acme.pdf",
+        "to": "Sorted/Invoices/Invoice-0042 Acme.pdf",
+        "category": "Invoices",
+        "reason": ".pdf with \"invoice\" in the name",
+        "source": "rule",
+        "renamed": true
+      },
+      {
+        "from": "meeting_2026_09_30.txt",
+        "to": "Sorted/Meetings/meeting 2026-09-30.txt",
+        "category": "Meetings",
+        "reason": "suggested folder for \"meeting_2026_09_30.txt\"",
+        "source": "ai",
+        "renamed": true
+      },
+      {
+        "from": "New Document (3).docx",
+        "to": "Sorted/Notes/New Document (3).docx",
+        "category": "Notes",
+        "reason": "suggested folder for \"New Document (3).docx\"",
+        "source": "ai",
+        "renamed": false
+      },
+      {
+        "from": "notes.txt",
+        "to": "Sorted/Notes/notes.txt",
+        "category": "Notes",
+        "reason": "suggested folder for \"notes.txt\"",
+        "source": "ai",
+        "renamed": false
+      },
+      {
+        "from": "Q3_report_FINAL_v2.docx",
+        "to": "Sorted/Reports/Q3 report FINAL v2.docx",
+        "category": "Reports",
+        "reason": "suggested folder for \"Q3_report_FINAL_v2.docx\"",
+        "source": "ai",
+        "renamed": true
+      },
+      {
+        "from": "receipt_cafe_20260801.pdf",
+        "to": "Sorted/Invoices/receipt cafe 2026-08-01.pdf",
+        "category": "Invoices",
+        "reason": ".pdf with \"receipt\" in the name",
+        "source": "rule",
+        "renamed": true
+      },
+      {
+        "from": "report final.docx",
+        "to": "Sorted/Reports/report final.docx",
+        "category": "Reports",
+        "reason": "suggested folder for \"report final.docx\"",
+        "source": "ai",
+        "renamed": false
+      },
+      {
+        "from": "report_final.docx",
+        "to": "Sorted/Reports/report final (2).docx",
+        "category": "Reports",
+        "reason": "suggested folder for \"report_final.docx\"",
+        "source": "ai",
+        "renamed": true
+      },
+      {
+        "from": "Samples/Invoice-0042_Acme.pdf",
+        "to": "Sorted/Possible duplicates/Invoice-0042 Acme.pdf",
+        "category": "Possible duplicates",
+        "reason": "identical to Invoice-0042_Acme.pdf",
+        "source": "duplicate",
+        "renamed": true
+      },
+      {
+        "from": "Samples/sample-notes.txt",
+        "to": "Sorted/Notes/sample-notes.txt",
+        "category": "Notes",
+        "reason": "suggested folder for \"sample-notes.txt\"",
+        "source": "ai",
+        "renamed": false
+      },
+      {
+        "from": "scan0042.pdf",
+        "to": "Sorted/Letters/scan0042.pdf",
+        "category": "Letters",
+        "reason": "suggested folder for \"scan0042.pdf\"",
+        "source": "ai",
+        "renamed": false
+      },
+      {
+        "from": "Screenshot 2026-09-20 at 10.15.22.png",
+        "to": "Sorted/Screenshots/Screenshot 2026-09-20 at 10.15.22.png",
+        "category": "Screenshots",
+        "reason": ".png with \"screenshot\" in the name",
+        "source": "rule",
+        "renamed": false
+      },
+      {
+        "from": "song.mp3",
+        "to": "Sorted/Audio/song.mp3",
+        "category": "Audio",
+        "reason": ".mp3 file",
+        "source": "rule",
+        "renamed": false
+      }
+    ],
+    "refused": [],
+    "leftInPlace": [
+      {
+        "rel": ".hidden-settings.txt",
+        "reason": "hidden file"
+      },
+      {
+        "rel": "NONON Output",
+        "reason": "NONON's own outputs"
+      },
+      {
+        "rel": "Projects",
+        "reason": "your own folder, left as it is"
+      },
+      {
+        "rel": "Sorted",
+        "reason": "already-sorted folder"
+      }
+    ],
+    "llm": {
+      "calls": 1,
+      "retries": 0,
+      "failures": 0,
+      "ms": 21127
+    }
+  }
+}

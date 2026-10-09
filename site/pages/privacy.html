@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{headcommon}}
+<title>NONON privacy</title>
+<meta name="description" content="What this website and the NONON app do and do not collect. No cookies, no analytics, and the AI runs on your computer by default.">
+<link rel="canonical" href="https://trynonon.xyz/privacy">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NONON">
+<meta property="og:title" content="NONON privacy">
+<meta property="og:description" content="No cookies, no analytics, and the AI runs on your computer by default.">
+<meta property="og:url" content="https://trynonon.xyz/privacy">
+<meta property="og:image" content="https://trynonon.xyz/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/inner.css">
+<script src="/assets/site.js" defer></script>
+<script src="/assets/inner.js" defer></script>
+</head>
+<body>
+{{header}}
+<main id="main" class="page">
+  <header class="page__head wrap">
+    <div class="page__titles">
+      <p class="kicker">Privacy</p>
+      <h1 class="page__h1" data-split="mask">Privacy</h1>
+      <p class="intro">Short version: this website sets no cookies and runs no analytics. The NONON app keeps your files and its AI on your computer unless you turn on something else.</p>
+      <p class="updated">Last updated 9 October 2026.</p>
+    </div>
+    <div class="page__non" aria-hidden="true">{{non:non--page}}</div>
+  </header>
+
+  <div class="page__body">
+  <div class="wrap">
+
+    <div class="prose">
+      <h2>This website</h2>
+      <ul>
+        <li>No cookies, no analytics, no tracking pixels, no advertising, and nothing loaded from other companies' servers. That is why there is no cookie banner.</li>
+        <li>The site is delivered by Cloudflare. Like any web host, it handles basic request information (such as your IP address and browser type) to deliver pages and downloads and to protect the site from abuse. We do not use that information to profile you.</li>
+        <li>The download page asks our own server for the latest version details and file checksums. Nothing about you is sent beyond the request itself.</li>
+        <li>We do not ask you for your name, email or any form of account on this site.</li>
+        <li>The GitHub link only leaves this site if you click it. GitHub then has its own privacy policy.</li>
+      </ul>
+
+      <h2>The NONON app</h2>
+      <h3>What stays on your computer</h3>
+      <ul>
+        <li>The AI runs on your computer. Your files are read and written in the folders you choose.</li>
+        <li>Your routines, change history and backups are stored on your disk.</li>
+        <li>NONON does not train any AI on your files.</li>
+        <li>The app contains no analytics or usage tracking.</li>
+      </ul>
+      <h3>What goes out, and when</h3>
+      <ul>
+        <li><strong>Setup.</strong> The first time, NONON downloads the AI program from GitHub and the AI itself from Hugging Face (3 to 6 GB). Those services see a normal download request from your connection.</li>
+        <li><strong>Claude, Codex or Antigravity, only if you connect one.</strong> When you use a connection for a task, the content of that task is sent to that company, and its own terms and privacy policy apply. It is billed to your own plan with them. NONON shows which company will receive what before you allow it, and it does not collect your login.</li>
+        <li><strong>Gmail, only if you connect it.</strong> Gmail is Google's service. NONON asks Google for the messages you allow and works on them with the AI on your computer. It can only read mail. It does not send or delete it.</li>
+      </ul>
+      <h3>Local-only projects</h3>
+      <p>You can mark a project as local-only. Nothing in it is ever sent to an online AI service, including from a scheduled job.</p>
+
+      <h2>Changes to this page</h2>
+      <p>If NONON starts collecting anything new, this page will say so before the app does it.</p>
+    </div>
+  </div>
+  </div>
+</main>
+{{footer}}
+</body>
+</html>

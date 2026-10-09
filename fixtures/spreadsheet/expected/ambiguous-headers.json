@@ -1,0 +1,121 @@
+{
+  "rules": {
+    "amountToleranceCents": 0,
+    "dateToleranceDays": 3
+  },
+  "counts": {
+    "totalA": 20,
+    "totalB": 19,
+    "matched": 19,
+    "onlyA": 1,
+    "onlyB": 0,
+    "duplicateA": 0,
+    "duplicateB": 0,
+    "ambiguousA": 0,
+    "ambiguousB": 0
+  },
+  "rows": {
+    "matched": [
+      {
+        "a": 2,
+        "b": 2
+      },
+      {
+        "a": 3,
+        "b": 3
+      },
+      {
+        "a": 4,
+        "b": 4
+      },
+      {
+        "a": 5,
+        "b": 5
+      },
+      {
+        "a": 6,
+        "b": 6
+      },
+      {
+        "a": 7,
+        "b": 7
+      },
+      {
+        "a": 8,
+        "b": 8
+      },
+      {
+        "a": 9,
+        "b": 9
+      },
+      {
+        "a": 10,
+        "b": 10
+      },
+      {
+        "a": 11,
+        "b": 11
+      },
+      {
+        "a": 12,
+        "b": 12
+      },
+      {
+        "a": 13,
+        "b": 13
+      },
+      {
+        "a": 14,
+        "b": 14
+      },
+      {
+        "a": 15,
+        "b": 15
+      },
+      {
+        "a": 16,
+        "b": 16
+      },
+      {
+        "a": 17,
+        "b": 17
+      },
+      {
+        "a": 18,
+        "b": 18
+      },
+      {
+        "a": 19,
+        "b": 19
+      },
+      {
+        "a": 20,
+        "b": 20
+      }
+    ],
+    "onlyA": [
+      21
+    ],
+    "onlyB": [],
+    "duplicateA": [],
+    "ambiguousA": [],
+    "ambiguousB": []
+  },
+  "totalsCents": {
+    "a": -754030,
+    "b": -703627,
+    "difference": -50403,
+    "matchedA": -703627,
+    "matchedB": -703627,
+    "onlyA": -50403,
+    "onlyB": 0,
+    "duplicateA": 0,
+    "ambiguousA": 0,
+    "ambiguousB": 0
+  },
+  "questions": {
+    "map.a.date": "Txn Dt",
+    "map.a.description": "Details",
+    "map.a.amount": "Amt"
+  }
+}

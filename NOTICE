@@ -1,0 +1,39 @@
+NONON
+Copyright 2026 Kyle Cabahug
+
+NONON is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Components derived from Pragma (https://www.trypragma.xyz), Copyright 2026 Systo AI,
+licensed under the Apache License, Version 2.0. Specifically: the pinned llama.cpp
+runtime build references, the pinned Qwen3.5 model file references and checksums, and
+the behaviour of the Claude, Codex and Antigravity process adapters were adapted from
+Pragma. Each reused file is listed in docs/project/reuse-inventory.md.
+
+The companion character Non is the Pragma mascot Pip. The static poses are the original Pragma renders supplied in
+Kyle's NONON brand pack (unedited there), shown here as edge-fitted copies of the same pixels; the logo, app icon,
+interface icons and the animated 2D face come from the same pack. See app/src/renderer/src/assets/non/PROVENANCE.md.
+
+Pragma is itself a derivative of OpenMausBot, Copyright 2026 Milind Soni and OpenMausBot
+contributors, used under the Apache License, Version 2.0.
+
+Third-party software and models used by NONON:
+
+- llama.cpp (https://github.com/ggml-org/llama.cpp), MIT License,
+  Copyright (c) 2023-2026 The ggml authors. NONON downloads the official release build
+  on first use; it is not modified.
+- Qwen3.5 language models by Alibaba Cloud's Qwen team (GGUF conversions by Unsloth),
+  Apache License 2.0. NONON downloads these on first use; they are not modified.
+- Nunito typeface (Copyright 2014 The Nunito Project Authors), SIL Open Font License 1.1. The variable
+  upright and italic fonts come unmodified from the brand pack and are re-encoded to WOFF2 only (glyphs unchanged);
+  the licence text is app/src/renderer/src/assets/fonts/OFL.txt.
+- Electron (MIT), React (MIT), Vite (MIT), Tailwind CSS (MIT), ExcelJS (MIT),
+  Papa Parse (MIT), docx (MIT), mammoth (BSD-2-Clause), unpdf (MIT), Croner (MIT),
+  JSZip (MIT or GPL-3.0, used under MIT), zod (MIT), lucide-react (ISC, only for the few icons the brand set lacks).
+- PDF.js by Mozilla (Apache License 2.0), included as the serverless build shipped inside unpdf.
+- selfsigned (MIT) with @peculiar/x509 (MIT) and PKI.js (BSD-3-Clause), used to create the
+  local certificate for LAN pairing.
+
+Claude, Codex and Antigravity are optional connections to the user's own installed and
+signed-in tools from Anthropic, OpenAI and Google. NONON does not bundle, modify or
+redistribute them, and does not collect or store their credentials. Gmail access is a direct
+connection to Google's service using the user's own authorization.

@@ -1,0 +1,31 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nonon-site",
+  "main": "src/worker.ts",
+  // Newest date the pinned workerd build accepts; bump together with wrangler.
+  "compatibility_date": "2026-10-06",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    // Every request goes through the Worker so one place adds the security headers,
+    // the www redirect and the branded 404.
+    "run_worker_first": true,
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "none"
+  },
+  "r2_buckets": [
+    {
+      "binding": "DOWNLOADS",
+      // Not created yet. Create it once with: wrangler r2 bucket create nonon-downloads
+      "bucket_name": "nonon-downloads"
+    }
+  ],
+  "observability": { "enabled": true, "head_sampling_rate": 1 },
+
+  // Custom domains (live). Cloudflare creates the
+  // DNS records itself for custom_domain routes. www is redirected to the apex in the Worker.
+  "routes": [
+    { "pattern": "trynonon.xyz", "custom_domain": true },
+    { "pattern": "www.trynonon.xyz", "custom_domain": true }
+  ]
+}

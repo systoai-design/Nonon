@@ -1,0 +1,142 @@
+{
+  "ranAt": "2026-10-09T09:37:12.184Z",
+  "model": "Qwen3.5 4B Q4_K_M via llama-server on this PC (127.0.0.1)",
+  "workspacePolicy": "local-only",
+  "roles": {
+    "design": "local",
+    "implement": "local",
+    "review": "local"
+  },
+  "input": "app/resources/samples/general/product-brief.md",
+  "run1": {
+    "ms": 270825,
+    "modelCalls": 3,
+    "calls": [
+      {
+        "ms": 230689,
+        "promptTokens": 718,
+        "completionTokens": 474,
+        "tokensPerSecond": 120.41604379579884
+      },
+      {
+        "ms": 27427,
+        "promptTokens": 1374,
+        "completionTokens": 307,
+        "tokensPerSecond": 118.15625276325385
+      },
+      {
+        "ms": 12650,
+        "promptTokens": 1809,
+        "completionTokens": 38,
+        "tokensPerSecond": 126.88701568597864
+      }
+    ],
+    "stages": [
+      {
+        "stage": "design",
+        "label": "Design",
+        "provider": "local",
+        "providerLabel": "This computer",
+        "revision": 1,
+        "createdAt": "2026-10-09T09:34:58.598Z",
+        "inputRevision": "9c789e29075662d52f007e50c3511461db72e3982deeec19b7a73767868588f6",
+        "status": "made now",
+        "attempts": 1,
+        "ms": 230693,
+        "dropped": []
+      },
+      {
+        "stage": "implement",
+        "label": "Implement",
+        "provider": "local",
+        "providerLabel": "This computer",
+        "revision": 1,
+        "createdAt": "2026-10-09T09:35:26.027Z",
+        "inputRevision": "c30654a79635cdffebbe47fc782889d421110393129faa17907146f0674ac900",
+        "status": "made now",
+        "attempts": 1,
+        "ms": 27429,
+        "dropped": []
+      },
+      {
+        "stage": "review",
+        "label": "Review",
+        "provider": "local",
+        "providerLabel": "This computer",
+        "revision": 1,
+        "createdAt": "2026-10-09T09:35:38.677Z",
+        "inputRevision": "a612e1322cba9631348b53e2cf1f1b7888e8d2556202c9330b9b6e7ab445f6f4",
+        "status": "made now",
+        "attempts": 1,
+        "ms": 12650,
+        "dropped": []
+      }
+    ],
+    "verdict": "ready",
+    "findings": 0,
+    "summary": "Drafted \"Harbor Lane Bakery: online ordering brief\" with your AI team: Design on This computer, Implement on This computer, Review on This computer. The reviewer listed no problems.",
+    "checks": [
+      {
+        "id": "stages-recorded",
+        "label": "Each step recorded who made it",
+        "status": "pass",
+        "detail": "Design: This computer. Implement: This computer. Review: This computer"
+      },
+      {
+        "id": "source-lines",
+        "label": "Lines the reviewer pointed to exist",
+        "status": "pass",
+        "detail": "The reviewer cited no lines."
+      },
+      {
+        "id": "unsupported-flagged",
+        "label": "Unsupported claims are marked in the draft",
+        "status": "pass",
+        "detail": "The reviewer marked no claim as unsupported."
+      },
+      {
+        "id": "numbers",
+        "label": "Numbers in the draft come from the source",
+        "status": "pass",
+        "detail": "Every number in the draft appears in the source or your goal."
+      }
+    ],
+    "factsInDraft": {
+      "budget 1,500 USD": true,
+      "live before 14 November": true,
+      "pay in the shop, not online": true,
+      "no customer accounts": true,
+      "no delivery for now": true,
+      "order email to the shop": true
+    }
+  },
+  "run2UnchangedInputs": {
+    "ms": 25,
+    "newModelCalls": 0,
+    "stages": [
+      "design:reused",
+      "implement:reused",
+      "review:reused"
+    ]
+  },
+  "run3GoalChanged": {
+    "ms": 45534,
+    "newModelCalls": 3,
+    "stages": [
+      "design:made now:r2",
+      "implement:made now:r2",
+      "review:made now:r2"
+    ]
+  },
+  "run4FileEdited": {
+    "ms": 47870,
+    "newModelCalls": 3,
+    "stages": [
+      "design:made now:r3",
+      "implement:made now:r3",
+      "review:made now:r3"
+    ],
+    "draftMentions1800": true,
+    "draftStillSays1500": false
+  }
+}

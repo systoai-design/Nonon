@@ -1,0 +1,70 @@
+{
+  "ranAt": "2026-10-09T09:35:11.116Z",
+  "ms": 243568,
+  "summary": "Reply draft ready to edit. Each part shows the lines of Letter from the landlord.txt it comes from.",
+  "checks": [
+    {
+      "id": "source-lines",
+      "label": "Each fact comes from a point with a quote and line in your document",
+      "status": "pass",
+      "detail": "6 source points verified word for word."
+    },
+    {
+      "id": "no-new-figures",
+      "label": "The draft mentions figures that are not in your document",
+      "status": "warn",
+      "detail": "Check: \"October 12, 2026\" (the document does not write this full date), $ (no currency symbol in the document)"
+    },
+    {
+      "id": "no-promises",
+      "label": "The draft makes no promises for you that you did not ask for",
+      "status": "pass"
+    }
+  ],
+  "report": {
+    "title": "Re: Lease Renewal Offer and Roofer Inspection",
+    "type": "reply",
+    "summary": "Mr. Alan Santos of Santos Property Management is offering a new 12-month lease starting January 1, 2027, with a monthly rent increase to $1,150. The current lease for Unit 4 ends on December 31, 2026, and the tenant must respond by October 20, 2026, to avoid the landlord showing the unit to others. A roofer is scheduled to inspect a hallway leak on October 12, 2026, between 9 am and noon.",
+    "sections": [
+      {
+        "heading": "Greeting and Opening",
+        "body": "Dear Mr. Santos,\n\nThank you for your letter regarding the renewal of my lease for Unit 4. I am interested in renewing the lease under the new terms you have proposed.",
+        "refs": []
+      },
+      {
+        "heading": "Lease Renewal Terms",
+        "body": "I would like to proceed with the new 12-month lease starting January 1, 2027, at a monthly rent of $1,150. I understand that the existing deposit of $1,150 will carry over to the new lease. However, could you please confirm if the new lease will include the same deposit amount?",
+        "refs": [
+          "Letter from the landlord.txt:9",
+          "Letter from the landlord.txt:10"
+        ]
+      },
+      {
+        "heading": "Roofer Inspection Schedule",
+        "body": "I am aware that a roofer is scheduled to inspect a hallway leak on October 12, 2026, between 9 am and noon. Would it be possible to schedule this inspection in the afternoon instead?",
+        "refs": [
+          "Letter from the landlord.txt:12"
+        ]
+      },
+      {
+        "heading": "Closing",
+        "body": "Please let me know if you require any further information from me. I look forward to your confirmation so that I can finalize the renewal before the deadline.",
+        "refs": []
+      }
+    ],
+    "missingInformation": [
+      "your name",
+      "your address or unit number",
+      "your signature"
+    ],
+    "placeholders": [],
+    "repeatsRemoved": 0,
+    "droppedPoints": 0,
+    "llm": {
+      "calls": 2,
+      "retries": 0,
+      "failures": 0,
+      "ms": 243503
+    }
+  }
+}
