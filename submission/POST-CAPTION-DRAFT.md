@@ -1,4 +1,4 @@
-# Post caption (DRAFT for Kyle's approval; nothing has been posted)
+# Post caption (POSTED 2026-10-10)
 
 ## LinkedIn (Systo AI page)
 
@@ -18,7 +18,7 @@ Free download: https://trynonon.xyz
 Open source: https://github.com/systoai-design/Nonon
 
 #AppBuildersPH #OpenSource #AI #LocalAI #Productivity #Hackathon #Philippines
-[SPONSOR / ORGANIZER TAGS: from the AppBuildersPH briefing, Kyle to add]
+Tag Devin / Cognition (required by the briefing) and keep #AppBuildersPH.
 
 ## YouTube
 
@@ -42,3 +42,11 @@ Made with Blender, ElevenLabs (narration, sound effects and music) and ffmpeg. M
 
 ## X (short)
 Meet Non 🧡 NONON is our free, open-source desktop app that finishes everyday file work with an AI on your own computer. Built in under a day for the AppBuildersPH Hackathon, and we may keep building it for the community. https://trynonon.xyz #AppBuildersPH #OpenSource
+
+## Posted
+- YouTube (Systo AI): https://youtu.be/zwAGvHim_kw
+- LinkedIn (Systo AI page): https://www.linkedin.com/feed/update/urn:li:share:7514393502617698304/
+- X (@systoai): https://x.com/systoai/status/2108628224700027380
+- Threads (@kylezeto): https://www.threads.com/@kylezeto/post/DeSLlvkAaFe
+- Instagram reel (@kylezeto), shared to Facebook via the Instagram cross-post toggle
+- TikTok (Systo AI): posted via TikTok Studio, shows "Content under review"

@@ -3,6 +3,7 @@
 <p align="center"><strong>Finish everyday work with your own files, with AI that keeps working when the internet does not.</strong></p>
 
 <p align="center">
+  <img alt="Entry for the AppBuildersPH Hackathon 2026" src="https://img.shields.io/badge/AppBuildersPH-Hackathon%202026%20entry-F47B32">
   <a href="LICENSE"><img alt="Licence: Apache-2.0" src="https://img.shields.io/badge/licence-Apache--2.0-F47B32"></a>
   <img alt="Platforms: Windows 10 and 11 (x64), macOS on Apple silicon" src="https://img.shields.io/badge/platforms-Windows%20x64%20%7C%20macOS%20Apple%20silicon-111111">
   <img alt="Offline-first: the built-in AI runs on your computer" src="https://img.shields.io/badge/offline--first-after%20one--time%20setup-A84208">
