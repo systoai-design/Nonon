@@ -9,7 +9,7 @@ Every line says what was actually run. "Mocked" means a fake stood in for the re
 | Area | What was run | Result |
 |---|---|---|
 | Local AI, Windows | Real install (runtime + Qwen3.5 4B and 9B), start, answer, idle unload, quit, on an RTX 5070 (CUDA and Vulkan builds) | 4B: about 139 tokens/s, 3.5 GiB peak, first token 0.18 s; process gone after Stop and after quit (runtime-evidence.md) |
-| Local AI, Mac | Packaged app on a MacBook (M5 Max): install, answer, compare task | Metal runtime, 4B, peak 3.4 GiB, same results as Windows |
+| Local AI, Mac | Packaged app and a speed test on a MacBook Pro (Mac17,6: Apple M5 Max, 18 CPU cores, 32-core GPU, 36 GB, macOS 26.6): install, answer, compare task | Metal runtime, Qwen3.5 4B: 3,038 tokens/s reading a 2,041-token prompt, about 87 tokens/s writing, 3.2 GiB in the test (3.4 to 3.7 GiB peak in the app); same results as Windows |
 | Local AI, no graphics card | 4B on CPU only, 4 threads, 16K window | 55 tokens/s reading, 13 tokens/s writing, 4.45 GiB; real 8 GB computers NOT tested |
 | Nothing leaves the computer for local jobs | Every TCP and UDP connection of the whole process tree sampled every 0.5 s through start, a full comparison, idle and quit (network-inventory.md) | Zero non-loopback connections after a start-up DNS lookup and a UDP probe by Chromium were switched off. Not firewall-proof: no admin rights to add an OS-level block |
 | Spreadsheet comparison (lead demo) | Known-answer fixtures (100 tests) and the real app on both OSes | Planted differences found (typo, date lag, listed twice, only-in-one); every row accounted for; amounts exact; the comparison workbook opens on a plain one-page summary |

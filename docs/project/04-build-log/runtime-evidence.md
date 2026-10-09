@@ -111,3 +111,15 @@ with no usable graphics card might experience on THIS CPU. It is not a measureme
   NOT tested: a real 8 GB machine, paging behaviour, thermal throttling, other apps running alongside.
 - The spreadsheet comparison sends about 1,000 tokens to the model, so on CPU only the explanation would take roughly
   20 to 30 s. The comparison itself (code) takes well under a second.
+
+## Added by the lead 2026-10-10 02:50: speed test on the MacBook (Metal)
+
+Machine: MacBook Pro (Mac17,6), Apple M5 Max, 18 CPU cores (6 super, 12 performance), 32-core GPU, 36 GB unified memory, macOS 26.6.2, Metal 4.
+
+- Same engine build as the app ships (llama.cpp b10909, macOS arm64, Metal), `qwen3.5-4b` Q4_K_M, `-c 16384 --parallel 1 --jinja`, 8-bit cache with flash attention, thinking off, run with the same flags as the PC test.
+- Prompt: the same 2,041 tokens used for the CPU-only test on the PC (the bank-export sample twice plus an instruction), 120 tokens written.
+- Server ready (health check) after about 0.5 s with the model file already in the macOS file cache. A first start after a reboot reads the 2.7 GB file from disk and will be slower: not measured.
+- First request: 2.1 s wall, reading 3,038 tokens/s, writing 86.7 tokens/s.
+- Second request, same prompt (2,037 tokens served from the prompt cache): 1.2 s wall, writing 100.9 tokens/s.
+- Resident memory of llama-server after the two requests: 3.15 GiB (measured with `ps`, not a continuous peak sampler). The packaged app's own sampler recorded 3.4 GiB (2026-10-09 run) and 3.71 GiB (2026-10-10 run).
+- Not measured: other Macs, battery power, thermal throttling over a long session, the 9B model.

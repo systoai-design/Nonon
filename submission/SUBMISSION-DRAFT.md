@@ -43,7 +43,7 @@ NONON never writes to your original file until you press OK, and it saves a back
 - Changes: stage, check, apply with a recovery copy, undo. Stale files are refused. Newer edits are never overwritten.
 - Site and downloads: trynonon.xyz on Cloudflare (a Worker for the site, an R2 bucket for the installers).
 - Windows installer built with electron-builder. Mac app signed with Kyle's own Developer ID, notarized and stapled.
-- Tests: `npx vitest run` gave 684 passed and 33 skipped (the skipped ones need a model, a command line tool or an account).
+- Tests: `npx vitest run` gave 716 passed and 33 skipped (the skipped ones need a model, a command line tool or an account).
 
 ## What is new in the hackathon, and what is reused
 
@@ -76,7 +76,7 @@ New in this hackathon (built from 2026-10-09 17:00 to the deadline): the app she
 - First run downloads 3 to 6 GB. There is no offline installer. Core jobs work offline after that.
 - Not built: phone app, Linux, Intel Macs, scanned PDFs, other characters (only Non), unrestricted screen control, automatic updates, model training.
 - The Windows installer is not code-signed, so Windows may show "Windows protected your PC" (More info, then Run anyway). [Confirm against the live download page before posting.]
-- The brand pack (official logos, icons, fonts) was not available; stand-ins are in place.
+- The official brand pack (logos, icons, Nunito, Non art) is in the app and the website.
 
 ## How a judge can try it in 3 minutes
 

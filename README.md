@@ -170,7 +170,7 @@ The comparison workbook has one sheet for each group of rows: Matched, Only in A
   <br><em>"About this comparison" spells out the rules in plain words so someone else can check the work.</em>
 </p>
 
-In the chat, the card also shows a preview and a list of green ticks (and a warning where one applies). Expected for the sample pair: 51 rows, 19 matched pairs, 4 only in the expense report, 5 only in the bank export, 1 listed twice, 3 not sure, totals PHP 70,852.30 and PHP 68,286.70, difference PHP 2,565.60.
+In the chat, the card also shows a preview and a list of check marks (and a warning where one applies). Expected for the sample pair: 51 rows, 19 matched pairs, 4 only in the expense report, 5 only in the bank export, 1 listed twice, 3 not sure, totals PHP 70,852.30 and PHP 68,286.70, difference PHP 2,565.60.
 
 <p align="center">
   <img src="docs/readme/14-results-inline-card.png" width="800" alt="The chat showing the answer with an inline preview of the comparison spreadsheet and an Expand link">
@@ -530,13 +530,15 @@ These numbers were measured by running the real code. They describe the test mac
 
 Test PC (Windows 11): Intel i7-13700K, 64 GB memory, NVIDIA RTX 5070 with 12 GB. Engine llama.cpp b10909, Qwen3.5 Q4_K_M models, a 16K-token window, one request at a time ([`runtime-evidence.md`](docs/project/04-build-log/runtime-evidence.md)).
 
+Test laptop (macOS 26.6): MacBook Pro (model Mac17,6) with an Apple M5 Max chip, 18 CPU cores (6 super and 12 performance), a 32-core GPU, 36 GB of unified memory and Metal 4. The same engine build for macOS on Apple silicon (llama.cpp b10909, Metal), the same Qwen3.5 4B Q4_K_M model, the same 16K-token window and one request at a time. The speed test below used the same 2,041-token prompt as on the PC.
+
 | Run | Speed | Memory | Notes |
 | --- | --- | --- | --- |
 | Qwen3.5 4B, CUDA (graphics card) | about 139 tokens/s writing; first token 0.18 s after a 600-token prompt | 3.5 GiB peak | Start in 2 to 4 s. Idle unload gave the memory back |
 | Qwen3.5 4B, Vulkan | about 131 tokens/s | 3.3 GiB peak | The first answer on Vulkan took 27 s once (one-time shader build) |
 | Qwen3.5 9B, CUDA (the "recommended" size for 16 GB and up) | 89 to 91 tokens/s | 5.8 GiB peak | First token 0.26 s |
 | Qwen3.5 4B, **no graphics card** (CPU only, 4 threads) | 55 tokens/s reading a 2,041-token prompt, 13 tokens/s writing | 4.45 GiB | A 46 s run. A comparison explanation would take roughly 20 to 30 s. The comparison itself (code) takes well under a second |
-| Qwen3.5 4B on a MacBook (M5 Max, Metal) | same results as Windows | 3.4 GiB peak | Packaged app: install, answer, compare |
+| Qwen3.5 4B on the MacBook (M5 Max, Metal) | 3,038 tokens/s reading the 2,041-token prompt; about 87 tokens/s writing (101 when the prompt was already cached) | 3.2 GiB in the speed test; 3.4 to 3.7 GiB peak seen inside the packaged app | The AI server was ready in about half a second with the model file already cached by macOS. The whole comparison took 3.1 s in the signed app. Same answers and the same undo hash as Windows |
 
 What this does and does not show: the model loads and answers in under 5 GiB with no graphics card, so a 16 GB computer has headroom and an 8 GB computer is plausible. On an 8 GB computer with a slower processor, expect longer waits than shown. **Not tested:** a real 8 GB machine, paging, thermal throttling, other apps running alongside, AMD or Intel graphics, and Windows without the Visual C++ runtime. The app ships the runtime DLLs, but that fallback was not exercised.
 

@@ -16,21 +16,21 @@ Status words: DONE (exists and checked), DRAFT (written, needs Kyle), KYLE (only
 
 | Item | Status | Notes |
 |---|---|---|
-| Public repository | KYLE | Repo is local only (no git remote). Make it public only on Kyle's go. A quick pattern scan of tracked files found no keys or secrets (not a full audit). `.env`, models, installers are gitignored. Decide whether the 7 MB of submission videos go in the repo. License is Apache-2.0 (`LICENSE`, `NOTICE`). |
+| Public repository | DONE | https://github.com/systoai-design/Nonon is public (Apache-2.0), one clean history, scanned for secrets and personal data. |
 | One-minute video | DONE as a file, KYLE to upload | `submission/demo-1min.mp4` (58.2 s, 1920x1080, H.264, silent AAC track, captions burned in). Teaser `demo-teaser.mp4` (15 s) and `demo-1min-poster.png`. Upload and link are Kyle's. Watch it once before posting. |
 | Sponsor-tagged post | DRAFT, KYLE | Draft in `SUBMISSION-DRAFT.md`. Tags are `[SPONSOR TAGS: from the organizer briefing]`. Needs Kyle's go to post. |
 | Eligibility and forms | OPEN, KYLE | These come from a briefing Kyle has not shared with the build team. Not invented. Needs Kyle: eligibility rules, team or solo entry, any entry form fields, required category, required tools or sponsor products, rules about reused code. |
 | Reconfirm deadline with the host | KYLE | The plan says to confirm 2026-10-10 10:00 Philippine time independently. Not done. |
 | Disclosures: reused components, models and APIs, AI coding tools | DONE | `NOTICE`, `docs/project/reuse-inventory.md`, `SUBMISSION-DRAFT.md`. Pragma (Apache-2.0), llama.cpp (MIT), Qwen3.5 (Apache-2.0), Nunito (OFL), Claude as the coding tool. Confirm that the organizer is happy with Pragma reuse (Kyle's own sibling project, same license). |
-| Tested build, factual feature status | DONE | `docs/project/DELIVERY-LEDGER.md`. 684 tests passed, 33 skipped. |
+| Tested build, factual feature status | DONE | `docs/project/DELIVERY-LEDGER.md`. 716 tests passed, 33 skipped. |
 | Demo assets | DONE | Video, teaser, poster, 8 screenshots (`SCREENSHOTS.md`). |
 | Judge instructions | DONE | `JUDGE-QUICKSTART.md`. |
 
 ## B. Needs Kyle before submitting
 
-1. Final rebuild after the brand swap and the folder-prompt fix (STATE.md next action): Windows and Mac, then re-upload to R2 and update the site /status page. The live `/api/latest` on 2026-10-10 listed version 0.1.0 dated 2026-10-09 11:18 UTC with the Windows installer marked not signed. The demo video was recorded from the repository source built on 2026-10-10, not from that installer. Check that the downloadable build behaves the same as the video.
-2. Brand pack (`NONON-BRAND-VISUALS-HANDOVER-v1.zip`): not on this PC. Stand-in logo, icons and fonts are in place. If it is swapped in, re-record or re-check the video and screenshots.
-3. Say go for each publishing step: repository public, video upload, post, site deploy. (Standing rule: publishing needs his OK at that moment.)
+1. (Done) Final rebuild after the brand swap: the live downloads are the final builds.
+2. (Done) Brand pack: the official logos, icons, fonts and Non art are in the app, the site and the re-recorded video.
+3. Say go for each remaining publishing step: video upload and post (the repository and site are already public). (Standing rule: publishing needs his OK at that moment.)
 4. Google OAuth Desktop client (`docs/gmail-setup.md`) if live Gmail should be shown. Without it, say Gmail is tested against a fake Google only.
 5. Claude sign-in if a real Claude turn should be claimed. Without it, the Claude connection stays described as installed but not signed in.
 6. Look at the video once. Things you may want to change: caption wording, the title line, end card text ("Windows and Mac", "Reuses Pragma"), and whether the orange cursor dot (a recording aid) is acceptable.
