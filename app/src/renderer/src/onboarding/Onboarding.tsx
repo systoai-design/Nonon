@@ -87,7 +87,7 @@ export function Onboarding() {
         <img className="onboard-logo" src={logo} alt="NONON" />
         <p className="onboard-tag">A little help for your everyday work.</p>
         <div className="onboard-hero">
-          <NonArt pose={pose} size={250} />
+          <NonArt pose={pose} size={250} lively />
         </div>
       </aside>
       <div className="onboard-card">

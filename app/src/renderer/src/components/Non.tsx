@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NON_ART, type NonPose } from "../assets/non";
 import { useAppState } from "../lib/bridge";
 import type { NonState } from "../lib/companion";
-import { useLayers } from "../lib/motion";
+import { motionOff, useLayers } from "../lib/motion";
 import { createNonController, type NonController } from "../lib/non-controller";
 
 // Warm the image cache so the onboarding pose swap (wave, rest, success) never flashes an empty frame.
@@ -104,15 +104,33 @@ const FRAME = { w: 325, h: 461, cx: 167, cy: 279 };
  * `full` shows the whole frame at the given width, centred. `avatar` is a square window onto the character for small
  * sizes, so the figure fills the box instead of being a tiny figure in a tall frame.
  */
-export function NonArt({ pose = "rest", size = 160, variant = "full" }: { pose?: NonPose; size?: number; variant?: "full" | "avatar" }) {
-  const layers = useLayers(pose, 220);
+export function NonArt({ pose = "rest", size = 160, variant = "full", lively = false }: { pose?: NonPose; size?: number; variant?: "full" | "avatar"; lively?: boolean }) {
+  // `lively` keeps the big still art alive: it breathes (CSS) and waves now and then (pose swap), instead of sitting frozen.
+  // Reduced motion, a hidden window and any pose other than rest leave it still.
+  const [waving, setWaving] = useState(false);
+  useEffect(() => {
+    if (!lively || pose !== "rest") {
+      setWaving(false);
+      return;
+    }
+    let timer = 0;
+    const cycle = (next: boolean): void => {
+      if (document.hidden || motionOff()) setWaving(false);
+      else setWaving(next);
+      timer = window.setTimeout(() => cycle(!next && !document.hidden && !motionOff()), next ? 1800 : 4600);
+    };
+    timer = window.setTimeout(() => cycle(true), 1600);
+    return () => window.clearTimeout(timer);
+  }, [lively, pose]);
+  const shownPose: NonPose = lively && waving && pose === "rest" ? "wave" : pose;
+  const layers = useLayers(shownPose, 260);
   const avatar = variant === "avatar";
   // Avatar window: a 270 frame px square centred on the resting character (it fills about 80% of the height, with room for
   // the ground shadow to fade out at the bottom edge).
   const win = 270;
   const k = size / win;
   return (
-    <span className={`non-art ${avatar ? "non-art-avatar" : ""}`} style={{ width: size, height: avatar ? size : (size * FRAME.h) / FRAME.w }} aria-hidden="true">
+    <span className={`non-art ${avatar ? "non-art-avatar" : ""} ${lively && !avatar ? "non-art-live" : ""}`} style={{ width: size, height: avatar ? size : (size * FRAME.h) / FRAME.w }} aria-hidden="true">
       {layers.map((l) => (
         <span key={l.id} className={`non-art-layer ${l.leaving ? "is-leaving" : l.id > 0 ? "is-entering" : ""}`}>
           <img
